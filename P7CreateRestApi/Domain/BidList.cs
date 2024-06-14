@@ -1,6 +1,6 @@
 namespace Dot.Net.WebApi.Domain
 {
-    public class Bid
+    public class BidList
     {
         public int BidListId { get; set; }
         public string Account { get; set; }
