@@ -1,4 +1,6 @@
-using Dot.Net.WebApi.Controllers.Domain;
+// FIX01.01 Add using reference Dot.Net.WebApi.Domain to RuleName Controller
+// for resolving unfound assembly reference Rating POCO Model.
+using Dot.Net.WebApi.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Dot.Net.WebApi.Controllers
