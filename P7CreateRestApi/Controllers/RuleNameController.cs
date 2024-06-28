@@ -1,3 +1,6 @@
+// FIX01 Add using reference Dot.Net.WebApi.Domain to RuleName Controller.
+// for resolving unfound assembly reference RuleName POCO Model
+using Dot.Net.WebApi.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Dot.Net.WebApi.Controllers
