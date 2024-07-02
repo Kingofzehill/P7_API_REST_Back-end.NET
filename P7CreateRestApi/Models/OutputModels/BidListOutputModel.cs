@@ -1,5 +1,9 @@
 ﻿namespace P7CreateRestApi.Models.OutputModel
 {
+    /// <summary>
+    /// BidList POCO Class for output model.
+    /// </summary>
+    /// <remarks></remarks>
     public class BidListOutputModel
     {
         public int BidListId { get; set; }

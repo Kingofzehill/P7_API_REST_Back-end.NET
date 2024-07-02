@@ -1,5 +1,9 @@
 ﻿namespace P7CreateRestApi.Models.InputModels
 {
+    /// <summary>
+    /// BidList POCO Class for input model.
+    /// </summary>
+    /// <remarks></remarks>
     public class BidListInputModel
     {
         public string Account { get; set; }

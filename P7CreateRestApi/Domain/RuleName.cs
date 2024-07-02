@@ -1,5 +1,9 @@
 namespace Dot.Net.WebApi.Domain
 {
+    /// <summary>
+    /// RuleName DTO Class.
+    /// </summary>
+    /// <remarks></remarks>
     public class RuleName
     {
         public int Id { get; set; }

@@ -1,5 +1,9 @@
 namespace Dot.Net.WebApi.Domain
 {
+    /// <summary>
+    /// BidList DTO Class.
+    /// </summary>
+    /// <remarks></remarks>
     public class BidList
     {
         public int BidListId { get; set; }
