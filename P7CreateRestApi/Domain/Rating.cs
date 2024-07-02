@@ -1,5 +1,9 @@
 namespace Dot.Net.WebApi.Domain
 {
+    /// <summary>
+    /// Rating DTO Class.
+    /// </summary>
+    /// <remarks></remarks>
     public class Rating
     {
         public int Id { get; set; }

@@ -1,12 +1,11 @@
-namespace Dot.Net.WebApi.Domain
+﻿namespace P7CreateRestApi.Models.InputModels
 {
     /// <summary>
-    /// BidList DTO Class.
+    /// BidList POCO Class for input model.
     /// </summary>
     /// <remarks></remarks>
-    public class BidList
+    public class BidListInputModel
     {
-        public int BidListId { get; set; }
         public string Account { get; set; }
         public string BidType { get; set; }
         public double? BidQuantity { get; set; }

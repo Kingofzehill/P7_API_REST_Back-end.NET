@@ -1,10 +1,10 @@
-namespace Dot.Net.WebApi.Domain
+﻿namespace P7CreateRestApi.Models.OutputModel
 {
     /// <summary>
-    /// BidList DTO Class.
+    /// BidList POCO Class for output model.
     /// </summary>
     /// <remarks></remarks>
-    public class BidList
+    public class BidListOutputModel
     {
         public int BidListId { get; set; }
         public string Account { get; set; }

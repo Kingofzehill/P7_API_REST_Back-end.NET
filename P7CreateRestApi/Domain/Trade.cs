@@ -1,5 +1,9 @@
 namespace Dot.Net.WebApi.Domain
 {
+    /// <summary>
+    /// Trade DTO Class.
+    /// </summary>
+    /// <remarks></remarks>
     public class Trade
     {
         public int TradeId { get; set; }

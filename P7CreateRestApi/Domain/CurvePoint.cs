@@ -1,5 +1,9 @@
 namespace Dot.Net.WebApi.Domain
 {
+    /// <summary>
+    /// CurvePoint DTO Class.
+    /// </summary>
+    /// <remarks></remarks>
     public class CurvePoint
     {
         public int Id { get; set; }
