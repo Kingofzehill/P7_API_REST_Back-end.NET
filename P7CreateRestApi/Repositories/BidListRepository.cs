@@ -12,7 +12,7 @@ namespace P7CreateRestApi.Repositories
         }
 
         /// <summary>BidList create.</summary>  
-        /// <param name="bidList">BidList DTO object (BidList class from ../Domain)</param>
+        /// <param name="bidList">BidList DTO object.</param>
         /// <return></return> 
         /// <remarks></remarks>
 
@@ -51,7 +51,7 @@ namespace P7CreateRestApi.Repositories
 
         /// <summary>BidList Update.</summary>      
         /// <return>Updated BidList.</return> 
-        /// <param name="bidList">BidList DTO object (BidList class from ../Domain)</param>
+        /// <param name="bidList">BidList DTO object.</param>
         /// <remarks></remarks>
         public BidList? Update(BidList bidList)
         {
