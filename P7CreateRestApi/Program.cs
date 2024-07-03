@@ -19,6 +19,8 @@ builder.Services.AddScoped<IBidListRepository, BidListRepository>();
 builder.Services.AddScoped<IBidListService, BidListService>();
 builder.Services.AddScoped<ICurvePointRepository, CurvePointRepository>();
 builder.Services.AddScoped<ICurvePointService, CurvePointService>();
+builder.Services.AddScoped<IRatingRepository, RatingRepository>();
+builder.Services.AddScoped<IRatingService, RatingService>();
 
 var app = builder.Build();
 

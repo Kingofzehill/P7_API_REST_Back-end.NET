@@ -31,7 +31,7 @@ namespace P7CreateRestApi.Services
         /// <summary>CurvePoint Service Create method. 
         /// Call CRUD method in the CurvePoint Repository with CurvePoint POCO object to create. 
         /// Store created record into DTO object and returns POCO output model object.</summary>  
-        /// <param name="bidList">CurvePoint POCO input model object.</param>
+        /// <param name="inputModel">CurvePoint POCO input model object.</param>
         /// <return>CurvePoint POCO output model object.</return> 
         /// <remarks></remarks>
         public CurvePointOutputModel? Create(CurvePointInputModel inputModel)
@@ -67,6 +67,7 @@ namespace P7CreateRestApi.Services
         /// and BidList POCO object to update. 
         /// Store updated record into DTO object and returns POCO output model object if found or null.</summary>  
         /// <param name="id">Id of the CurvePoint record to get.</param>
+        /// <param name="inputModel">CurvePoint POCO input model object.</param>
         /// <return>CurvePoint POCO output model object or null.</return> 
         /// <remarks></remarks>
         public CurvePointOutputModel? Update(int id, CurvePointInputModel inputModel)
@@ -103,7 +104,7 @@ namespace P7CreateRestApi.Services
         }
         /// <summary>CurvePoint Service ToOutputModel method. 
         /// Load CurvePoint DTO object properties into POCO uutput model object.</summary>  
-        /// <param name="bidList">CurvePoint DTO output model object.</param>
+        /// <param name="curvePoint">CurvePoint DTO output model object.</param>
         /// <remarks></remarks>
         private CurvePointOutputModel ToOutputModel(CurvePoint curvePoint) =>
             new CurvePointOutputModel
