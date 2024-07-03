@@ -58,7 +58,7 @@ namespace Dot.Net.WebApi.Controllers
         /// Call Rule service, then Rating repertory for create. 
         /// Returns Rule POCO output model object created for view. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
-        [HttpGet]
+        [HttpPost]
         [Route("add")]
         public IActionResult AddRuleName([FromBody] RuleNameInputModel inputModel)
         {           
