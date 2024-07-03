@@ -1,5 +1,5 @@
-﻿using P7CreateRestApi.Models.InputModels;
-using P7CreateRestApi.Models.OutputModels;
+﻿using P7CreateRestApi.Models.InputModel;
+using P7CreateRestApi.Models.OutputModel;
 
 namespace P7CreateRestApi.Services
 {
