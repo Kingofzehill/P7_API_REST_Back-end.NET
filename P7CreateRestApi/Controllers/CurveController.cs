@@ -1,5 +1,8 @@
 using Dot.Net.WebApi.Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using P7CreateRestApi.Models.InputModel;
+using P7CreateRestApi.Services;
 
 namespace Dot.Net.WebApi.Controllers
 {
@@ -7,52 +10,137 @@ namespace Dot.Net.WebApi.Controllers
     [Route("[controller]")]
     public class CurveController : ControllerBase
     {
-        // TODO: Inject Curve Point service
-
-        [HttpGet]
-        [Route("list")]
-        public IActionResult Home()
+        private readonly ICurvePointService _curvePointService;
+        public CurveController(ICurvePointService curvePointService)
         {
-            return Ok();
+            _curvePointService = curvePointService;
         }
 
+        /// <summary>CurvePoint controller List method. 
+        /// Call CurvePoint service, then CurvePoint repertory,  
+        /// get CurvePoint POCO output model object list. </summary>  
+        /// <remarks>Status code 500 in case of exception.</remarks>
         [HttpGet]
+        [Route("list")]       
+        public IActionResult List()
+        {            
+            try
+            {
+                return Ok(_curvePointService.List());
+            }
+            catch (Exception ex)
+            {                
+                return StatusCode(500, "Une erreur interne s'est produite");
+            }
+        }
+
+        /// <summary>CurvePoint controller Get method. 
+        /// Call CurvePoint service, then CurvePoint repertory, 
+        /// get CurvePoint POCO output model object list for the CurvePoint Id in parameter. </summary>  
+        /// <remarks>Status code 500 in case of exception.</remarks>
+        [HttpGet]
+        [Route("get/{id}")]
+        public IActionResult Get([FromRoute] int id)
+        {
+            try
+            {
+                var curvePoint = _curvePointService.Get(id);
+                if (curvePoint is not null)
+                {
+                    return Ok(curvePoint);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Une erreur interne s'est produite");
+            }
+            return NotFound();
+        }
+
+        /// <summary>CurvePoint controller AddCurvePoint method. 
+        /// Call CurvePoint service, then CurvePoint repertory for create. 
+        /// Returns CurvePoint POCO output model object created for view. </summary>  
+        /// <remarks>Status code 500 in case of exception.</remarks>
+        [HttpPost]
         [Route("add")]
-        public IActionResult AddCurvePoint([FromBody]CurvePoint curvePoint)
+        public IActionResult AddCurvePoint([FromBody] CurvePointInputModel inputModel)
         {
-            return Ok();
+            try
+            {
+                return Ok(_curvePointService.Create(inputModel));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Une erreur interne s'est produite");
+            }
         }
-
-        [HttpGet]
-        [Route("validate")]
-        public IActionResult Validate([FromBody]CurvePoint curvePoint)
-        {
-            // TODO: check data valid and save to db, after saving return bid list
-            return Ok();
-        }
-
+        /// <summary>CurvePoint controller ShowUpdateForm method. 
+        /// Call CurvePoint service, then CurvePoint repertory for Get. 
+        /// Returns CurvePoint POCO output model object created for update view. </summary>  
+        /// <remarks>Status code 500 in case of exception.</remarks>
         [HttpGet]
         [Route("update/{id}")]
         public IActionResult ShowUpdateForm(int id)
         {
-            // TODO: get CurvePoint by Id and to model then show to the form
-            return Ok();
+            try
+            {
+                var curvePoint = _curvePointService.Get(id);
+                if (curvePoint is not null)
+                {
+                    return Ok(curvePoint);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Une erreur interne s'est produite");
+            }
+            return NotFound();
         }
-
+        /// <summary>CurvePoint controller UpdateCurvePoint method. 
+        /// Call CurvePoint service, then CurvePoint repertory for Update following input ID in parameter. 
+        /// Returns CurvePoint POCO output model objects list for view. </summary>  
+        /// <remarks>Status code 500 in case of exception.</remarks>
         [HttpPost]
         [Route("update/{id}")]
-        public IActionResult UpdateCurvePoint(int id, [FromBody] CurvePoint curvePoint)
+        public IActionResult UpdateCurvePoint([FromRoute] int id, [FromBody] CurvePointInputModel inputModel)
         {
-            // TODO: check required fields, if valid call service to update Curve and return Curve list
-            return Ok();
+            try
+            {
+                var curvePoint = _curvePointService.Update(id, inputModel);
+                if (curvePoint is not null)
+                {
+                    return Ok(_curvePointService.List());
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Une erreur interne s'est produite");
+            }
+            return NotFound();
+
         }
 
+        /// <summary>CurvePoint controller DeleteCurvePoint method. 
+        /// Call CurvePoint service, then CurvePoint repertory for Delete following input ID in parameter. 
+        /// Returns CurvePoint POCO output model object deleted for view. </summary>  
+        /// <remarks>Status code 500 in case of exception.</remarks>
         [HttpDelete]
-        [Route("{id}")]
-        public IActionResult DeleteBid(int id)
+        [Route("delete/{id}")]
+        public IActionResult DeleteCurvePoint(int id)
         {
-            // TODO: Find Curve by Id and delete the Curve, return to Curve list
-            return Ok();
+            try
+            {
+                var curvePoint = _curvePointService.Delete(id);
+                if (curvePoint is not null)
+                {
+                    return Ok(_curvePointService.List());
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Une erreur interne s'est produite");
+            }
+            return NotFound();
         }
     }
 }

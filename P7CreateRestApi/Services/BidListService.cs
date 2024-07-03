@@ -13,7 +13,7 @@ namespace P7CreateRestApi.Services
             _bidListRepository = bidListRepository;
         }
 
-        /// <summary>BidList Create. 
+        /// <summary>BidList Service Create method. 
         /// Call CRUD method in the BidList Repository with BidList POCO object to create. 
         /// Store created record into DTO object and returns POCO output model object.</summary>  
         /// <param name="bidList">BidList POCO input model object.</param>
@@ -49,7 +49,7 @@ namespace P7CreateRestApi.Services
             return ToOutputModel(bidList);
         }
 
-        /// <summary>BidList Delete. 
+        /// <summary>BidList Service Delete method. 
         /// Call CRUD method in the BidList Repository with BidList id tot delete. 
         /// Store deleted record into DTO object and returns POCO object if found or null</summary>  
         /// <param name="id">Id of the BidList record to delete.</param>
@@ -65,7 +65,7 @@ namespace P7CreateRestApi.Services
             return null;
         }
 
-        /// <summary>BidList Get. 
+        /// <summary>BidList Service Get method. 
         /// Call Get method in the BidList Repository with BidList id to get. 
         /// Store record into DTO object and returns POCO output model object if found or null. </summary>  
         /// <param name="id">Id of the BidList record to get.</param>
@@ -81,7 +81,7 @@ namespace P7CreateRestApi.Services
             return null;
         }
 
-        /// <summary>BidList List. 
+        /// <summary>BidList Service List method. 
         /// Call List method in the BidList Repository. 
         /// Get DTO objects list and returns POCO output model objects list.</summary>          
         /// <return>BidList POCO output model object list.</return> 
@@ -97,7 +97,7 @@ namespace P7CreateRestApi.Services
             return list;
         }
 
-        /// <summary>BidList Update. 
+        /// <summary>BidList Service Update method. 
         /// Call CRUD method in the BidList Repository with BidList id to update 
         /// and BidList POCO object to update. 
         /// Store updated record into DTO object and returns POCO output model object if found or null.</summary>  
@@ -137,7 +137,7 @@ namespace P7CreateRestApi.Services
             return null;
         }
 
-        /// <summary>BidList ToOutputModel method. 
+        /// <summary>BidList Service ToOutputModel method. 
         /// Load Bidlist DTO object properties into POCO uutput model object.</summary>  
         /// <param name="bidList">Bidlist DTO output model object.</param>
         /// <remarks></remarks>

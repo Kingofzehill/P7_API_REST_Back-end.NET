@@ -17,8 +17,8 @@ namespace Dot.Net.WebApi.Controllers
         }
 
         /// <summary>BidList controller List method. 
-        /// Call BidList service, then BidList repertory. 
-        /// Get BidList POCO output model object list. </summary>  
+        /// Call BidList service, then BidList repertory, 
+        /// get BidList POCO output model object list. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
         [HttpGet]
         [Route("list")]
@@ -77,7 +77,7 @@ namespace Dot.Net.WebApi.Controllers
 
         /// <summary>BidList controller ShowUpdateForm method. 
         /// Call BidList service, then BidList repertory for Get. 
-        /// Returns BidList POCO output model object created for update  view. </summary>  
+        /// Returns BidList POCO output model object created for update view. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
         [HttpGet]
         [Route("update/{id}")]
@@ -127,7 +127,7 @@ namespace Dot.Net.WebApi.Controllers
         /// Returns BidList POCO output model object deleted for view. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
         [HttpDelete]
-        [Route("{id}")]
+        [Route("delete/{id}")]
         public IActionResult DeleteBid(int id)
         {
             try

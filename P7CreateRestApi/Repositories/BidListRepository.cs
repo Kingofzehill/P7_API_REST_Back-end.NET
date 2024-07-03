@@ -12,7 +12,7 @@ namespace P7CreateRestApi.Repositories
         }
 
         /// <summary>BidList create.</summary>  
-        /// <param name="bidList">BidList DTO object (BidList class from ../Domain)</param>
+        /// <param name="bidList">BidList DTO object.</param>
         /// <return></return> 
         /// <remarks></remarks>
 
@@ -45,14 +45,13 @@ namespace P7CreateRestApi.Repositories
         public BidList? Get(int id) => _dbContext.Bids.FirstOrDefault(b => b.BidListId == id);
 
         /// <summary>BidList List.</summary>      
-        /// <return></return> 
-        /// <param name="id">Bid id to get.</param>
-        /// <remarks>List of BidList DTO objects (BidList class from ../Domain)</remarks>
+        /// <return>List of BidList DTO objects.</return> 
+        /// <remarks></remarks>
         public List<BidList> List() => _dbContext.Bids.ToList();
 
         /// <summary>BidList Update.</summary>      
         /// <return>Updated BidList.</return> 
-        /// <param name="bidList">BidList DTO object (BidList class from ../Domain)</param>
+        /// <param name="bidList">BidList DTO object.</param>
         /// <remarks></remarks>
         public BidList? Update(BidList bidList)
         {
