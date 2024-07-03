@@ -102,6 +102,7 @@ namespace P7CreateRestApi.Services
         /// and BidList POCO object to update. 
         /// Store updated record into DTO object and returns POCO output model object if found or null.</summary>  
         /// <param name="id">Id of the BidList record to get.</param>
+        /// <param name="inputModel">BidList POCO input model object.</param>
         /// <return>BidList POCO output model object or null.</return> 
         /// <remarks></remarks>
         public BidListOutputModel? Update(int id, BidListInputModel inputModel)
