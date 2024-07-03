@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 
 /// <summary>
-/// User Class.
+/// DTO User Class.
 /// </summary>
 /// <remarks></remarks>
 namespace Dot.Net.WebApi.Domain
