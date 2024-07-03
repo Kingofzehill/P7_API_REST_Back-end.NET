@@ -2,6 +2,9 @@
 // for resolving unfound assembly reference Rating POCO Model.
 using Dot.Net.WebApi.Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using P7CreateRestApi.Models.InputModel;
+using P7CreateRestApi.Services;
 
 namespace Dot.Net.WebApi.Controllers
 {
@@ -9,53 +12,133 @@ namespace Dot.Net.WebApi.Controllers
     [Route("[controller]")]
     public class RatingController : ControllerBase
     {
-        // TODO: Inject Rating service
-
+        private readonly IRatingService _ratingService;
+        public RatingController(IRatingService ratingService)
+        {
+            _ratingService = ratingService;
+        }
+        /// <summary>Rating controller List method. 
+        /// Call Rating service, then Rating repertory,  
+        /// get Rating POCO output model object list. </summary>  
+        /// <remarks>Status code 500 in case of exception.</remarks>
         [HttpGet]
         [Route("list")]
-        public IActionResult Home()
+        public IActionResult List()
         {
-            // TODO: find all Rating, add to model
-            return Ok();
+            try
+            {
+                return Ok(_ratingService.List());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Une erreur interne s'est produite");
+            }
         }
-
+        /// <summary>Rating controller Get method. 
+        /// Call Rating service, then Rating repertory, 
+        /// get Rating POCO output model object list for the Rating Id in parameter. </summary>  
+        /// <remarks>Status code 500 in case of exception.</remarks>
+        [HttpGet]
+        [Route("get/{id}")]
+        public IActionResult Get([FromRoute] int id)
+        {
+            try
+            {
+                var ratingService = _ratingService.Get(id);
+                if (ratingService is not null)
+                {
+                    return Ok(ratingService);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Une erreur interne s'est produite");
+            }
+            return NotFound();
+        }
+        /// <summary>Rating controller AddRating method. 
+        /// Call Rating service, then Rating repertory for create. 
+        /// Returns Rating POCO output model object created for view. </summary>  
+        /// <remarks>Status code 500 in case of exception.</remarks>
         [HttpGet]
         [Route("add")]
-        public IActionResult AddRatingForm([FromBody]Rating rating)
+        public IActionResult AddRating([FromBody] RatingInputModel inputModel)
         {
-            return Ok();
+            try
+            {
+                return Ok(_ratingService.Create(inputModel));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Une erreur interne s'est produite");
+            }
         }
-
-        [HttpGet]
-        [Route("validate")]
-        public IActionResult Validate([FromBody]Rating rating)
-        {
-            // TODO: check data valid and save to db, after saving return Rating list
-            return Ok();
-        }
-
+        /// <summary>Rating controller ShowUpdateForm method. 
+        /// Call Rating service, then Rating repertory for Get. 
+        /// Returns Rating POCO output model object created for update view. </summary>  
+        /// <remarks>Status code 500 in case of exception.</remarks>
         [HttpGet]
         [Route("update/{id}")]
         public IActionResult ShowUpdateForm(int id)
         {
-            // TODO: get Rating by Id and to model then show to the form
-            return Ok();
+            try
+            {
+                var rating = _ratingService.Get(id);
+                if (rating is not null)
+                {
+                    return Ok(rating);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Une erreur interne s'est produite");
+            }
+            return NotFound();
         }
-
+        /// <summary>Rating controller UpdateRating method. 
+        /// Call Rating service, then Rating repertory for Update following input ID in parameter. 
+        /// Returns Rating POCO output model objects list for view. </summary>  
+        /// <remarks>Status code 500 in case of exception.</remarks>
         [HttpPost]
         [Route("update/{id}")]
-        public IActionResult UpdateRating(int id, [FromBody] Rating rating)
+        public IActionResult UpdateRating([FromRoute] int id, [FromBody] RatingInputModel inputModel)
         {
-            // TODO: check required fields, if valid call service to update Rating and return Rating list
-            return Ok();
+            try
+            {
+                var rating = _ratingService.Update(id, inputModel);
+                if (rating is not null)
+                {
+                    return Ok(_ratingService.List());
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Une erreur interne s'est produite");
+            }
+            return NotFound();
         }
-
+        /// <summary>Rating controller DeleteRating method. 
+        /// Call Rating service, then Rating repertory for Delete following input ID in parameter. 
+        /// Returns Rating POCO output model object deleted for view. </summary>  
+        /// <param name="id">Id of the Rating to delete</param>
+        /// <remarks>Status code 500 in case of exception.</remarks>
         [HttpDelete]
-        [Route("{id}")]
-        public IActionResult DeleteRating(int id)
+        [Route("delete/{id}")]
+        public IActionResult DeleteRating([FromRoute] int id)
         {
-            // TODO: Find Rating by Id and delete the Rating, return to Rating list
-            return Ok();
+            try
+            {
+                var rating = _ratingService.Delete(id);
+                if (rating is not null)
+                {
+                    return Ok(_ratingService.List());
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Une erreur interne s'est produite");
+            }
+            return NotFound();
         }
     }
 }

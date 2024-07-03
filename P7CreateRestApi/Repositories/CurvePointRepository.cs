@@ -18,7 +18,7 @@ namespace P7CreateRestApi.Repositories
         public List<CurvePoint> List() => _dbContext.CurvePoints.ToList();
 
         /// <summary>CurvePoint Repository Create method.</summary>  
-        /// <param name="bidList">CurvePoint DTO object</param>
+        /// <param name="curvePoint">CurvePoint DTO object</param>
         /// <return></return> 
         /// <remarks></remarks>
         public void Create(CurvePoint curvePoint)
@@ -35,7 +35,7 @@ namespace P7CreateRestApi.Repositories
 
         /// <summary>CurvePoint Repository Update method.</summary>      
         /// <return>Updated CurvePoint.</return> 
-        /// <param name="bidList">CurvePoint DTO object.</param>
+        /// <param name="curvePoint">CurvePoint DTO object.</param>
         /// <remarks></remarks>
         public CurvePoint? Update(CurvePoint curvePoint)
         {

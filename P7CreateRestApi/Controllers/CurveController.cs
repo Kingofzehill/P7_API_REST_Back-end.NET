@@ -122,7 +122,8 @@ namespace Dot.Net.WebApi.Controllers
 
         /// <summary>CurvePoint controller DeleteCurvePoint method. 
         /// Call CurvePoint service, then CurvePoint repertory for Delete following input ID in parameter. 
-        /// Returns CurvePoint POCO output model object deleted for view. </summary>  
+        /// Returns CurvePoint POCO output model object deleted for view. </summary> 
+        /// <param name="id">Id of the CurvePoint to delete</param>
         /// <remarks>Status code 500 in case of exception.</remarks>
         [HttpDelete]
         [Route("delete/{id}")]
