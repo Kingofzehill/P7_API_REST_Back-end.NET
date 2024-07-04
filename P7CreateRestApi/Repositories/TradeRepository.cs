@@ -20,7 +20,7 @@ namespace P7CreateRestApi.Repositories
             _dbContext.SaveChanges();
         }
         /// <summary>Trade Repository delete method.</summary>      
-        /// <return>Updated Trade.</return> 
+        /// <return>Updated Trade object.</return> 
         /// <param name="id">Trade id to delete.</param>
         /// <remarks></remarks>
         public Trade? Delete(int id)
@@ -34,7 +34,7 @@ namespace P7CreateRestApi.Repositories
             return trade;
         }
         /// <summary>Trade Repository Get method.</summary>      
-        /// <return></return> 
+        /// <return>Updated Trade object.</return> 
         /// <param name="id">Trade id to get.</param>
         /// <remarks></remarks>
         public Trade? Get(int id) => _dbContext.Trades.FirstOrDefault(t => t.TradeId == id);
@@ -43,8 +43,8 @@ namespace P7CreateRestApi.Repositories
         /// <remarks></remarks>
         public List<Trade> List() => _dbContext.Trades.ToList();
         /// <summary>Trade Repository Update method.</summary>      
-        /// <return>Updated Trade.</return> 
-        /// <param name="rating">Trade DTO object.</param>
+        /// <return>Updated DTO Trade object.</return> 
+        /// <param name="trade">Trade DTO object.</param>
         /// <remarks></remarks>
         public Trade? Update(Trade trade)
         {

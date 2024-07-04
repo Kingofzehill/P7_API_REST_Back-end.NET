@@ -117,7 +117,11 @@ namespace Dot.Net.WebApi.Controllers
             }
             return NotFound();
         }
-
+        /// <summary>Trade controller DeleteTrade method. 
+        /// Call Trade service, then Trade repertory for Delete following input ID in parameter. 
+        /// Returns Trade POCO output model object deleted for view. </summary>  
+        /// <param name="id">Id of the Trade to delete</param>
+        /// <remarks>Status code 500 in case of exception.</remarks>
         [HttpDelete]
         [Route("delete/{id}")]
         public IActionResult DeleteTrade([FromRoute] int id)
