@@ -21,8 +21,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call Rating service, then Rating repertory,  
         /// get Rating POCO output model object list. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("list")]
+        [Authorize(policy: "User")]
         public IActionResult List()
         {
             try
@@ -38,8 +40,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call Rating service, then Rating repertory, 
         /// get Rating POCO output model object list for the Rating Id in parameter. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("get/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult Get([FromRoute] int id)
         {
             try
@@ -60,8 +64,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call Rating service, then Rating repertory for create. 
         /// Returns Rating POCO output model object created for view. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpPost]
         [Route("add")]
+        [Authorize(policy: "User")]
         public IActionResult AddRating([FromBody] RatingInputModel inputModel)
         {
             try
@@ -77,8 +83,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call Rating service, then Rating repertory for Get. 
         /// Returns Rating POCO output model object created for update view. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("update/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult ShowUpdateForm(int id)
         {
             try
@@ -99,8 +107,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call Rating service, then Rating repertory for Update following input ID in parameter. 
         /// Returns Rating POCO output model objects list for view. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpPost]
         [Route("update/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult UpdateRating([FromRoute] int id, [FromBody] RatingInputModel inputModel)
         {
             try
@@ -122,8 +132,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Returns Rating POCO output model object deleted for view. </summary>  
         /// <param name="id">Id of the Rating to delete</param>
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpDelete]
         [Route("delete/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult DeleteRating([FromRoute] int id)
         {
             try

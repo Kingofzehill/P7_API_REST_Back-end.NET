@@ -91,11 +91,11 @@ namespace P7CreateRestApi.Services
             {
                 return null;
             }
-            /*if (!await _userManager.CheckPasswordAsync(user, inputModel.Password))
+            if (!await _userManager.CheckPasswordAsync(user, inputModel.Password))
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
                 await _userManager.ResetPasswordAsync(user, token, inputModel.Password);
-            }*/
+            }
             else
             {
                 user.UserName = inputModel.UserName;

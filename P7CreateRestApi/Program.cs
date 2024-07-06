@@ -63,13 +63,15 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("Admin", policy =>
     {
         policy.RequireRole("Admin");
-        policy.RequireAuthenticatedUser();        
+        policy.RequireAuthenticatedUser();
+        policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
     });
 
     options.AddPolicy("User", policy =>
     {
         policy.RequireRole("User", "Admin");
-        policy.RequireAuthenticatedUser();        
+        policy.RequireAuthenticatedUser();
+        policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
     });
 });
 

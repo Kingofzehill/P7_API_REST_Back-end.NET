@@ -20,9 +20,10 @@ namespace Dot.Net.WebApi.Controllers
         /// <summary>User controller List method. 
         /// Call User service, then User repertory</summary>  
         /// <returns>POCO User output model class objects list or error code 500.</returns>
-        /// <remarks></remarks>
+        /// <remarks>Authenticated and authorized Administrator User access only</remarks>
         [HttpGet]
         [Route("list")]
+        [Authorize(policy: "Admin")]
         public async Task<IActionResult> List()
         {            
             try
@@ -37,9 +38,10 @@ namespace Dot.Net.WebApi.Controllers
         /// <summary>User controller AddUser method. 
         /// Call User service, then User repertory for create. 
         /// <returns>POCO User output model class object or error code 500.</returns> 
-        /// <remarks></remarks>
+        /// <remarks>Authenticated and authorized Administrator User access only</remarks>
         [HttpGet]
         [Route("add")]
+        [Authorize(policy: "Admin")]
         public async Task<IActionResult> AddUser([FromBody] UserInputModel inputModel)
         {            
             try
@@ -60,9 +62,10 @@ namespace Dot.Net.WebApi.Controllers
         /// <summary>User controller ShowUpdateForm method. 
         /// Call User service, then User repertory for Get. 
         /// <returns>POCO User output model class object or error code 500.</returns> 
-        /// <remarks></remarks>
+        /// <remarks>Authenticated and authorized Administrator User access only</remarks>
         [HttpGet]
         [Route("update/{id}")]
+        [Authorize(policy: "Admin")]
         public IActionResult ShowUpdateForm(int id)
         {
             try
@@ -82,9 +85,10 @@ namespace Dot.Net.WebApi.Controllers
         /// <summary>User controller UpdateUser method. 
         /// Call User service, then User repertory for Update following input ID in parameter. 
         /// <returns>POCO User output model class object or error code 500.</returns> 
-        /// <remarks></remarks>
+        /// <remarks>Authenticated and authorized Administrator User access only</remarks>
         [HttpPost]
         [Route("update/{id}")]
+        [Authorize(policy: "Admin")]
         public async Task<IActionResult> UpdateUser(int id, [FromBody] UserInputModel inputModel)
         {
             try
@@ -105,9 +109,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call User service, then User repertory for Delete following input ID in parameter.</summary>  
         /// <param name="id">Id of the User to delete</param>
         /// <returns>POCO User output model class object or error code 500.</returns> 
-        /// <remarks></remarks>
+        /// <remarks>Authenticated and authorized Administrator User access only</remarks>
         [HttpDelete]
         [Route("{id}")]
+        [Authorize(policy: "Admin")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             try
@@ -127,10 +132,11 @@ namespace Dot.Net.WebApi.Controllers
 
         /// <summary>[HttpGet] User controller GetAllUserArticles method. 
         /// Call User service, then User repertory.</summary>  
-        /// <returns>POCO User output model class objects list or error code 500.</returns>
-        /// <remarks>Route("/secure/article-details")</remarks>
+        /// <returns>POCO User output model class objects list or error code 500.</returns>        
+        /// <remarks>Authenticated and authorized Administrator User access only</remarks>        
         [HttpGet]
         [Route("/secure/article-details")]
+        [Authorize(policy: "Admin")]
         public async Task<ActionResult<List<User>>> GetAllUserArticles()
         {
             try

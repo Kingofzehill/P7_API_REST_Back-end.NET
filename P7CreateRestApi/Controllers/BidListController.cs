@@ -20,8 +20,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call BidList service, then BidList repertory, 
         /// get BidList POCO output model object list. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("list")]
+        [Authorize(policy: "User")]
         public IActionResult List()
         {
             try
@@ -38,8 +40,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call BidList service, then BidList repertory. 
         /// Get BidList POCO output model object list for the BidList Id in parameter. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("get/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult Get([FromRoute] int id)
         {
             try
@@ -61,8 +65,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call BidList service, then BidList repertory for create. 
         /// Returns BidList POCO output model object created for view. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpPost]
         [Route("add")]
+        [Authorize(policy: "User")]
         public IActionResult AddBidList([FromBody] BidListInputModel inputModel)
         {
             try
@@ -79,8 +85,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call BidList service, then BidList repertory for Get. 
         /// Returns BidList POCO output model object created for update view. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("update/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult ShowUpdateForm(int id)
         {
 
@@ -103,8 +111,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call BidList service, then BidList repertory for Update following input ID in parameter. 
         /// Returns BidList POCO output model objects list for view. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpPost]
         [Route("update/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult UpdateBid(int id, [FromBody] BidListInputModel inputModel)
         {
             try
@@ -126,8 +136,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call BidList service, then BidList repertory for Delete following input ID in parameter. 
         /// Returns BidList POCO output model object deleted for view. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpDelete]
         [Route("delete/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult DeleteBid(int id)
         {
             try

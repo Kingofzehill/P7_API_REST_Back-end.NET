@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Dot.Net.WebApi.Controllers
@@ -7,6 +8,7 @@ namespace Dot.Net.WebApi.Controllers
     public class HomeController : ControllerBase
     {
         [HttpGet]
+        [Authorize(policy: "User")]
         public IActionResult Get()
         {
             return Ok();
@@ -14,6 +16,7 @@ namespace Dot.Net.WebApi.Controllers
 
         [HttpGet]
         [Route("Admin")]
+        [Authorize(policy: "Admin")]
         public IActionResult Admin()
         {
             return Ok();

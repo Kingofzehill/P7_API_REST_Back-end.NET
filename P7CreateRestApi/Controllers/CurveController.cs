@@ -20,8 +20,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call CurvePoint service, then CurvePoint repertory,  
         /// get CurvePoint POCO output model object list. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
-        [Route("list")]       
+        [Route("list")]
+        [Authorize(policy: "User")]
         public IActionResult List()
         {            
             try
@@ -38,8 +40,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call CurvePoint service, then CurvePoint repertory, 
         /// get CurvePoint POCO output model object list for the CurvePoint Id in parameter. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("get/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult Get([FromRoute] int id)
         {
             try
@@ -61,8 +65,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call CurvePoint service, then CurvePoint repertory for create. 
         /// Returns CurvePoint POCO output model object created for view. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpPost]
         [Route("add")]
+        [Authorize(policy: "User")]
         public IActionResult AddCurvePoint([FromBody] CurvePointInputModel inputModel)
         {
             try
@@ -78,8 +84,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call CurvePoint service, then CurvePoint repertory for Get. 
         /// Returns CurvePoint POCO output model object created for update view. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("update/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult ShowUpdateForm(int id)
         {
             try
@@ -100,8 +108,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call CurvePoint service, then CurvePoint repertory for Update following input ID in parameter. 
         /// Returns CurvePoint POCO output model objects list for view. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpPost]
         [Route("update/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult UpdateCurvePoint([FromRoute] int id, [FromBody] CurvePointInputModel inputModel)
         {
             try
@@ -125,8 +135,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Returns CurvePoint POCO output model object deleted for view. </summary> 
         /// <param name="id">Id of the CurvePoint to delete</param>
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpDelete]
         [Route("delete/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult DeleteCurvePoint(int id)
         {
             try

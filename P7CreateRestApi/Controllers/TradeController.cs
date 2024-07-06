@@ -1,4 +1,5 @@
 using Dot.Net.WebApi.Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using P7CreateRestApi.Models.InputModel;
 using P7CreateRestApi.Services;
@@ -19,8 +20,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call Trade service, then Trade repertory,  
         /// get Trade POCO output model object list. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("list")]
+        [Authorize(policy: "User")]
         public IActionResult List()
         {            
             try
@@ -37,8 +40,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call Trade service, then Trade repertory, 
         /// get Trade POCO output model object list for the Trade Id in parameter. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("get/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult Get([FromRoute] int id)
         {            
             try
@@ -59,8 +64,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call Trade service, then Trade repertory for create. 
         /// Returns Trade POCO output model object created for view. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpPost]
         [Route("add")]
+        [Authorize(policy: "User")]
         public IActionResult AddTrade([FromBody] TradeInputModel inputModel)
         {            
             try
@@ -77,8 +84,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call Trade service, then Trade repertory for Get. 
         /// Returns Trade POCO output model object created for update view. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("update/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult ShowUpdateForm(int id)
         {            
             try
@@ -99,8 +108,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Call Trade service, then Trade repertory for Update following input ID in parameter. 
         /// Returns Trade POCO output model objects list for view. </summary>  
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpPost]
         [Route("update/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult UpdateTrade([FromRoute] int id, [FromBody] TradeInputModel inputModel)
         {            
             try
@@ -122,8 +133,10 @@ namespace Dot.Net.WebApi.Controllers
         /// Returns Trade POCO output model object deleted for view. </summary>  
         /// <param name="id">Id of the Trade to delete</param>
         /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpDelete]
         [Route("delete/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult DeleteTrade([FromRoute] int id)
         {
             try
