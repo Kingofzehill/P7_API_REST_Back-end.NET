@@ -17,12 +17,15 @@ namespace Dot.Net.WebApi.Controllers
         {
             _ratingService = ratingService;
         }
-        /// <summary>Rating controller List method. 
-        /// Call Rating service, then Rating repertory,  
-        /// get Rating POCO output model object list. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpGet] Rating controller List method. 
+        /// Call Rating service, then Rating repertory and 
+        /// get Rating list. </summary>  
+        /// <returns>Status code 200 (OK) with Rating list 
+        /// OR error code 500 if exception.</returns> 
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("list")]
+        [Authorize(policy: "User")]
         public IActionResult List()
         {
             try
@@ -34,12 +37,16 @@ namespace Dot.Net.WebApi.Controllers
                 return StatusCode(500, "Une erreur interne s'est produite");
             }
         }
-        /// <summary>Rating controller Get method. 
-        /// Call Rating service, then Rating repertory, 
-        /// get Rating POCO output model object list for the Rating Id in parameter. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpGet] Rating controller Get method. 
+        /// Call Rating service, then Rating repertory, and get Rating
+        /// corresponding to Id in input parameter.</summary>     
+        /// <param name="id">Id of the CurvePoint to get.</param>
+        /// <returns>Status code 200 (OK) with Rating selected 
+        /// OR error code 500 if exception.</returns> 
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("get/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult Get([FromRoute] int id)
         {
             try
@@ -56,12 +63,15 @@ namespace Dot.Net.WebApi.Controllers
             }
             return NotFound();
         }
-        /// <summary>Rating controller AddRating method. 
-        /// Call Rating service, then Rating repertory for create. 
-        /// Returns Rating POCO output model object created for view. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpPost] Rating controller AddRating method. 
+        /// Call Rating service, then Rating repertory for create.</summary>  
+        /// <param name="inputModel">POCO Rating input model class object.</param>
+        /// <returns>Status code 200 (OK) with Rating created 
+        /// OR error code 500 if exception.</returns> 
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpPost]
         [Route("add")]
+        [Authorize(policy: "User")]
         public IActionResult AddRating([FromBody] RatingInputModel inputModel)
         {
             try
@@ -73,12 +83,16 @@ namespace Dot.Net.WebApi.Controllers
                 return StatusCode(500, "Une erreur interne s'est produite");
             }
         }
-        /// <summary>Rating controller ShowUpdateForm method. 
-        /// Call Rating service, then Rating repertory for Get. 
-        /// Returns Rating POCO output model object created for update view. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpGet] Rating controller ShowUpdateForm method. 
+        /// Call Rating service, then Rating repertory and get Rating 
+        /// corresponding to Id in input parameter.</summary>   
+        /// <param name="id">Id of the Rating.</param>
+        /// <returns>Status code 200 (OK) with selecting Rating 
+        /// OR error code 500 if exception.</returns> 
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("update/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult ShowUpdateForm(int id)
         {
             try
@@ -95,12 +109,17 @@ namespace Dot.Net.WebApi.Controllers
             }
             return NotFound();
         }
-        /// <summary>Rating controller UpdateRating method. 
-        /// Call Rating service, then Rating repertory for Update following input ID in parameter. 
-        /// Returns Rating POCO output model objects list for view. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpPost] Rating controller UpdateRating method. 
+        /// Call Rating service, then Rating repertory and update Rating 
+        /// corresponding to Id in input parameter</summary>  
+        /// <param name="id">Id of the Rating to update.</param>
+        /// <param name="inputModel">POCO Rating input model class object.</param>
+        /// <returns>Status code 200 (OK) with updated Rating list 
+        /// OR error code 500 if exception.</returns> 
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpPost]
         [Route("update/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult UpdateRating([FromRoute] int id, [FromBody] RatingInputModel inputModel)
         {
             try
@@ -117,13 +136,16 @@ namespace Dot.Net.WebApi.Controllers
             }
             return NotFound();
         }
-        /// <summary>Rating controller DeleteRating method. 
-        /// Call Rating service, then Rating repertory for Delete following input ID in parameter. 
-        /// Returns Rating POCO output model object deleted for view. </summary>  
+        /// <summary>[HttpDelete] Rating controller DeleteRating method. 
+        /// Call Rating service, then Rating repertory and 
+        /// delete Rating corresponding to Id in input parameter.</summary> 
         /// <param name="id">Id of the Rating to delete</param>
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <returns>Status code 200 (OK) with remaining Rating list 
+        /// OR error code 500 if exception.</returns> 
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpDelete]
         [Route("delete/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult DeleteRating([FromRoute] int id)
         {
             try

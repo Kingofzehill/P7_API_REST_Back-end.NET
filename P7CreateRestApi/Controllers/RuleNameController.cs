@@ -1,5 +1,6 @@
 // FIX01 Add using reference Dot.Net.WebApi.Domain to RuleName Controller.
 // for resolving unfound assembly reference RuleName POCO Model
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using P7CreateRestApi.Models.InputModel;
 using P7CreateRestApi.Services;
@@ -15,12 +16,15 @@ namespace Dot.Net.WebApi.Controllers
         {
             _ruleNameService = ruleNameService;
         }
-        /// <summary>Rule controller List method. 
-        /// Call Rule service, then Rule repertory,  
-        /// get Rule POCO output model object list. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpGet] Rule controller List method. 
+        /// Call Rule service, then Rule repertory and 
+        /// get Rule list. </summary>  
+        /// <returns>Status code 200 (OK) with Rule list 
+        /// OR error code 500 if exception.</returns> 
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("list")]
+        [Authorize(policy: "User")]
         public IActionResult List()
         {            
             try
@@ -32,12 +36,16 @@ namespace Dot.Net.WebApi.Controllers
                 return StatusCode(500, "Une erreur interne s'est produite");
             }
         }
-        /// <summary>Rule controller Get method. 
-        /// Call Rule service, then Rule repertory, 
-        /// get Rule POCO output model object list for the Rule Id in parameter. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpGet] Rule controller Get method. 
+        /// Call Rule service, then Rule repertory and get Rule
+        /// corresponding to Id in input parameter.</summary>  
+        /// <param name="id">Id of the Rule to get.</param>
+        /// <returns>Status code 200 (OK) with Rule selected
+        /// OR error code 500 if exception.</returns> 
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
-        [Route("get/{id}")]        
+        [Route("get/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult Get([FromRoute] int id)
         {            
             try
@@ -54,12 +62,15 @@ namespace Dot.Net.WebApi.Controllers
             }
             return NotFound();
         }
-        /// <summary>Rule controller AddRuleName method. 
-        /// Call Rule service, then Rating repertory for create. 
-        /// Returns Rule POCO output model object created for view. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpPost] Rule controller AddRuleName method. 
+        /// Call Rule service, then Rule repertory for create.</summary>  
+        /// <param name="inputModel">POCO Rule input model class object.</param>
+        /// <returns>Status code 200 (OK) with Rule created 
+        /// OR error code 500 if exception.</returns> 
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpPost]
         [Route("add")]
+        [Authorize(policy: "User")]
         public IActionResult AddRuleName([FromBody] RuleNameInputModel inputModel)
         {           
             try
@@ -71,12 +82,15 @@ namespace Dot.Net.WebApi.Controllers
                 return StatusCode(500, "Une erreur interne s'est produite");
             }
         }
-        /// <summary>Rule controller ShowUpdateForm method. 
-        /// Call Rule service, then Rule repertory for Get. 
-        /// Returns Rule POCO output model object created for update view. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpGet] Rule controller ShowUpdateForm method. 
+        /// Call Rule service, then Rule repertory and get Rule.</summary>  
+        /// <param name="id">Id of the Rule.</param>
+        /// <returns>Status code 200 (OK) with selected Rule 
+        /// OR error code 500 if exception.</returns> 
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("update/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult ShowUpdateForm(int id)
         {            
             try
@@ -93,12 +107,17 @@ namespace Dot.Net.WebApi.Controllers
             }
             return NotFound();
         }
-        /// <summary>Rule controller UpdateRuleName method. 
-        /// Call Rule service, then Rule repertory for Update following input ID in parameter. 
-        /// Returns Rule POCO output model objects list for view. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpPost] Rule controller UpdateRuleName method. 
+        /// Call Rule service, then Rule repertory and update Rule 
+        /// corresponding to Id in input parameter</summary>   
+        /// <param name="id">Id of the Rule to update.</param>
+        /// <param name="inputModel">POCO Rule input model class object.</param>
+        /// <returns>Status code 200 (OK) with updated Rule list 
+        /// OR error code 500 if exception.</returns> 
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpPost]
         [Route("update/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult UpdateRuleName([FromRoute] int id, [FromBody] RuleNameInputModel inputModel)
         {            
             try
@@ -115,13 +134,16 @@ namespace Dot.Net.WebApi.Controllers
             }
             return NotFound();
         }
-        /// <summary>Rule controller DeleteRuleName method. 
-        /// Call Rule service, then Rule repertory for Delete following input ID in parameter. 
-        /// Returns Rule POCO output model object deleted for view. </summary>  
+        /// <summary>[HttpDelete] Rule controller DeleteRuleName method. 
+        /// Call Rule service, then Rule repertory and 
+        /// delete Rule corresponding to Id in input parameter.</summary> 
         /// <param name="id">Id of the Rule to delete</param>
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <returns>Status code 200 (OK) with remaining Rule list 
+        /// OR error code 500 if exception.</returns> 
+        /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpDelete]
         [Route("delete/{id}")]
+        [Authorize(policy: "User")]
         public IActionResult DeleteRuleName([FromRoute] int id)
         {            
             try
