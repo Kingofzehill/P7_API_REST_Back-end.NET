@@ -17,9 +17,11 @@ namespace Dot.Net.WebApi.Controllers
         {
             _userService = userRepository;
         }
-        /// <summary>User controller List method. 
-        /// Call User service, then User repertory</summary>  
-        /// <returns>POCO User output model class objects list or error code 500.</returns>
+        /// <summary>[HttpGet] User controller List method. 
+        /// Call User service, then User repertory and 
+        /// get User list.</summary>  
+        /// <returns>Status code 200 (OK) with User list 
+        /// OR error code 500 if exception.</returns> 
         /// <remarks>Authenticated and authorized Administrator User access only</remarks>
         [HttpGet]
         [Route("list")]
@@ -35,11 +37,41 @@ namespace Dot.Net.WebApi.Controllers
                 return StatusCode(500, "Une erreur interne s'est produite");
             }
         }
-        /// <summary>User controller AddUser method. 
-        /// Call User service, then User repertory for create. 
-        /// <returns>POCO User output model class object or error code 500.</returns> 
+
+        /// <summary>[HttpGet] User controller Get method. 
+        /// Call User service, then User repertory and get User
+        /// corresponding to Id in input parameter.</summary>  
+        /// <param name="id">Id of the User to get.</param>
+        /// <returns>Status code 200 (OK) with User selected
+        /// OR error code 500 if exception.</returns> 
         /// <remarks>Authenticated and authorized Administrator User access only</remarks>
         [HttpGet]
+        [Route("get/{id}")]
+        [Authorize(policy: "Admin")]
+        public IActionResult Get([FromRoute] int id)
+        {
+            try
+            {
+                var user = _userService.Get(id);
+                if (user is not null)
+                {
+                    return Ok(user);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Une erreur interne s'est produite");
+            }
+            return NotFound();
+        }
+
+        /// <summary>[HttpPost] User controller AddUser method. 
+        /// Call User service, then User repertory and create User.</summary>  
+        /// <param name="inputModel">POCO User input model class object.</param>
+        /// <returns>Status code 200 (OK) with User created
+        /// OR error code 500 if exception.</returns> 
+        /// <remarks>Authenticated and authorized Administrator User access only</remarks>
+        [HttpPost]
         [Route("add")]
         [Authorize(policy: "Admin")]
         public async Task<IActionResult> AddUser([FromBody] UserInputModel inputModel)
@@ -59,9 +91,11 @@ namespace Dot.Net.WebApi.Controllers
             return BadRequest();
         }
 
-        /// <summary>User controller ShowUpdateForm method. 
-        /// Call User service, then User repertory for Get. 
-        /// <returns>POCO User output model class object or error code 500.</returns> 
+        /// <summary>[HttpGet] User controller ShowUpdateForm method. 
+        /// Call User service, then User repertory and get User.</summary>  
+        /// <param name="id">Id of the User.</param>
+        /// <returns>200 status code (OK) with selected User 
+        /// OR 400 error status code  (BadResquest) or 500 error code if exception.</returns> 
         /// <remarks>Authenticated and authorized Administrator User access only</remarks>
         [HttpGet]
         [Route("update/{id}")]
@@ -82,9 +116,13 @@ namespace Dot.Net.WebApi.Controllers
             }
             return NotFound();
         }
-        /// <summary>User controller UpdateUser method. 
-        /// Call User service, then User repertory for Update following input ID in parameter. 
-        /// <returns>POCO User output model class object or error code 500.</returns> 
+        /// <summary>[HttpPost] User controller UpdateUser method. 
+        /// Call User service, then User repertory and update User 
+        /// corresponding to Id in input parameter</summary>   
+        /// <param name="id">Id of the User to update.</param>
+        /// <param name="inputModel">POCO User input model class object.</param>
+        /// <returns>Status code 200 (OK) with updated User list 
+        /// OR error code 500 if exception.</returns> 
         /// <remarks>Authenticated and authorized Administrator User access only</remarks>
         [HttpPost]
         [Route("update/{id}")]
@@ -105,10 +143,12 @@ namespace Dot.Net.WebApi.Controllers
             }
             return NotFound();
         }
-        /// <summary>User controller DeleteUser method. 
-        /// Call User service, then User repertory for Delete following input ID in parameter.</summary>  
+        /// <summary>[HttpDelete] User controller DeleteUser method. 
+        /// Call User service, then User repertory and 
+        /// delete User corresponding to Id in input parameter.</summary> 
         /// <param name="id">Id of the User to delete</param>
-        /// <returns>POCO User output model class object or error code 500.</returns> 
+        /// <returns>Status code 200 (OK) with remaining User list 
+        /// OR error code 500 if exception.</returns> 
         /// <remarks>Authenticated and authorized Administrator User access only</remarks>
         [HttpDelete]
         [Route("{id}")]
@@ -128,25 +168,6 @@ namespace Dot.Net.WebApi.Controllers
                 return StatusCode(500, "Une erreur interne s'est produite");
             }
             return NotFound();
-        }
-
-        /// <summary>[HttpGet] User controller GetAllUserArticles method. 
-        /// Call User service, then User repertory.</summary>  
-        /// <returns>POCO User output model class objects list or error code 500.</returns>        
-        /// <remarks>Authenticated and authorized Administrator User access only</remarks>        
-        [HttpGet]
-        [Route("/secure/article-details")]
-        [Authorize(policy: "Admin")]
-        public async Task<ActionResult<List<User>>> GetAllUserArticles()
-        {
-            try
-            {
-                return Ok(await _userService.List());
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Une erreur interne s'est produite");
-            }
         }
     }
 }

@@ -16,10 +16,10 @@ namespace Dot.Net.WebApi.Controllers
             _bidListService = bidListService;
         }
 
-        /// <summary>BidList controller List method. 
+        /// <summary>[HttpGet] BidList controller List method. 
         /// Call BidList service, then BidList repertory, 
-        /// get BidList POCO output model object list. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// get BidList POCO output model objects list. </summary>  
+        /// <returns>Status code 200 (OK) with BidList list OR error code 500 if exception.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("list")]
@@ -36,10 +36,11 @@ namespace Dot.Net.WebApi.Controllers
             }
         }
 
-        /// <summary>BidList controller Get method. 
+        /// <summary>[HttpGet] BidList controller Get method. 
         /// Call BidList service, then BidList repertory. 
-        /// Get BidList POCO output model object list for the BidList Id in parameter. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// Get BidList POCO output model object for the BidList Id in parameter. </summary>  
+        /// <param name="id">Id of the BidList.</param>
+        /// <returns>Status code 200 (OK) with BidList object selected OR error code 500 if exception.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("get/{id}")]
@@ -61,10 +62,12 @@ namespace Dot.Net.WebApi.Controllers
             return NotFound();
         }
 
-        /// <summary>BidList controller AddBidList method. 
+        /// <summary>[HttpPost] BidList controller AddBidList method. 
         /// Call BidList service, then BidList repertory for create. 
         /// Returns BidList POCO output model object created for view. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <param name="inputModel">POCO BidList input model class object.</param>
+        /// <returns>Status code 200 (OK) with BidList created 
+        /// OR error code 500 if exception.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpPost]
         [Route("add")]
@@ -81,10 +84,10 @@ namespace Dot.Net.WebApi.Controllers
             }
         }
 
-        /// <summary>BidList controller ShowUpdateForm method. 
-        /// Call BidList service, then BidList repertory for Get. 
-        /// Returns BidList POCO output model object created for update view. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpGet] BidList controller ShowUpdateForm method. 
+        /// Call BidList service, then BidList repertory for Get.</summary>  
+        /// <param name="id">Id of the BidList to show.</param>
+        /// <returns>Status code 200 (OK) with BidList object selected OR error code 500 if exception.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("update/{id}")]
@@ -107,10 +110,11 @@ namespace Dot.Net.WebApi.Controllers
             return NotFound();
         }
 
-        /// <summary>BidList controller UpdateBid method. 
-        /// Call BidList service, then BidList repertory for Update following input ID in parameter. 
-        /// Returns BidList POCO output model objects list for view. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpPost] BidList controller UpdateBid method. 
+        /// Call BidList service, then BidList repertory for Update following input ID in parameter.</summary>  
+        /// <param name="id">Id of the BidList to update.</param>
+        /// <param name="inputModel">POCO BidList input model class object.</param>
+        /// <returns>Status code 200 (OK) with updated BidList list OR error code 500 if exception.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpPost]
         [Route("update/{id}")]
@@ -132,10 +136,11 @@ namespace Dot.Net.WebApi.Controllers
             return NotFound();
         }
 
-        /// <summary>BidList controller DeleteBid method. 
-        /// Call BidList service, then BidList repertory for Delete following input ID in parameter. 
-        /// Returns BidList POCO output model object deleted for view. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpDelete] BidList controller DeleteBid method. 
+        /// Call BidList service, then BidList repertory for deleting BidList 
+        /// corresponding to input ID in parameter. </summary>  
+        /// <param name="id">Id of the BidList to delete.</param>
+        /// <returns>Status code 200 (OK) with remaining BidList list OR error code 500 if exception.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpDelete]
         [Route("delete/{id}")]

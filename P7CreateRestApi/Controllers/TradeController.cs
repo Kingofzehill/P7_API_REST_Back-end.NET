@@ -16,10 +16,11 @@ namespace Dot.Net.WebApi.Controllers
             _tradeService = tradeService;
         }
 
-        /// <summary>Trade controller List method. 
-        /// Call Trade service, then Trade repertory,  
-        /// get Trade POCO output model object list. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpGet] Trade controller List method. 
+        /// Call Trade service, then Trade repertory and 
+        /// get Trade list. </summary>  
+        /// <returns>Status code 200 (OK) with Trade list 
+        /// OR error code 500 if exception.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("list")]
@@ -36,10 +37,12 @@ namespace Dot.Net.WebApi.Controllers
             }
         }
 
-        /// <summary>Trade controller Get method. 
-        /// Call Trade service, then Trade repertory, 
-        /// get Trade POCO output model object list for the Trade Id in parameter. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpGet] Trade controller Get method. 
+        /// Call Trade service, then Trade repertory and get Trade
+        /// corresponding to Id in input parameter.</summary>  
+        /// <param name="id">Id of the Trade to get.</param>
+        /// <returns>Status code 200 (OK) with Trade selected
+        /// OR error code 500 if exception.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("get/{id}")]
@@ -60,10 +63,11 @@ namespace Dot.Net.WebApi.Controllers
             }
             return NotFound();
         }
-        /// <summary>Trade controller AddTrade method. 
-        /// Call Trade service, then Trade repertory for create. 
-        /// Returns Trade POCO output model object created for view. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpPost] Trade controller AddTrade method. 
+        /// Call Trade service, then Trade repertory and create Trade.</summary>  
+        /// <param name="inputModel">POCO Trade input model class object.</param>
+        /// <returns>Status code 200 (OK) with user created
+        /// OR error code 500 if exception.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpPost]
         [Route("add")]
@@ -80,10 +84,11 @@ namespace Dot.Net.WebApi.Controllers
             }
         }
 
-        /// <summary>Trade controller ShowUpdateForm method. 
-        /// Call Trade service, then Trade repertory for Get. 
-        /// Returns Trade POCO output model object created for update view. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpGet] Trade controller ShowUpdateForm method. 
+        /// Call Trade service, then Trade repertory and get Trade.</summary>  
+        /// <param name="id">Id of the Trade.</param>
+        /// <returns>Status code 200 (OK) with selected Trade 
+        /// OR error code 500 if exception.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpGet]
         [Route("update/{id}")]
@@ -92,10 +97,10 @@ namespace Dot.Net.WebApi.Controllers
         {            
             try
             {
-                var ruleName = _tradeService.Get(id);
-                if (ruleName is not null)
+                var trade = _tradeService.Get(id);
+                if (trade is not null)
                 {
-                    return Ok(ruleName);
+                    return Ok(trade);
                 }
             }
             catch (Exception ex)
@@ -104,10 +109,13 @@ namespace Dot.Net.WebApi.Controllers
             }
             return NotFound();
         }
-        /// <summary>Trade controller UpdateTrade method. 
-        /// Call Trade service, then Trade repertory for Update following input ID in parameter. 
-        /// Returns Trade POCO output model objects list for view. </summary>  
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <summary>[HttpPost] Trade controller UpdateTrade method. 
+        /// Call Trade service, then Trade repertory and update Trade 
+        /// corresponding to Id in input parameter</summary>   
+        /// <param name="id">Id of the Trade to update.</param>
+        /// <param name="inputModel">POCO Trade input model class object.</param>
+        /// <returns>Status code 200 (OK) with updated Trade list 
+        /// OR error code 500 if exception.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpPost]
         [Route("update/{id}")]
@@ -128,11 +136,12 @@ namespace Dot.Net.WebApi.Controllers
             }
             return NotFound();
         }
-        /// <summary>Trade controller DeleteTrade method. 
-        /// Call Trade service, then Trade repertory for Delete following input ID in parameter. 
-        /// Returns Trade POCO output model object deleted for view. </summary>  
+        /// <summary>[HttpDelete] Trade controller DeleteTrade method. 
+        /// Call Trade service, then Trade repertory and 
+        /// delete Trade corresponding to Id in input parameter.</summary> 
         /// <param name="id">Id of the Trade to delete</param>
-        /// <remarks>Status code 500 in case of exception.</remarks>
+        /// <returns>Status code 200 (OK) with remaining Trade list 
+        /// OR error code 500 if exception.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
         [HttpDelete]
         [Route("delete/{id}")]
