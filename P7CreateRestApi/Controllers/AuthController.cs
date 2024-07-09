@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using P7CreateRestApi.Models.InputModels;
+using Serilog;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -22,16 +23,23 @@ namespace Dot.Net.WebApi.Controllers
             _config = config;
         }
         /// <summary>Auth controller Login method. 
-        /// Allows user to authenticate. 
-        /// Check password validity, if ok generates token.</summary>  
+        /// Allows user to authentificate.
+        /// Check password validity, if ok generates token.</summary> 
         /// <param name="inputModel">POCO Login input model class object.</param>
-        /// <returns>Status code 200 (OK) with the generated token OR error code 500 if exception.</returns> 
-        /// <remarks>Authenticated and authorized Administrator User access only</remarks>
+        /// <returns>Generated token.</returns> 
+        /// <remarks>Route: /Auth/login.</remarks>
+        /// <response code ="200">OK.</response>
+        /// <response code ="401">Unauthorized.</response>
+        /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Login([FromBody] LoginInputModel inputModel)
-        {            
+        {
+            Log.Information("{UserName} user authentification.", inputModel.UserName);
             try
             {
                 var user = await _userManager.FindByNameAsync(inputModel.UserName);
@@ -59,9 +67,11 @@ namespace Dot.Net.WebApi.Controllers
                 }
             }
             catch (Exception ex)
-            {                
-                return StatusCode(500, "Une erreur interne s'est produite");
+            {
+                Log.Error(ex, "Internal error (500) occurs on {UserName} user authentification", inputModel.UserName);
+                return StatusCode(500, "Internal error occurs.");
             }
+            Log.Warning("Unauthorized (401) result for {UserName} user authentification", inputModel.UserName);
             return Unauthorized();
         }
     }
