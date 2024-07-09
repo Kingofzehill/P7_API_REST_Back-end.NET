@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using P7CreateRestApi.Models.InputModel;
 using P7CreateRestApi.Services;
+using Serilog;
 
 namespace Dot.Net.WebApi.Controllers
 {
@@ -17,37 +18,48 @@ namespace Dot.Net.WebApi.Controllers
             _ruleNameService = ruleNameService;
         }
         /// <summary>[HttpGet] Rule controller List method. 
-        /// Call Rule service, then Rule repertory and 
-        /// get Rule list. </summary>  
-        /// <returns>Status code 200 (OK) with Rule list 
-        /// OR error code 500 if exception.</returns> 
+        /// Get Rule items list. </summary>  
+        /// <returns>Rule list.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
+        /// <remarks>Route: /Rule/list.</remarks>
+        /// <response code ="200">OK.</response>        
+        /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("list")]
         [Authorize(policy: "User")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult List()
         {            
             try
             {
+                Log.Information("'Rule' list request.");
                 return Ok(_ruleNameService.List());
             }
             catch (Exception ex)
-            {                
-                return StatusCode(500, "Une erreur interne s'est produite");
+            {
+                Log.Error(ex, "Internal error (500) occurs on 'Rule' list request.");
+                return StatusCode(500, "Internal error occurs.");
             }
         }
         /// <summary>[HttpGet] Rule controller Get method. 
-        /// Call Rule service, then Rule repertory and get Rule
-        /// corresponding to Id in input parameter.</summary>  
-        /// <param name="id">Id of the Rule to get.</param>
-        /// <returns>Status code 200 (OK) with Rule selected
-        /// OR error code 500 if exception.</returns> 
+        /// Get Rule item for the Rule Id in parameter. </summary>  
+        /// <param name="id">Rule Id.</param>
+        /// <returns>Selected Rule.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
+        /// <remarks>Route: /Rule/get/{id}.</remarks>
+        /// <response code ="200">OK.</response>  
+        /// <response code ="404">Not found.</response>
+        /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("get/{id}")]
         [Authorize(policy: "User")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Get([FromRoute] int id)
-        {            
+        {
+            Log.Information("Get request of 'Rule' for id: {id}.", id);
             try
             {
                 var ruleName = _ruleNameService.Get(id);
@@ -57,42 +69,57 @@ namespace Dot.Net.WebApi.Controllers
                 }
             }
             catch (Exception ex)
-            {                
-                return StatusCode(500, "Une erreur interne s'est produite");
+            {
+                Log.Error(ex, "Internal error occurs on try to get 'Rule' for id: {id}.", id);
+                return StatusCode(500, "Internal error occurs.");
             }
+            Log.Warning("'Rule' item not found for id: {id}.", id);
             return NotFound();
         }
         /// <summary>[HttpPost] Rule controller AddRuleName method. 
-        /// Call Rule service, then Rule repertory for create.</summary>  
-        /// <param name="inputModel">POCO Rule input model class object.</param>
-        /// <returns>Status code 200 (OK) with Rule created 
-        /// OR error code 500 if exception.</returns> 
+        /// Add a Rule item. </summary>  
+        /// <param name="inputModel">Rule to add.</param>
+        /// <returns>Rule item created.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
+        /// <remarks>Route: /Rule/add.</remarks>
+        /// <response code ="200">OK.</response>          
+        /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
         [Route("add")]
         [Authorize(policy: "User")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult AddRuleName([FromBody] RuleNameInputModel inputModel)
         {           
             try
             {
+                Log.Information("Add 'Rule' item request.");
                 return Ok(_ruleNameService.Create(inputModel));
             }
             catch (Exception ex)
-            {                
-                return StatusCode(500, "Une erreur interne s'est produite");
+            {
+                Log.Error(ex, "Internal error occurs on try to add a 'Rule' item.");
+                return StatusCode(500, "Internal error occurs.");
             }
         }
         /// <summary>[HttpGet] Rule controller ShowUpdateForm method. 
-        /// Call Rule service, then Rule repertory and get Rule.</summary>  
-        /// <param name="id">Id of the Rule.</param>
-        /// <returns>Status code 200 (OK) with selected Rule 
-        /// OR error code 500 if exception.</returns> 
+        /// Get Rule item to update for the Rule Id in parameter.</summary>  
+        /// <param name="id">Rule Id to get.</param>
+        /// <returns>Rule item.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
+        /// <remarks>Route: /Rule/update/{id}.</remarks>
+        /// <response code ="200">OK.</response>     
+        /// <response code ="404">Not found.</response>
+        /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("update/{id}")]
         [Authorize(policy: "User")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult ShowUpdateForm(int id)
-        {            
+        {
+            Log.Information("Get request of 'Rule' to update for id: {id}.", id);
             try
             {
                 var ruleName = _ruleNameService.Get(id);
@@ -102,24 +129,32 @@ namespace Dot.Net.WebApi.Controllers
                 }
             }
             catch (Exception ex)
-            {                
-                return StatusCode(500, "Une erreur interne s'est produite");
+            {
+                Log.Error(ex, "Internal error occurs on try to 'Rule' item for id: {id}.", id);
+                return StatusCode(500, "Internal error occurs.");
             }
+            Log.Warning("'Rule' item not found for id: {id}.", id);
             return NotFound();
         }
         /// <summary>[HttpPost] Rule controller UpdateRuleName method. 
-        /// Call Rule service, then Rule repertory and update Rule 
-        /// corresponding to Id in input parameter</summary>   
-        /// <param name="id">Id of the Rule to update.</param>
-        /// <param name="inputModel">POCO Rule input model class object.</param>
-        /// <returns>Status code 200 (OK) with updated Rule list 
-        /// OR error code 500 if exception.</returns> 
+        /// Post update for the Rule Id and item in parameters.</summary>  
+        /// <param name="id">Rule Id.</param>
+        /// <param name="inputModel">Rule item.</param>
+        /// <returns>Updated Rule list.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
+        /// <remarks>Route: /Rule/update/{id}.</remarks>
+        /// <response code ="200">OK.</response>     
+        /// <response code ="404">Not found.</response>
+        /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
         [Route("update/{id}")]
         [Authorize(policy: "User")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult UpdateRuleName([FromRoute] int id, [FromBody] RuleNameInputModel inputModel)
-        {            
+        {
+            Log.Information("Update request of 'Rule' item for id: {id}.", id);
             try
             {
                 var ruleName = _ruleNameService.Update(id, inputModel);
@@ -129,35 +164,45 @@ namespace Dot.Net.WebApi.Controllers
                 }
             }
             catch (Exception ex)
-            {                
-                return StatusCode(500, "Une erreur interne s'est produite");
+            {
+                Log.Error(ex, "Internal error occurs on try to deleted 'Rule' item for id: {id}.", id);
+                return StatusCode(500, "Internal error occurs.");
             }
+            Log.Warning("'Rule' item not found for id: {id}.", id);
             return NotFound();
         }
         /// <summary>[HttpDelete] Rule controller DeleteRuleName method. 
-        /// Call Rule service, then Rule repertory and 
-        /// delete Rule corresponding to Id in input parameter.</summary> 
-        /// <param name="id">Id of the Rule to delete</param>
-        /// <returns>Status code 200 (OK) with remaining Rule list 
-        /// OR error code 500 if exception.</returns> 
+        /// Delete Rule item for the Id in parameters.</summary>  
+        /// <param name="id">Rule Id.</param>
+        /// <returns>Updated Rule list.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
+        /// <remarks>Route: /Rule/delete/{id}.</remarks>
+        /// <response code ="200">OK.</response>     
+        /// <response code ="404">Not found.</response>
+        /// <response code ="500">Internal error (exception).</response>
         [HttpDelete]
         [Route("delete/{id}")]
         [Authorize(policy: "User")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult DeleteRuleName([FromRoute] int id)
         {            
             try
             {
+                Log.Information("Delete request of 'Rule' item for id: {id}.", id);
                 var ruleName = _ruleNameService.Delete(id);
                 if (ruleName is not null)
                 {
+                    Log.Error(ex, "Internal error occurs on try to delete 'Rule' item for id: {id}.", id);
                     return Ok(_ruleNameService.List());
                 }
             }
             catch (Exception ex)
             {                
-                return StatusCode(500, "Une erreur interne s'est produite");
+                return StatusCode(500, "Internal error occurs.");
             }
+            Log.Warning("'Rule' item not found for id: {id}.", id);
             return NotFound();
         }
     }

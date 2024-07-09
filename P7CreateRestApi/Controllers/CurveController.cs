@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using P7CreateRestApi.Models.InputModel;
 using P7CreateRestApi.Services;
+using Serilog;
 
 namespace Dot.Net.WebApi.Controllers
 {
@@ -17,40 +18,51 @@ namespace Dot.Net.WebApi.Controllers
         }
 
         /// <summary>[HttpGet] CurvePoint controller List method. 
-        /// Call CurvePoint service, then CurvePoint repertory,  
-        /// get CurvePoint list. </summary>  
-        /// <returns>Status code 200 (OK) with CurvePoint list 
-        /// OR error code 500 if exception.</returns> 
+        /// Get CurvePoint items list. </summary>  
+        /// <returns>CurvePoint list.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
+        /// <remarks>Route: /Curve/list.</remarks>
+        /// <response code ="200">OK.</response>        
+        /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("list")]
         [Authorize(policy: "User")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult List()
         {            
             try
             {
+                Log.Information("'CurvePoint' list request.");
                 return Ok(_curvePointService.List());
             }
             catch (Exception ex)
-            {                
-                return StatusCode(500, "Une erreur interne s'est produite");
+            {
+                Log.Error(ex, "Internal error (500) occurs on 'CurvePoint' list request.");
+                return StatusCode(500, "Internal error occurs.");
             }
         }
 
         /// <summary>[HttpGet] CurvePoint controller Get method. 
-        /// Call CurvePoint service, then CurvePoint repertory, and get Curvepoint
-        /// corresponding to Id in input parameter.</summary>    
-        /// <param name="id">Id of the CurvePoint to get.</param>
-        /// <returns>Status code 200 (OK) with CurvePoint get 
-        /// OR error code 500 if exception.</returns> 
+        /// Get CurvePoint item for the BidList Id in parameter. </summary>     
+        /// <param name="id">CurvePoint Id.</param>
+        /// <returns>Selected CurvePoint.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
+        /// <remarks>Route: /Curve/get/{id}.</remarks>
+        /// <response code ="200">OK.</response>  
+        /// <response code ="404">Not found.</response>
+        /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("get/{id}")]
         [Authorize(policy: "User")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Get([FromRoute] int id)
         {
             try
             {
+                Log.Information("Get request of 'CurvePoint' for id: {id}.", id);
                 var curvePoint = _curvePointService.Get(id);
                 if (curvePoint is not null)
                 {
@@ -59,43 +71,57 @@ namespace Dot.Net.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Une erreur interne s'est produite");
+                Log.Error(ex, "Internal error occurs on try to get 'CurvePoint' for id: {id}.", id);
+                return StatusCode(500, "Internal error occurs.");
             }
+            Log.Warning("'CurvePoint' item not found for id: {id}.", id);
             return NotFound();
         }
 
         /// <summary>[HttpPost] CurvePoint controller AddCurvePoint method. 
-        /// Call CurvePoint service, then CurvePoint repertory for create.</summary> 
-        /// <param name="inputModel">POCO CurvePoint input model class object.</param>
-        /// <returns>Status code 200 (OK) with CurvePoint created 
-        /// OR error code 500 if exception.</returns> 
+        /// Add a CurvePoint item. </summary>
+        /// <param name="inputModel">BidList to add.</param>
+        /// <returns>CurvePoint item created.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
+        /// <remarks>Route: /Curve/add.</remarks>
+        /// <response code ="200">OK.</response>          
+        /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
         [Route("add")]
         [Authorize(policy: "User")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult AddCurvePoint([FromBody] CurvePointInputModel inputModel)
         {
             try
             {
+                Log.Information("Add 'CurvePoint' item request.");
                 return Ok(_curvePointService.Create(inputModel));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Une erreur interne s'est produite");
+                Log.Error(ex, "Internal error occurs on try to add a 'CurvePoint' item.");
+                return StatusCode(500, "Internal error occurs.");
             }
         }
         /// <summary>[HttpGet] CurvePoint controller ShowUpdateForm method. 
-        /// Call CurvePoint service, then CurvePoint repertory and get Curvepoint 
-        /// corresponding to Id in input parameter.</summary>   
-        /// <param name="id">Id of the CurvePoint to show.</param>
-        /// <returns>Status code 200 (OK) with CurvePoint selected 
-        /// OR error code 500 if exception.</returns> 
+        /// Get CurvePoint item to update for the CurvePoint Id in parameter.</summary>   
+        /// <param name="id">CurvePoint Id to get.</param>
+        /// <returns>CurvePoint item..</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
+        /// <remarks>Route: /Curve/update/{id}.</remarks>
+        /// <response code ="200">OK.</response>     
+        /// <response code ="404">Not found.</response>
+        /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("update/{id}")]
         [Authorize(policy: "User")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult ShowUpdateForm(int id)
         {
+            Log.Information("Get request of 'CurvePoint' to update for id: {id}.", id);
             try
             {
                 var curvePoint = _curvePointService.Get(id);
@@ -106,23 +132,31 @@ namespace Dot.Net.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Une erreur interne s'est produite");
+                Log.Error(ex, "Internal error occurs on try to 'CurvePoint' item for id: {id}.", id);
+                return StatusCode(500, "Internal error occurs.");
             }
+            Log.Warning("'CurvePoint' item not found for id: {id}.", id);
             return NotFound();
         }
         /// <summary>[HttpPost] CurvePoint controller UpdateCurvePoint method. 
-        /// Call CurvePoint service, then CurvePoint repertory and update CurvePoint 
-        /// corresponding to Id in input parameter.</summary>  
-        /// <param name="id">Id of the CurvePoint to update.</param>
-        /// <param name="inputModel">POCO CurvePoint input model class object.</param>
-        /// <returns>Status code 200 (OK) with remaining CurvePoint list 
-        /// OR error code 500 if exception.</returns> 
+        /// Post update for the CurvePoint Id and item in parameters.</summary>  
+        /// <param name="id">CurvePoint Id.</param>
+        /// <param name="inputModel">CurvePoint item.</param>
+        /// <returns>Updated CurvePoint list.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
+        /// <remarks>Route: /Curve/update/{id}.</remarks>
+        /// <response code ="200">OK.</response>     
+        /// <response code ="404">Not found.</response>
+        /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
         [Route("update/{id}")]
         [Authorize(policy: "User")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult UpdateCurvePoint([FromRoute] int id, [FromBody] CurvePointInputModel inputModel)
         {
+            Log.Information("Update request of 'CurvePoint' item for id: {id}.", id);
             try
             {
                 var curvePoint = _curvePointService.Update(id, inputModel);
@@ -133,24 +167,28 @@ namespace Dot.Net.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Une erreur interne s'est produite");
+                Log.Error(ex, "Internal error occurs on try to deleted 'CurvePoint' item for id: {id}.", id);
+                return StatusCode(500, "Internal error occurs.");
             }
+            Log.Warning("'CurvePoint' item not found for id: {id}.", id);
             return NotFound();
-
         }
 
         /// <summary>[HttpDelete] CurvePoint controller DeleteCurvePoint method. 
-        /// Call CurvePoint service, then CurvePoint repertory and 
-        /// delete CurvePoint corresponding to Id in input parameter.</summary> 
-        /// <param name="id">Id of the CurvePoint to delete.</param>
-        /// <returns>Status code 200 (OK) with remaining CurvePoint list 
-        /// OR error code 500 if exception.</returns> 
+        /// Delete CurvePoint item for the Id in parameters.</summary>  
+        /// <param name="id">CurvePoint Id.</param>
+        /// <returns>Updated CurvePoint list.</returns> 
         /// <remarks>Authenticated and authorized User access only</remarks>
+        /// <remarks>Route: /Curve/delete/{id}.</remarks>
+        /// <response code ="200">OK.</response>     
+        /// <response code ="404">Not found.</response>
+        /// <response code ="500">Internal error (exception).</response>
         [HttpDelete]
         [Route("delete/{id}")]
         [Authorize(policy: "User")]
         public IActionResult DeleteCurvePoint(int id)
         {
+            Log.Information("Delete request of 'CurvePoint' item for id: {id}.", id);
             try
             {
                 var curvePoint = _curvePointService.Delete(id);
@@ -161,8 +199,10 @@ namespace Dot.Net.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Une erreur interne s'est produite");
+                Log.Error(ex, "Internal error occurs on try to delete 'CurvePoint' item for id: {id}.", id);
+                return StatusCode(500, "Internal error occurs.");
             }
+            Log.Warning("'CurvePoint' item not found for id: {id}.", id);
             return NotFound();
         }
     }

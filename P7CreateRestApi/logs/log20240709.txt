@@ -1,0 +1,13 @@
+2024-07-09 15:58:35.725 +02:00 [INF] Admin user authentification.
+2024-07-09 15:59:06.051 +02:00 [INF] 'BidList' list request.
+2024-07-09 15:59:13.374 +02:00 [INF] Get request of 'BidList' for id: 1.
+2024-07-09 15:59:13.405 +02:00 [WRN] 'BidList' item not found for id: 1.
+2024-07-09 16:00:08.039 +02:00 [INF] Add 'BidList' item request.
+2024-07-09 16:00:21.904 +02:00 [INF] Add 'BidList' item request.
+2024-07-09 16:00:36.356 +02:00 [INF] Add 'BidList' item request.
+2024-07-09 16:00:45.846 +02:00 [INF] Add 'BidList' item request.
+2024-07-09 16:00:56.014 +02:00 [INF] Get request of 'BidList' to update for id: 4.
+2024-07-09 16:01:08.770 +02:00 [INF] Update request of 'BidList' item for id: 4.
+2024-07-09 16:01:28.893 +02:00 [INF] Delete request of 'BidList' item for id: 4.
+2024-07-09 16:01:56.075 +02:00 [INF] Get request of 'BidList' for id: 1.
+2024-07-09 16:02:00.933 +02:00 [INF] 'BidList' list request.
