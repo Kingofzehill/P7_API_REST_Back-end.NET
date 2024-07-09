@@ -22,14 +22,20 @@ namespace Dot.Net.WebApi.Controllers
             _config = config;
         }
         /// <summary>Auth controller Login method. 
-        /// Allows user to authenticate. 
-        /// Check password validity, if ok generates token.</summary>  
+        /// Allows user to authentificate.
+        /// Check password validity, if ok generates token.</summary> 
         /// <param name="inputModel">POCO Login input model class object.</param>
-        /// <returns>Status code 200 (OK) with the generated token OR error code 500 if exception.</returns> 
-        /// <remarks>Authenticated and authorized Administrator User access only</remarks>
+        /// <returns>Generated token</returns> 
+        /// <remarks>Route: /Auth/login</remarks>
+        /// <response code ="200">Returns token created.</response>
+        /// <response code ="401">Unauthorized.</response>
+        /// <response code ="500">Exception.</response>
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Login([FromBody] LoginInputModel inputModel)
         {            
             try
