@@ -193,13 +193,13 @@ namespace Dot.Net.WebApi.Controllers
                 Log.Information("Delete request of 'Rule' item for id: {id}.", id);
                 var ruleName = _ruleNameService.Delete(id);
                 if (ruleName is not null)
-                {
-                    Log.Error(ex, "Internal error occurs on try to delete 'Rule' item for id: {id}.", id);
+                {                    
                     return Ok(_ruleNameService.List());
                 }
             }
             catch (Exception ex)
-            {                
+            {
+                Log.Error(ex, "Internal error occurs on try to delete 'Rule' item for id: {id}.", id);
                 return StatusCode(500, "Internal error occurs.");
             }
             Log.Warning("'Rule' item not found for id: {id}.", id);
