@@ -343,7 +343,7 @@ namespace P7CreateRestApi.Tests
         /// correct BidList item properties updated as expected.</summary> 
         /// <remarks></remarks>
         [Fact]
-        public void BidListUpdate_ShouldHaveUpdateBidListReturned()
+        public void UpdateBidList_ShouldHaveUpdateBidListReturned()
         {
             // Arrange
             var bidListExpected = new BidList()
