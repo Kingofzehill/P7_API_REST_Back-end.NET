@@ -149,7 +149,7 @@ namespace P7CreateRestApi.Tests
         /// Check if deleted BidList does'nt return Output Model (null).</summary> 
         /// <remarks></remarks>
         [Fact]
-        public void DeleteBidListThatDoesntExist_ShouldReturnsNull()
+        public void DeleteBidListThatDoesntExist_ShouldReturnNull()
         {
             // Arrange
             // Setup of Repository Delete method mock.
@@ -236,7 +236,7 @@ namespace P7CreateRestApi.Tests
         /// back null result.</summary> 
         /// <remarks></remarks>
         [Fact]
-        public void GetBidListThatDoesntExist_ShouldReturnsNull()
+        public void GetBidListThatDoesntExist_ShouldReturnNull()
         {
             // Arrange
             // Setup of Repository Get method mock.

@@ -74,7 +74,7 @@ namespace P7CreateRestApi.Tests
         /// Check if deleted Rating does'nt return Output Model (null).</summary> 
         /// <remarks></remarks>
         [Fact]
-        public void DeleteRatingThatDoesntExist_ShouldReturnsNulll()
+        public void DeleteRatingThatDoesntExist_ShouldReturnNulll()
         {
             // Arrange
             _ratingRepositoryMock.Setup(m => m.Delete(1));
@@ -119,7 +119,7 @@ namespace P7CreateRestApi.Tests
         /// back null result.</summary> 
         /// <remarks></remarks>
         [Fact]
-        public void GetRatingThatDoesntExist_ShoulReturnsNull()
+        public void GetRatingThatDoesntExist_ShoulReturnNull()
         {
             // Arrange
             _ratingRepositoryMock.Setup(m => m.Get(1));
@@ -173,7 +173,7 @@ namespace P7CreateRestApi.Tests
         /// send back null result.</summary> 
         /// <remarks></remarks>    
         [Fact]
-        public void UpdateRatingThatDoesntExist_ShouldReturnsNull()
+        public void UpdateRatingThatDoesntExist_ShouldReturnNull()
         {
             // Arrange
             _ratingRepositoryMock.Setup(m => m.Update(It.IsAny<Rating>()));

@@ -71,7 +71,7 @@ namespace P7CreateRestApi.Tests
         /// Check if deleted CurvePoint does'nt return Output Model (null).</summary> 
         /// <remarks></remarks>
         [Fact]
-        public void DeleteCurvePointThatDoesntExist_ShouldReturnsNulll()
+        public void DeleteCurvePointThatDoesntExist_ShouldReturnNulll()
         {
             // Arrange
             _curvePointRepositoryMock.Setup(m => m.Delete(1));
@@ -114,7 +114,7 @@ namespace P7CreateRestApi.Tests
         /// back null result.</summary> 
         /// <remarks></remarks>
         [Fact]
-        public void GetCurvePointThatDoesntExist_ShouldReturnsNulll()
+        public void GetCurvePointThatDoesntExist_ShouldReturnNulll()
         {
             // Arrange
             _curvePointRepositoryMock.Setup(m => m.Get(1));
@@ -207,7 +207,7 @@ namespace P7CreateRestApi.Tests
         /// send back null result.</summary> 
         /// <remarks></remarks> 
         [Fact]
-        public void UpdateCurvePointThatDoesntExist_ShouldReturnsNull()
+        public void UpdateCurvePointThatDoesntExist_ShouldReturnNull()
         {
             // Arrange
             _curvePointRepositoryMock.Setup(m => m.Update(It.IsAny<CurvePoint>()));
