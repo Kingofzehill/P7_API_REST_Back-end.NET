@@ -35,6 +35,7 @@ namespace P7CreateRestApi.Tests
                 BidType = "BidType",
                 Book = "Book",
                 Commentary = "Commentary",
+                CreationDate = DateTime.Now,
                 CreationName = "CreationName",
                 DealName = "DealName",
                 DealType = "DealType",
@@ -100,6 +101,7 @@ namespace P7CreateRestApi.Tests
                 BidType = "BidType",
                 Book = "Book",
                 Commentary = "Commentary",
+                CreationDate = DateTime.Now,
                 CreationName = "CreationName",
                 DealName = "DealName",
                 DealType = "DealType",
@@ -131,6 +133,7 @@ namespace P7CreateRestApi.Tests
             Assert.Equal(bidListExcepted.BidType, outputModel.BidType);
             Assert.Equal(bidListExcepted.Book, outputModel.Book);
             Assert.Equal(bidListExcepted.Commentary, outputModel.Commentary);
+            Assert.Equal(bidListExcepted.CreationDate, outputModel.CreationDate);
             Assert.Equal(bidListExcepted.CreationName, outputModel.CreationName);
             Assert.Equal(bidListExcepted.DealName, outputModel.DealName);
             Assert.Equal(bidListExcepted.DealType, outputModel.DealType);
@@ -161,11 +164,11 @@ namespace P7CreateRestApi.Tests
             _bidListRepositoryMock.Verify(repo => repo.Delete(1), Times.Once);
         }
         /// <summary>BidList test unit for Get method.
-        /// Check if BidList item properties sent back from Get methode 
-        /// is identical to initial item properties.</summary> 
+        /// Check if BidList OutputModel item properties sent back from Get method
+        /// is identical to requested item properties.</summary> 
         /// <remarks></remarks>
         [Fact]
-        public void GetExistingBidList_ShouldHaveBidListReturned()
+        public void GetExistingBidList_ShouldHaveBidListOutputModelReturned()
         {
             // Arrange
             var bidListExcepted = new BidList()
@@ -183,6 +186,7 @@ namespace P7CreateRestApi.Tests
                 BidType = "BidType",
                 Book = "Book",
                 Commentary = "Commentary",
+                CreationDate = DateTime.Now,
                 CreationName = "CreationName",
                 DealName = "DealName",
                 DealType = "DealType",
@@ -214,6 +218,7 @@ namespace P7CreateRestApi.Tests
             Assert.Equal(bidListExcepted.BidType, outputModel.BidType);
             Assert.Equal(bidListExcepted.Book, outputModel.Book);
             Assert.Equal(bidListExcepted.Commentary, outputModel.Commentary);
+            Assert.Equal(bidListExcepted.CreationDate, outputModel.CreationDate);
             Assert.Equal(bidListExcepted.CreationName, outputModel.CreationName);
             Assert.Equal(bidListExcepted.DealName, outputModel.DealName);
             Assert.Equal(bidListExcepted.DealType, outputModel.DealType);
@@ -247,8 +252,7 @@ namespace P7CreateRestApi.Tests
         }
 
         /// <summary>BidList test unit for List method.
-        /// Check if List method send 
-        /// back correct BidList item properties.</summary> 
+        /// Check if List method send back correct BidList item properties.</summary> 
         /// <remarks></remarks>
         [Fact]
         public void ListBidListWithOneBidList_ShouldHaveOneBidListInListReturned()
@@ -269,6 +273,7 @@ namespace P7CreateRestApi.Tests
                 BidType = "BidType",
                 Book = "Book",
                 Commentary = "Commentary",
+                CreationDate = DateTime.Now,
                 CreationName = "CreationName",
                 DealName = "DealName",
                 DealType = "DealType",
@@ -301,6 +306,7 @@ namespace P7CreateRestApi.Tests
             Assert.Equal(bidListExcepted.BidType, list[0].BidType);
             Assert.Equal(bidListExcepted.Book, list[0].Book);
             Assert.Equal(bidListExcepted.Commentary, list[0].Commentary);
+            Assert.Equal(bidListExcepted.CreationDate, list[0].CreationDate);
             Assert.Equal(bidListExcepted.CreationName, list[0].CreationName);
             Assert.Equal(bidListExcepted.DealName, list[0].DealName);
             Assert.Equal(bidListExcepted.DealType, list[0].DealType);
@@ -313,11 +319,11 @@ namespace P7CreateRestApi.Tests
             _bidListRepositoryMock.Verify(repo => repo.List(), Times.Once);
         }
         /// <summary>BidList test unit for List method.
-        /// Check if List method send back null BidList list 
+        /// Check if List method send back BidList with no items 
         /// if there are no BidList items.</summary> 
         /// <remarks></remarks>
         [Fact]
-        public void ListBidListEmpty_ShouldHaveEmptyBidListReturned()
+        public void ListBidListEmpty_ShouldHaveEmptyListReturned()
         {
             // Arrange
             // Setup of Repository List method mock and defines value to return.
@@ -355,6 +361,7 @@ namespace P7CreateRestApi.Tests
                 BidType = "BidType",
                 Book = "Book",
                 Commentary = "Commentary",
+                CreationDate = DateTime.Now,
                 CreationName = "CreationName",
                 DealName = "DealName",
                 DealType = "DealType",
@@ -378,6 +385,7 @@ namespace P7CreateRestApi.Tests
                 BidType = "BidType",
                 Book = "Book",
                 Commentary = "Commentary",
+                CreationDate = DateTime.Now,
                 CreationName = "CreationName",
                 DealName = "DealName",
                 DealType = "DealType",
@@ -409,6 +417,7 @@ namespace P7CreateRestApi.Tests
             Assert.Equal(bidListExpected.BidType, outputModel.BidType);
             Assert.Equal(bidListExpected.Book, outputModel.Book);
             Assert.Equal(bidListExpected.Commentary, outputModel.Commentary);
+            Assert.Equal(bidListExpected.CreationDate, outputModel.CreationDate);
             Assert.Equal(bidListExpected.CreationName, outputModel.CreationName);
             Assert.Equal(bidListExpected.DealName, outputModel.DealName);
             Assert.Equal(bidListExpected.DealType, outputModel.DealType);
@@ -446,6 +455,7 @@ namespace P7CreateRestApi.Tests
                 BidType = "BidType",
                 Book = "Book",
                 Commentary = "Commentary",
+                CreationDate = DateTime.Now,
                 CreationName = "CreationName",
                 DealName = "DealName",
                 DealType = "DealType",
