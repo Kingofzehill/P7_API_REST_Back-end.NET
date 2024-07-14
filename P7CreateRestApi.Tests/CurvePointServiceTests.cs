@@ -207,7 +207,7 @@ namespace P7CreateRestApi.Tests
         /// send back null result.</summary> 
         /// <remarks></remarks> 
         [Fact]
-        public void UpdateCurvePointDoesntExist_ShouldReturnsNull()
+        public void UpdateCurvePointThatDoesntExist_ShouldReturnsNull()
         {
             // Arrange
             _curvePointRepositoryMock.Setup(m => m.Update(It.IsAny<CurvePoint>()));

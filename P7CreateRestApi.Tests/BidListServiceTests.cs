@@ -434,7 +434,7 @@ namespace P7CreateRestApi.Tests
         /// send back null result.</summary> 
         /// <remarks></remarks>        
         [Fact]
-        public void BidListUpdateDoesntExist_ShouldReturnsNull()
+        public void UpdateBidListThatDoesntExist_ShouldReturnsNull()
         {
             // Arrange
             // Setup of Repository Update method mock.
