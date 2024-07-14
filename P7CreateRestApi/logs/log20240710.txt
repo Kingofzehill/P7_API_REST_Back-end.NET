@@ -1,0 +1,4 @@
+2024-07-10 12:37:05.837 +02:00 [INF] TE user authentification.
+2024-07-10 12:37:05.974 +02:00 [WRN] Unauthorized (401) result for TE user authentification
+2024-07-10 12:39:16.747 +02:00 [INF] Admin user authentification.
+2024-07-10 12:39:47.161 +02:00 [INF] 'User' list request.
