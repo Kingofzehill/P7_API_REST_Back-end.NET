@@ -17,17 +17,19 @@ namespace Dot.Net.WebApi.Controllers
             _curvePointService = curvePointService;
         }
 
-        /// <summary>[HttpGet] CurvePoint controller List method. 
-        /// Get CurvePoint items list. </summary>  
+        /// <summary>List CurvePoint items. </summary>  
         /// <returns>CurvePoint list.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Curve/list.</remarks>
-        /// <response code ="200">OK.</response>        
+        /// <remarks>[HttpGet] CurvePoint controller List method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Curve/list.</remarks>
+        /// <response code ="200">OK.</response>       
+        /// <response code ="401">Unauthorized.</response> 
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("list")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult List()
         {            
@@ -43,19 +45,21 @@ namespace Dot.Net.WebApi.Controllers
             }
         }
 
-        /// <summary>[HttpGet] CurvePoint controller Get method. 
-        /// Get CurvePoint item for the BidList Id in parameter. </summary>     
+        /// <summary>Get CurvePoint item for the Id in input. </summary>     
         /// <param name="id">CurvePoint Id.</param>
         /// <returns>Selected CurvePoint.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Curve/get/{id}.</remarks>
+        /// <remarks>[HttpGet] CurvePoint controller Get method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Curve/get/{id}.</remarks>
         /// <response code ="200">OK.</response>  
+        /// <response code ="401">Unauthorized.</response>  
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("get/{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Get([FromRoute] int id)
@@ -78,18 +82,20 @@ namespace Dot.Net.WebApi.Controllers
             return NotFound();
         }
 
-        /// <summary>[HttpPost] CurvePoint controller AddCurvePoint method. 
-        /// Add a CurvePoint item. </summary>
-        /// <param name="inputModel">BidList to add.</param>
+        /// <summary>Add a CurvePoint item.</summary>
+        /// <param name="inputModel">CurvePoint input model object.</param>
         /// <returns>CurvePoint item created.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Curve/add.</remarks>
-        /// <response code ="200">OK.</response>          
+        /// <remarks>[HttpPost] CurvePoint controller AddCurvePoint method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Curve/add.</remarks>
+        /// <response code ="200">OK.</response>      
+        /// <response code ="401">Unauthorized.</response>  
         /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
         [Route("add")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult AddCurvePoint([FromBody] CurvePointInputModel inputModel)
         {
@@ -104,19 +110,21 @@ namespace Dot.Net.WebApi.Controllers
                 return StatusCode(500, "Internal error occurs.");
             }
         }
-        /// <summary>[HttpGet] CurvePoint controller ShowUpdateForm method. 
-        /// Get CurvePoint item to update for the CurvePoint Id in parameter.</summary>   
+        /// <summary>Get CurvePoint item to update for the Id in input.</summary>   
         /// <param name="id">CurvePoint Id to get.</param>
         /// <returns>CurvePoint item..</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Curve/update/{id}.</remarks>
-        /// <response code ="200">OK.</response>     
+        /// <remarks>[HttpGet] CurvePoint controller ShowUpdateForm method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Curve/update/{id}.</remarks>
+        /// <response code ="200">OK.</response>    
+        /// <response code ="401">Unauthorized.</response>  
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("update/{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult ShowUpdateForm(int id)
@@ -138,20 +146,22 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'CurvePoint' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>[HttpPost] CurvePoint controller UpdateCurvePoint method. 
-        /// Post update for the CurvePoint Id and item in parameters.</summary>  
+        /// <summary>Post update for the CurvePoint Id and item in input.</summary>  
         /// <param name="id">CurvePoint Id.</param>
-        /// <param name="inputModel">CurvePoint item.</param>
+        /// <param name="inputModel">CurvePoint input model object.</param>
         /// <returns>Updated CurvePoint list.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Curve/update/{id}.</remarks>
-        /// <response code ="200">OK.</response>     
+        /// <remarks>[HttpPost] CurvePoint controller UpdateCurvePoint method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Curve/update/{id}.</remarks>
+        /// <response code ="200">OK.</response>   
+        /// <response code ="401">Unauthorized.</response>  
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
         [Route("update/{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult UpdateCurvePoint([FromRoute] int id, [FromBody] CurvePointInputModel inputModel)
@@ -174,18 +184,23 @@ namespace Dot.Net.WebApi.Controllers
             return NotFound();
         }
 
-        /// <summary>[HttpDelete] CurvePoint controller DeleteCurvePoint method. 
-        /// Delete CurvePoint item for the Id in parameters.</summary>  
+        /// <summary>Delete CurvePoint item for the Id in input.</summary>  
         /// <param name="id">CurvePoint Id.</param>
         /// <returns>Updated CurvePoint list.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Curve/delete/{id}.</remarks>
-        /// <response code ="200">OK.</response>     
+        /// <remarks>[HttpDelete] CurvePoint controller DeleteCurvePoint method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Curve/delete/{id}.</remarks>
+        /// <response code ="200">OK.</response> 
+        /// <response code ="401">Unauthorized.</response>  
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpDelete]
         [Route("delete/{id}")]
         [Authorize(policy: "User")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult DeleteCurvePoint(int id)
         {
             Log.Information("Delete request of 'CurvePoint' item for id: {id}.", id);

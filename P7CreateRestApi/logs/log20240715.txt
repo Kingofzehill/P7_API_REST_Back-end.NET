@@ -1,0 +1,6 @@
+2024-07-15 15:43:16.367 +02:00 [INF] Admin user authentification.
+2024-07-15 17:31:14.945 +02:00 [INF] Admin user authentification.
+2024-07-15 17:31:37.318 +02:00 [INF] 'BidList' list request.
+2024-07-15 18:23:08.741 +02:00 [INF] admin user authentification.
+2024-07-15 18:23:35.170 +02:00 [INF] Get request of 'User' for id: 1.
+2024-07-15 18:32:43.488 +02:00 [INF] Add 'BidList' item request.

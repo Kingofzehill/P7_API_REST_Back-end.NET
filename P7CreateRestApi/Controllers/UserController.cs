@@ -18,17 +18,19 @@ namespace Dot.Net.WebApi.Controllers
         {
             _userService = userRepository;
         }
-        /// <summary>[HttpGet] User controller List method. 
-        /// Get User items list. </summary>  
+        /// <summary>List User items. </summary>  
         /// <returns>User list.</returns> 
-        /// <remarks>Authenticated and authorized User access only.</remarks>
-        /// <remarks>Route: /User/list.</remarks>
-        /// <response code ="200">OK.</response>        
+        /// <remarks>[HttpGet] User controller List method. 
+        /// Authenticated and authorized Admin User access only. 
+        /// Route: /User/list.</remarks>
+        /// <response code ="200">OK.</response>       
+        /// <response code ="401">Unauthorized.</response>    
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("list")]
         [Authorize(policy: "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> List()
         {            
@@ -44,19 +46,21 @@ namespace Dot.Net.WebApi.Controllers
             }
         }
 
-        /// <summary>[HttpGet] User controller Get method. 
-        /// Get User item for the User Id in parameter. </summary>  
+        /// <summary>Get User item for the Id in input. </summary>  
         /// <param name="id">User Id.</param>
         /// <returns>Selected User.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /User/get/{id}.</remarks>
+        /// <remarks>[HttpGet] User controller Get method. 
+        /// Authenticated and authorized Admin User access only. 
+        /// Route: /User/get/{id}.</remarks>
         /// <response code ="200">OK.</response>  
+        /// <response code ="401">Unauthorized.</response>    
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("get/{id}")]
         [Authorize(policy: "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Get([FromRoute] int id)
@@ -79,18 +83,20 @@ namespace Dot.Net.WebApi.Controllers
             return NotFound();
         }
 
-        /// <summary>[HttpPost] User controller AddUser method. 
-        /// Add a User item. </summary>  
-        /// <param name="inputModel">User to add.</param>
+        /// <summary>Add a User item.</summary>  
+        /// <param name="inputModel">User input model object.</param>
         /// <returns>User item created.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /User/add.</remarks>
-        /// <response code ="200">OK.</response>          
+        /// <remarks>[HttpPost] User controller AddUser method. 
+        /// Authenticated and authorized Admin User access only. 
+        /// Route: /User/add.</remarks>
+        /// <response code ="200">OK.</response>    
+        /// <response code ="401">Unauthorized.</response>    
         /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
         [Route("add")]
         [Authorize(policy: "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddUser([FromBody] UserInputModel inputModel)
         {            
@@ -111,19 +117,21 @@ namespace Dot.Net.WebApi.Controllers
             return BadRequest();
         }
 
-        /// <summary>[HttpGet] User controller ShowUpdateForm method. 
-        /// Get User item to update for the User Id in parameter.</summary>  
-        /// <param name="id">User Id to get.</param>
+        /// <summary>Get User item to update for the Id in input.</summary>  
+        /// <param name="id">User Id.</param>
         /// <returns>User item.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /User/update/{id}.</remarks>
+        /// <remarks>[HttpGet] User controller ShowUpdateForm method. 
+        /// Authenticated and authorized Admin User access only. 
+        /// Route: /User/update/{id}.</remarks>
         /// <response code ="200">OK.</response>     
+        /// <response code ="401">Unauthorized.</response>   
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("update/{id}")]
         [Authorize(policy: "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult ShowUpdateForm(int id)
@@ -145,20 +153,22 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'User' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>[HttpPost] User controller UpdateUser method. 
-        /// Post update for the User Id and item in parameters.</summary>  
+        /// <summary>Post update for the User Id and item in input.</summary>  
         /// <param name="id">User Id.</param>
-        /// <param name="inputModel">User item.</param>
+        /// <param name="inputModel">User input model object.</param>
         /// <returns>Updated User list.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /User/update/{id}.</remarks>
-        /// <response code ="200">OK.</response>     
+        /// <remarks>[HttpPost] User controller UpdateUser method. 
+        /// Authenticated and authorized Admin User access only. 
+        /// Route: /User/update/{id}.</remarks>
+        /// <response code ="200">OK.</response>   
+        /// <response code ="401">Unauthorized.</response>    
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
         [Route("update/{id}")]
         [Authorize(policy: "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateUser(int id, [FromBody] UserInputModel inputModel)
@@ -180,19 +190,21 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'User' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>[HttpDelete] User controller DeleteUser method. 
-        /// Delete User item for the Id in parameters.</summary>  
+        /// <summary>Delete User item for the Id in input.</summary>  
         /// <param name="id">User Id.</param>
         /// <returns>Updated User list.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /User/delete/{id}.</remarks>
-        /// <response code ="200">OK.</response>     
+        /// <remarks>[HttpDelete] User controller DeleteUser method. 
+        /// Authenticated and authorized Admin User access only. 
+        /// Route: /User/delete/{id}.</remarks>
+        /// <response code ="200">OK.</response>   
+        /// <response code ="401">Unauthorized.</response>    
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpDelete]
         [Route("{id}")]
         [Authorize(policy: "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteUser(int id)

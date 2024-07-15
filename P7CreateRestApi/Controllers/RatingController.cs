@@ -18,17 +18,19 @@ namespace Dot.Net.WebApi.Controllers
         {
             _ratingService = ratingService;
         }
-        /// <summary>[HttpGet] Rating controller List method. 
-        /// Get Rating items list. </summary> 
+        /// <summary>List Rating items.</summary> 
         /// <returns>Rating list.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Rating/list.</remarks>
-        /// <response code ="200">OK.</response>        
+        /// <remarks>[HttpGet] Rating controller List method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Rating/list.</remarks>
+        /// <response code ="200">OK.</response>    
+        /// <response code ="401">Unauthorized.</response> 
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("list")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult List()
         {
@@ -43,19 +45,21 @@ namespace Dot.Net.WebApi.Controllers
                 return StatusCode(500, "Internal error occurs.");
             }
         }
-        /// <summary>[HttpGet] Rating controller Get method. 
-        /// Get Rating item for the BidList Id in parameter. </summary>  
+        /// <summary>Get Rating item for the Id in input. </summary>  
         /// <param name="id">Rating Id.</param>
         /// <returns>Selected Rating.</returns>
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Rating/get/{id}.</remarks>
+        /// <remarks>[HttpGet] Rating controller Get method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Rating/get/{id}.</remarks>
         /// <response code ="200">OK.</response>  
+        /// <response code ="401">Unauthorized.</response> 
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("get/{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Get([FromRoute] int id)
@@ -77,18 +81,20 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'Rating' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>[HttpPost] Rating controller AddRating method. 
-        /// Add a Rating item. </summary>  
-        /// <param name="inputModel">Rating to add.</param>
+        /// <summary>Add the Rating item in input.</summary>  
+        /// <param name="inputModel">Rating input model object.</param>
         /// <returns>Rating item created.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Rating/add.</remarks>
-        /// <response code ="200">OK.</response>          
+        /// <remarks>[HttpPost] Rating controller AddRating method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Rating/add.</remarks>
+        /// <response code ="200">OK.</response>  
+        /// <response code ="401">Unauthorized.</response> 
         /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
         [Route("add")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult AddRating([FromBody] RatingInputModel inputModel)
         {
@@ -103,19 +109,21 @@ namespace Dot.Net.WebApi.Controllers
                 return StatusCode(500, "Internal error occurs.");
             }
         }
-        /// <summary>[HttpGet] Rating controller ShowUpdateForm method. 
-        /// Get Rating item to update for the Rating Id in parameter.</summary>  
-        /// <param name="id">Rating Id to get.</param>
+        /// <summary>Get Rating item to update for the Id in input.</summary>  
+        /// <param name="id">Rating Id.</param>
         /// <returns>Rating item.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Rating/update/{id}.</remarks>
+        /// <remarks>[HttpGet] Rating controller ShowUpdateForm method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Rating/update/{id}.</remarks>
         /// <response code ="200">OK.</response>     
+        /// <response code ="401">Unauthorized.</response> 
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("update/{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult ShowUpdateForm(int id)
@@ -137,20 +145,22 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'Rating' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>[HttpPost] Rating controller UpdateRating method. 
-        /// Post update for the Rating Id and item in parameters.</summary>  
+        /// <summary>Post update for the Rating Id and item in input.</summary>  
         /// <param name="id">Rating Id.</param>
-        /// <param name="inputModel">Rating item.</param>
+        /// <param name="inputModel">Rating input model object.</param>
         /// <returns>Updated Rating list.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Rating/update/{id}.</remarks>
+        /// <remarks>[HttpPost] Rating controller UpdateRating method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Rating/update/{id}.</remarks>
         /// <response code ="200">OK.</response>     
+        /// <response code ="401">Unauthorized.</response> 
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
         [Route("update/{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult UpdateRating([FromRoute] int id, [FromBody] RatingInputModel inputModel)
@@ -172,19 +182,21 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'Rating' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>[HttpDelete] Rating controller DeleteRating method. 
-        /// Delete Rating item for the Id in parameters.</summary>  
+        /// <summary>Delete Rating item for the Id in parameters.</summary>  
         /// <param name="id">Rating Id.</param>
         /// <returns>Updated Rating list.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Rating/delete/{id}.</remarks>
-        /// <response code ="200">OK.</response>     
+        /// <remarks>[HttpDelete] Rating controller DeleteRating method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Rating/delete/{id}.</remarks>
+        /// <response code ="200">OK.</response>   
+        /// <response code ="401">Unauthorized.</response> 
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpDelete]
         [Route("delete/{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult DeleteRating([FromRoute] int id)

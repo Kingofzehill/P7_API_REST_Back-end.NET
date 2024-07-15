@@ -22,12 +22,11 @@ namespace Dot.Net.WebApi.Controllers
             _userManager = userManager;
             _config = config;
         }
-        /// <summary>Auth controller Login method. 
-        /// Allows user to authentificate.
-        /// Check password validity, if ok generates token.</summary> 
-        /// <param name="inputModel">POCO Login input model class object.</param>
+        /// <summary>Allows user to authentificate. If user and password are ok, generates token.</summary> 
+        /// <param name="inputModel">User input model object.</param>
         /// <returns>Generated token.</returns> 
-        /// <remarks>Route: /Auth/login.</remarks>
+        /// <remarks>Auth controller Login method. 
+        /// Route: /Auth/login.</remarks>
         /// <response code ="200">OK.</response>
         /// <response code ="401">Unauthorized.</response>
         /// <response code ="500">Internal error (exception).</response>

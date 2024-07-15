@@ -9,6 +9,7 @@ using Microsoft.OpenApi.Models;
 using P7CreateRestApi.Repositories;
 using P7CreateRestApi.Services;
 using Serilog;
+using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,7 +24,9 @@ builder.Services.AddEndpointsApiExplorer();
 // configuration at https://learn.microsoft.com/fr-fr/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-8.0&tabs=visual-studio
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new() { Title = "PostTrades.Api", Version = "v1" });
+    options.SwaggerDoc("v1", new() { Title = "PostTrades API", Version = "v1",
+        Description = "An ASP.NET Core Web API for managing PostTrades."
+    });
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
@@ -47,14 +50,19 @@ builder.Services.AddSwaggerGen(options =>
             new string[] {}
         }
     });
+    // using System.Reflection;
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
+
+
 
 // Add Asp.Net Identity to existing project 
 // https://learn.microsoft.com/fr-fr/aspnet/identity/overview/getting-started/adding-aspnet-identity-to-an-empty-or-existing-web-forms-project
 builder.Services.AddDbContext<LocalDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Service ASP.NET Core Identity with User table and role based on IdentityRole.
+// Service ASP.NET Core Identity with User and role tables based on IdentityRole.
 // https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-8.0&tabs=visual-studio.
 builder.Services.AddIdentity<User, IdentityRole<int>>()
     .AddEntityFrameworkStores<LocalDbContext>()

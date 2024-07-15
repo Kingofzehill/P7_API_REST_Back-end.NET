@@ -17,17 +17,19 @@ namespace Dot.Net.WebApi.Controllers
         {
             _ruleNameService = ruleNameService;
         }
-        /// <summary>[HttpGet] Rule controller List method. 
-        /// Get Rule items list. </summary>  
+        /// <summary>List Rule items.</summary>  
         /// <returns>Rule list.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Rule/list.</remarks>
-        /// <response code ="200">OK.</response>        
+        /// <remarks>[HttpGet] Rule controller List method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Rule/list.</remarks>
+        /// <response code ="200">OK.</response>      
+        /// <response code ="401">Unauthorized.</response>  
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("list")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult List()
         {            
@@ -42,19 +44,21 @@ namespace Dot.Net.WebApi.Controllers
                 return StatusCode(500, "Internal error occurs.");
             }
         }
-        /// <summary>[HttpGet] Rule controller Get method. 
-        /// Get Rule item for the Rule Id in parameter. </summary>  
+        /// <summary>Get Rule item for the Id in input. </summary>  
         /// <param name="id">Rule Id.</param>
         /// <returns>Selected Rule.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Rule/get/{id}.</remarks>
+        /// <remarks>[HttpGet] Rule controller Get method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Rule/get/{id}.</remarks>
         /// <response code ="200">OK.</response>  
+        /// <response code ="401">Unauthorized.</response>  
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("get/{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Get([FromRoute] int id)
@@ -76,18 +80,20 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'Rule' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>[HttpPost] Rule controller AddRuleName method. 
-        /// Add a Rule item. </summary>  
-        /// <param name="inputModel">Rule to add.</param>
+        /// <summary>Add a Rule item.</summary>  
+        /// <param name="inputModel">Rule input model object.</param>
         /// <returns>Rule item created.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Rule/add.</remarks>
-        /// <response code ="200">OK.</response>          
+        /// <remarks>[HttpPost] Rule controller AddRuleName method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Rule/add.</remarks>
+        /// <response code ="200">OK.</response>   
+        /// <response code ="401">Unauthorized.</response>  
         /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
         [Route("add")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult AddRuleName([FromBody] RuleNameInputModel inputModel)
         {           
@@ -102,19 +108,21 @@ namespace Dot.Net.WebApi.Controllers
                 return StatusCode(500, "Internal error occurs.");
             }
         }
-        /// <summary>[HttpGet] Rule controller ShowUpdateForm method. 
-        /// Get Rule item to update for the Rule Id in parameter.</summary>  
-        /// <param name="id">Rule Id to get.</param>
+        /// <summary>Get Rule item to update for the Id in input.</summary>  
+        /// <param name="id">Rule Id.</param>
         /// <returns>Rule item.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Rule/update/{id}.</remarks>
-        /// <response code ="200">OK.</response>     
+        /// <remarks>[HttpGet] Rule controller ShowUpdateForm method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Rule/update/{id}.</remarks>
+        /// <response code ="200">OK.</response>    
+        /// <response code ="401">Unauthorized.</response>  
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("update/{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult ShowUpdateForm(int id)
@@ -136,20 +144,22 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'Rule' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>[HttpPost] Rule controller UpdateRuleName method. 
-        /// Post update for the Rule Id and item in parameters.</summary>  
+        /// <summary>Post update for the Rule Id and item in input.</summary>  
         /// <param name="id">Rule Id.</param>
-        /// <param name="inputModel">Rule item.</param>
+        /// <param name="inputModel">Rule input model object.</param>
         /// <returns>Updated Rule list.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Rule/update/{id}.</remarks>
-        /// <response code ="200">OK.</response>     
+        /// <remarks>[HttpPost] Rule controller UpdateRuleName method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Rule/update/{id}.</remarks>
+        /// <response code ="200">OK.</response>   
+        /// <response code ="401">Unauthorized.</response>  
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
         [Route("update/{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult UpdateRuleName([FromRoute] int id, [FromBody] RuleNameInputModel inputModel)
@@ -171,19 +181,21 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'Rule' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>[HttpDelete] Rule controller DeleteRuleName method. 
-        /// Delete Rule item for the Id in parameters.</summary>  
+        /// <summary>Delete Rule item for the Id in parameters.</summary>  
         /// <param name="id">Rule Id.</param>
         /// <returns>Updated Rule list.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Rule/delete/{id}.</remarks>
-        /// <response code ="200">OK.</response>     
+        /// <remarks>[HttpDelete] Rule controller DeleteRuleName method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Rule/delete/{id}.</remarks>
+        /// <response code ="200">OK.</response>   
+        /// <response code ="401">Unauthorized.</response>  
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpDelete]
         [Route("delete/{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult DeleteRuleName([FromRoute] int id)

@@ -17,17 +17,19 @@ namespace Dot.Net.WebApi.Controllers
             _tradeService = tradeService;
         }
 
-        /// <summary>[HttpGet] Trade controller List method. 
-        /// Get Trade items list. </summary>  
+        /// <summary>List Trade items.</summary>  
         /// <returns>Trade list.</returns> 
-        /// <remarks>Authenticated and authorized User access only.</remarks>
-        /// <remarks>Route: /Trade/list.</remarks>
-        /// <response code ="200">OK.</response>        
+        /// <remarks>[HttpGet] Trade controller List method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Trade/list.</remarks>
+        /// <response code ="200">OK.</response>      
+        /// <response code ="401">Unauthorized.</response>   
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("list")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult List()
         {            
@@ -43,19 +45,21 @@ namespace Dot.Net.WebApi.Controllers
             }
         }
 
-        /// <summary>[HttpGet] Trade controller Get method. 
-        /// Get Trade item for the Trade Id in parameter. </summary>  
+        /// <summary>Get Trade item for the Id in input. </summary>  
         /// <param name="id">Trade Id.</param>
         /// <returns>Selected Trade.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Trade/get/{id}.</remarks>
+        /// <remarks>[HttpGet] Trade controller Get method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Trade/get/{id}.</remarks>
         /// <response code ="200">OK.</response>  
+        /// <response code ="401">Unauthorized.</response>   
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("get/{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Get([FromRoute] int id)
@@ -77,18 +81,20 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'Trade' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>[HttpPost] Trade controller AddTrade method. 
-        /// Add a Trade item. </summary>  
-        /// <param name="inputModel">Trade to add.</param>
+        /// <summary>Add a Trade item.</summary>  
+        /// <param name="inputModel">Trade input model object.</param>
         /// <returns>Trade item created.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Trade/add.</remarks>
-        /// <response code ="200">OK.</response>          
+        /// <remarks>[HttpPost] Trade controller AddTrade method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Trade/add.</remarks>
+        /// <response code ="200">OK.</response>  
+        /// <response code ="401">Unauthorized.</response>   
         /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
         [Route("add")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult AddTrade([FromBody] TradeInputModel inputModel)
         {            
@@ -104,19 +110,21 @@ namespace Dot.Net.WebApi.Controllers
             }
         }
 
-        /// <summary>[HttpGet] Trade controller ShowUpdateForm method. 
-        /// Get Trade item to update for the BidList Id in parameter.</summary>  
-        /// <param name="id">Trade Id to get.</param>
+        /// <summary>Get Trade item to update for the Id in input.</summary>  
+        /// <param name="id">Trade Id.</param>
         /// <returns>Trade item.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Trade/update/{id}.</remarks>
-        /// <response code ="200">OK.</response>     
+        /// <remarks>[HttpGet] Trade controller ShowUpdateForm method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Trade/update/{id}.</remarks>
+        /// <response code ="200">OK.</response>    
+        /// <response code ="401">Unauthorized.</response>   
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
         [Route("update/{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult ShowUpdateForm(int id)
@@ -138,20 +146,22 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'Trade' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>[HttpPost] Trade controller UpdateTrade method. 
-        /// Post update for the Trade Id and item in parameters.</summary>  
+        /// <summary>Post update for the Trade Id and item in input.</summary>  
         /// <param name="id">Trade Id.</param>
-        /// <param name="inputModel">Trade item.</param>
+        /// <param name="inputModel">Trade input model object.</param>
         /// <returns>Updated Trade list.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Trade/update/{id}.</remarks>
-        /// <response code ="200">OK.</response>     
+        /// <remarks>[HttpPost] Trade controller UpdateTrade method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Trade/update/{id}.</remarks>
+        /// <response code ="200">OK.</response>   
+        /// <response code ="401">Unauthorized.</response>   
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
         [Route("update/{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult UpdateTrade([FromRoute] int id, [FromBody] TradeInputModel inputModel)
@@ -173,19 +183,21 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'Trade' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>[HttpDelete] Trade controller DeleteTrade method. 
-        /// Delete Trade item for the Id in parameters.</summary>  
+        /// <summary>Delete Trade item for the Id in input.</summary>  
         /// <param name="id">Trade Id.</param>
         /// <returns>Updated Trade list.</returns> 
-        /// <remarks>Authenticated and authorized User access only</remarks>
-        /// <remarks>Route: /Trade/delete/{id}.</remarks>
-        /// <response code ="200">OK.</response>     
+        /// <remarks>[HttpDelete] Trade controller DeleteTrade method. 
+        /// Authenticated and authorized User access only. 
+        /// Route: /Trade/delete/{id}.</remarks>
+        /// <response code ="200">OK.</response> 
+        /// <response code ="401">Unauthorized.</response>   
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpDelete]
         [Route("delete/{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult DeleteTrade([FromRoute] int id)
