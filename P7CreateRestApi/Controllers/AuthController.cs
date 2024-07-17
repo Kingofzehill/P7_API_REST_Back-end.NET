@@ -28,12 +28,14 @@ namespace Dot.Net.WebApi.Controllers
         /// <remarks>Auth controller Login method. 
         /// Route: /Auth/login.</remarks>
         /// <response code ="200">OK.</response>
+        /// <response code ="400">BadRequest.</response>
         /// <response code ="401">Unauthorized.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Login([FromBody] LoginInputModel inputModel)

@@ -59,5 +59,5 @@ Pour autoriser votre accès aux routes protégées des méthodes de l'API, cliqu
 
 ## Contact
 [GitHub KingOfZeHill](https://github.com/Kingofzehill)
-[Mail KingOfZeHill](kingofzehill@gmail.com)
+Email KingOfZeHill : kingofzehill@gmail.com
 
