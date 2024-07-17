@@ -1,0 +1,921 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>P7CreateRestApi</name>
+    </assembly>
+    <members>
+        <member name="M:Dot.Net.WebApi.Controllers.AuthController.Login(P7CreateRestApi.Models.InputModels.LoginInputModel)">
+            <summary>Allows user to authentificate. If user and password are ok, generates token.</summary> 
+            <param name="inputModel">User input model object.</param>
+            <returns>Generated token.</returns> 
+            <remarks>Auth controller Login method. 
+            Route: /Auth/login.</remarks>
+            <response code ="200">OK.</response>
+            <response code ="400">BadRequest.</response>
+            <response code ="401">Unauthorized.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.BidListController.List">
+            <summary>List BidList items. </summary>  
+            <returns>BidList list.</returns> 
+            <remarks>[HttpGet] BidList controller List method.
+            Authenticated and authorized User access only.
+            Route: /BidList/list.</remarks>
+            <response code ="200">OK.</response>    
+            <response code ="401">Unauthorized.</response>   
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.BidListController.Get(System.Int32)">
+            <summary>Get BidList item for the Id in input.</summary>  
+            <param name="id">BidList Id.</param>
+            <returns>Selected BidList.</returns> 
+            <remarks>[HttpGet] BidList controller Get method. 
+            Authenticated and authorized User access only.
+            Route: /BidList/get/{id}.</remarks>
+            <response code ="200">OK.</response>  
+            <response code ="401">Unauthorized.</response>   
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.BidListController.AddBidList(P7CreateRestApi.Models.InputModels.BidListInputModel)">
+            <summary>Add the Bidlist item in input. </summary>  
+            <param name="inputModel">BidList input model object.</param>
+            <returns>BidList item created.</returns> 
+            <remarks>[HttpPost] BidList controller AddBidList method.
+            Authenticated and authorized User access only.
+            Route: /BidList/add.</remarks>
+            <response code ="200">OK.</response>    
+            <response code ="401">Unauthorized.</response>   
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.BidListController.ShowUpdateForm(System.Int32)">
+            <summary>Get BidList item to update for the BidList Id in parameter.</summary>  
+            <param name="id">BidList Id to get.</param>
+            <returns>BidList item.</returns> 
+            <remarks>[HttpGet] BidList controller ShowUpdateForm method. 
+            Authenticated and authorized User access only.
+            Route: /BidList/update/{id}.</remarks>
+            <response code ="200">OK.</response>     
+            <response code ="401">Unauthorized.</response>   
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.BidListController.UpdateBid(System.Int32,P7CreateRestApi.Models.InputModels.BidListInputModel)">
+            <summary>Post update for the BidList Id and item in input.</summary>  
+            <param name="id">BidList Id.</param>
+            <param name="inputModel">BidList input model object.</param>
+            <returns>Updated BidList list.</returns> 
+            <remarks>[HttpPost] BidList controller UpdateBid method.
+            Authenticated and authorized User access only.
+            Route: /BidList/update/{id}.</remarks>
+            <response code ="200">OK.</response>     
+            <response code ="401">Unauthorized.</response>   
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.BidListController.DeleteBid(System.Int32)">
+            <summary>Delete BidList item for the Id in parameters.</summary>  
+            <param name="id">BidList Id.</param>
+            <returns>Updated BidList list.</returns> 
+            <remarks>[HttpDelete] BidList controller DeleteBid method.
+            Authenticated and authorized User access only.
+            Route: /BidList/delete/{id}.</remarks>
+            <response code ="200">OK.</response>    
+            <response code ="401">Unauthorized.</response>   
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.CurveController.List">
+            <summary>List CurvePoint items. </summary>  
+            <returns>CurvePoint list.</returns> 
+            <remarks>[HttpGet] CurvePoint controller List method. 
+            Authenticated and authorized User access only. 
+            Route: /Curve/list.</remarks>
+            <response code ="200">OK.</response>       
+            <response code ="401">Unauthorized.</response> 
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.CurveController.Get(System.Int32)">
+            <summary>Get CurvePoint item for the Id in input. </summary>     
+            <param name="id">CurvePoint Id.</param>
+            <returns>Selected CurvePoint.</returns> 
+            <remarks>[HttpGet] CurvePoint controller Get method. 
+            Authenticated and authorized User access only. 
+            Route: /Curve/get/{id}.</remarks>
+            <response code ="200">OK.</response>  
+            <response code ="401">Unauthorized.</response>  
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.CurveController.AddCurvePoint(P7CreateRestApi.Models.InputModel.CurvePointInputModel)">
+            <summary>Add a CurvePoint item.</summary>
+            <param name="inputModel">CurvePoint input model object.</param>
+            <returns>CurvePoint item created.</returns> 
+            <remarks>[HttpPost] CurvePoint controller AddCurvePoint method. 
+            Authenticated and authorized User access only. 
+            Route: /Curve/add.</remarks>
+            <response code ="200">OK.</response>      
+            <response code ="401">Unauthorized.</response>  
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.CurveController.ShowUpdateForm(System.Int32)">
+            <summary>Get CurvePoint item to update for the Id in input.</summary>   
+            <param name="id">CurvePoint Id to get.</param>
+            <returns>CurvePoint item..</returns> 
+            <remarks>[HttpGet] CurvePoint controller ShowUpdateForm method. 
+            Authenticated and authorized User access only. 
+            Route: /Curve/update/{id}.</remarks>
+            <response code ="200">OK.</response>    
+            <response code ="401">Unauthorized.</response>  
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.CurveController.UpdateCurvePoint(System.Int32,P7CreateRestApi.Models.InputModel.CurvePointInputModel)">
+            <summary>Post update for the CurvePoint Id and item in input.</summary>  
+            <param name="id">CurvePoint Id.</param>
+            <param name="inputModel">CurvePoint input model object.</param>
+            <returns>Updated CurvePoint list.</returns> 
+            <remarks>[HttpPost] CurvePoint controller UpdateCurvePoint method. 
+            Authenticated and authorized User access only. 
+            Route: /Curve/update/{id}.</remarks>
+            <response code ="200">OK.</response>   
+            <response code ="401">Unauthorized.</response>  
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.CurveController.DeleteCurvePoint(System.Int32)">
+            <summary>Delete CurvePoint item for the Id in input.</summary>  
+            <param name="id">CurvePoint Id.</param>
+            <returns>Updated CurvePoint list.</returns> 
+            <remarks>[HttpDelete] CurvePoint controller DeleteCurvePoint method. 
+            Authenticated and authorized User access only. 
+            Route: /Curve/delete/{id}.</remarks>
+            <response code ="200">OK.</response> 
+            <response code ="401">Unauthorized.</response>  
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.RatingController.List">
+            <summary>List Rating items.</summary> 
+            <returns>Rating list.</returns> 
+            <remarks>[HttpGet] Rating controller List method. 
+            Authenticated and authorized User access only. 
+            Route: /Rating/list.</remarks>
+            <response code ="200">OK.</response>    
+            <response code ="401">Unauthorized.</response> 
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.RatingController.Get(System.Int32)">
+            <summary>Get Rating item for the Id in input. </summary>  
+            <param name="id">Rating Id.</param>
+            <returns>Selected Rating.</returns>
+            <remarks>[HttpGet] Rating controller Get method. 
+            Authenticated and authorized User access only. 
+            Route: /Rating/get/{id}.</remarks>
+            <response code ="200">OK.</response>  
+            <response code ="401">Unauthorized.</response> 
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.RatingController.AddRating(P7CreateRestApi.Models.InputModel.RatingInputModel)">
+            <summary>Add the Rating item in input.</summary>  
+            <param name="inputModel">Rating input model object.</param>
+            <returns>Rating item created.</returns> 
+            <remarks>[HttpPost] Rating controller AddRating method. 
+            Authenticated and authorized User access only. 
+            Route: /Rating/add.</remarks>
+            <response code ="200">OK.</response>  
+            <response code ="401">Unauthorized.</response> 
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.RatingController.ShowUpdateForm(System.Int32)">
+            <summary>Get Rating item to update for the Id in input.</summary>  
+            <param name="id">Rating Id.</param>
+            <returns>Rating item.</returns> 
+            <remarks>[HttpGet] Rating controller ShowUpdateForm method. 
+            Authenticated and authorized User access only. 
+            Route: /Rating/update/{id}.</remarks>
+            <response code ="200">OK.</response>     
+            <response code ="401">Unauthorized.</response> 
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.RatingController.UpdateRating(System.Int32,P7CreateRestApi.Models.InputModel.RatingInputModel)">
+            <summary>Post update for the Rating Id and item in input.</summary>  
+            <param name="id">Rating Id.</param>
+            <param name="inputModel">Rating input model object.</param>
+            <returns>Updated Rating list.</returns> 
+            <remarks>[HttpPost] Rating controller UpdateRating method. 
+            Authenticated and authorized User access only. 
+            Route: /Rating/update/{id}.</remarks>
+            <response code ="200">OK.</response>     
+            <response code ="401">Unauthorized.</response> 
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.RatingController.DeleteRating(System.Int32)">
+            <summary>Delete Rating item for the Id in parameters.</summary>  
+            <param name="id">Rating Id.</param>
+            <returns>Updated Rating list.</returns> 
+            <remarks>[HttpDelete] Rating controller DeleteRating method. 
+            Authenticated and authorized User access only. 
+            Route: /Rating/delete/{id}.</remarks>
+            <response code ="200">OK.</response>   
+            <response code ="401">Unauthorized.</response> 
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.RuleNameController.List">
+            <summary>List Rule items.</summary>  
+            <returns>Rule list.</returns> 
+            <remarks>[HttpGet] Rule controller List method. 
+            Authenticated and authorized User access only. 
+            Route: /Rule/list.</remarks>
+            <response code ="200">OK.</response>      
+            <response code ="401">Unauthorized.</response>  
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.RuleNameController.Get(System.Int32)">
+            <summary>Get Rule item for the Id in input. </summary>  
+            <param name="id">Rule Id.</param>
+            <returns>Selected Rule.</returns> 
+            <remarks>[HttpGet] Rule controller Get method. 
+            Authenticated and authorized User access only. 
+            Route: /Rule/get/{id}.</remarks>
+            <response code ="200">OK.</response>  
+            <response code ="401">Unauthorized.</response>  
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.RuleNameController.AddRuleName(P7CreateRestApi.Models.InputModel.RuleNameInputModel)">
+            <summary>Add a Rule item.</summary>  
+            <param name="inputModel">Rule input model object.</param>
+            <returns>Rule item created.</returns> 
+            <remarks>[HttpPost] Rule controller AddRuleName method. 
+            Authenticated and authorized User access only. 
+            Route: /Rule/add.</remarks>
+            <response code ="200">OK.</response>   
+            <response code ="401">Unauthorized.</response>  
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.RuleNameController.ShowUpdateForm(System.Int32)">
+            <summary>Get Rule item to update for the Id in input.</summary>  
+            <param name="id">Rule Id.</param>
+            <returns>Rule item.</returns> 
+            <remarks>[HttpGet] Rule controller ShowUpdateForm method. 
+            Authenticated and authorized User access only. 
+            Route: /Rule/update/{id}.</remarks>
+            <response code ="200">OK.</response>    
+            <response code ="401">Unauthorized.</response>  
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.RuleNameController.UpdateRuleName(System.Int32,P7CreateRestApi.Models.InputModel.RuleNameInputModel)">
+            <summary>Post update for the Rule Id and item in input.</summary>  
+            <param name="id">Rule Id.</param>
+            <param name="inputModel">Rule input model object.</param>
+            <returns>Updated Rule list.</returns> 
+            <remarks>[HttpPost] Rule controller UpdateRuleName method. 
+            Authenticated and authorized User access only. 
+            Route: /Rule/update/{id}.</remarks>
+            <response code ="200">OK.</response>   
+            <response code ="401">Unauthorized.</response>  
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.RuleNameController.DeleteRuleName(System.Int32)">
+            <summary>Delete Rule item for the Id in parameters.</summary>  
+            <param name="id">Rule Id.</param>
+            <returns>Updated Rule list.</returns> 
+            <remarks>[HttpDelete] Rule controller DeleteRuleName method. 
+            Authenticated and authorized User access only. 
+            Route: /Rule/delete/{id}.</remarks>
+            <response code ="200">OK.</response>   
+            <response code ="401">Unauthorized.</response>  
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.TradeController.List">
+            <summary>List Trade items.</summary>  
+            <returns>Trade list.</returns> 
+            <remarks>[HttpGet] Trade controller List method. 
+            Authenticated and authorized User access only. 
+            Route: /Trade/list.</remarks>
+            <response code ="200">OK.</response>      
+            <response code ="401">Unauthorized.</response>   
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.TradeController.Get(System.Int32)">
+            <summary>Get Trade item for the Id in input. </summary>  
+            <param name="id">Trade Id.</param>
+            <returns>Selected Trade.</returns> 
+            <remarks>[HttpGet] Trade controller Get method. 
+            Authenticated and authorized User access only. 
+            Route: /Trade/get/{id}.</remarks>
+            <response code ="200">OK.</response>  
+            <response code ="401">Unauthorized.</response>   
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.TradeController.AddTrade(P7CreateRestApi.Models.InputModel.TradeInputModel)">
+            <summary>Add a Trade item.</summary>  
+            <param name="inputModel">Trade input model object.</param>
+            <returns>Trade item created.</returns> 
+            <remarks>[HttpPost] Trade controller AddTrade method. 
+            Authenticated and authorized User access only. 
+            Route: /Trade/add.</remarks>
+            <response code ="200">OK.</response>  
+            <response code ="401">Unauthorized.</response>   
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.TradeController.ShowUpdateForm(System.Int32)">
+            <summary>Get Trade item to update for the Id in input.</summary>  
+            <param name="id">Trade Id.</param>
+            <returns>Trade item.</returns> 
+            <remarks>[HttpGet] Trade controller ShowUpdateForm method. 
+            Authenticated and authorized User access only. 
+            Route: /Trade/update/{id}.</remarks>
+            <response code ="200">OK.</response>    
+            <response code ="401">Unauthorized.</response>   
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.TradeController.UpdateTrade(System.Int32,P7CreateRestApi.Models.InputModel.TradeInputModel)">
+            <summary>Post update for the Trade Id and item in input.</summary>  
+            <param name="id">Trade Id.</param>
+            <param name="inputModel">Trade input model object.</param>
+            <returns>Updated Trade list.</returns> 
+            <remarks>[HttpPost] Trade controller UpdateTrade method. 
+            Authenticated and authorized User access only. 
+            Route: /Trade/update/{id}.</remarks>
+            <response code ="200">OK.</response>   
+            <response code ="401">Unauthorized.</response>   
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.TradeController.DeleteTrade(System.Int32)">
+            <summary>Delete Trade item for the Id in input.</summary>  
+            <param name="id">Trade Id.</param>
+            <returns>Updated Trade list.</returns> 
+            <remarks>[HttpDelete] Trade controller DeleteTrade method. 
+            Authenticated and authorized User access only. 
+            Route: /Trade/delete/{id}.</remarks>
+            <response code ="200">OK.</response> 
+            <response code ="401">Unauthorized.</response>   
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.UserController.List">
+            <summary>List User items. </summary>  
+            <returns>User list.</returns> 
+            <remarks>[HttpGet] User controller List method. 
+            Authenticated and authorized Admin User access only. 
+            Route: /User/list.</remarks>
+            <response code ="200">OK.</response>       
+            <response code ="401">Unauthorized.</response>    
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.UserController.Get(System.Int32)">
+            <summary>Get User item for the Id in input. </summary>  
+            <param name="id">User Id.</param>
+            <returns>Selected User.</returns> 
+            <remarks>[HttpGet] User controller Get method. 
+            Authenticated and authorized Admin User access only. 
+            Route: /User/get/{id}.</remarks>
+            <response code ="200">OK.</response>  
+            <response code ="401">Unauthorized.</response>    
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.UserController.AddUser(P7CreateRestApi.Models.InputModel.UserInputModel)">
+            <summary>Add a User item.</summary>  
+            <param name="inputModel">User input model object.</param>
+            <returns>User item created.</returns> 
+            <remarks>[HttpPost] User controller AddUser method. 
+            Authenticated and authorized Admin User access only. 
+            Route: /User/add.</remarks>
+            <response code ="200">OK.</response>    
+            <response code ="401">Unauthorized.</response>    
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.UserController.ShowUpdateForm(System.Int32)">
+            <summary>Get User item to update for the Id in input.</summary>  
+            <param name="id">User Id.</param>
+            <returns>User item.</returns> 
+            <remarks>[HttpGet] User controller ShowUpdateForm method. 
+            Authenticated and authorized Admin User access only. 
+            Route: /User/update/{id}.</remarks>
+            <response code ="200">OK.</response>     
+            <response code ="401">Unauthorized.</response>   
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.UserController.UpdateUser(System.Int32,P7CreateRestApi.Models.InputModel.UserInputModel)">
+            <summary>Post update for the User Id and item in input.</summary>  
+            <param name="id">User Id.</param>
+            <param name="inputModel">User input model object.</param>
+            <returns>Updated User list.</returns> 
+            <remarks>[HttpPost] User controller UpdateUser method. 
+            Authenticated and authorized Admin User access only. 
+            Route: /User/update/{id}.</remarks>
+            <response code ="200">OK.</response>   
+            <response code ="401">Unauthorized.</response>    
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="M:Dot.Net.WebApi.Controllers.UserController.DeleteUser(System.Int32)">
+            <summary>Delete User item for the Id in input.</summary>  
+            <param name="id">User Id.</param>
+            <returns>Updated User list.</returns> 
+            <remarks>[HttpDelete] User controller DeleteUser method. 
+            Authenticated and authorized Admin User access only. 
+            Route: /User/delete/{id}.</remarks>
+            <response code ="200">OK.</response>   
+            <response code ="401">Unauthorized.</response>    
+            <response code ="404">Not found.</response>
+            <response code ="500">Internal error (exception).</response>
+        </member>
+        <member name="T:Dot.Net.WebApi.Domain.BidList">
+            <summary>
+            BidList DTO Class.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="T:Dot.Net.WebApi.Domain.CurvePoint">
+            <summary>
+            CurvePoint DTO Class.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="T:Dot.Net.WebApi.Domain.Rating">
+            <summary>
+            Rating DTO Class.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="T:Dot.Net.WebApi.Domain.RuleName">
+            <summary>
+            RuleName DTO Class.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="T:Dot.Net.WebApi.Domain.Trade">
+            <summary>
+            Trade DTO Class.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:Dot.Net.WebApi.Repositories.UserRepository.FindByUserName(System.String)">
+            <summary>User Repository FindByUserName method.</summary>  
+            <param name="username">Username to find.</param>
+            <return>DTO User class object.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:Dot.Net.WebApi.Repositories.UserRepository.FindAll">
+            <summary>User Repository FindAll method.</summary>          
+            <return>List of all users.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:Dot.Net.WebApi.Repositories.UserRepository.Add(Dot.Net.WebApi.Domain.User)">
+            <summary>User Repository Add method. Add a new user and save it.</summary>          
+            <param name="user">DTO User class object to add.</param>
+            <return></return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:Dot.Net.WebApi.Repositories.UserRepository.FindById(System.Int32)">
+            <summary>User Repository FindById method.</summary>          
+            <param name="id">Id of the user to find.</param>
+            <return>DTO User class object.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="T:P7CreateRestApi.Models.InputModels.BidListInputModel">
+            <summary>
+            BidList POCO Class for input model.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="T:P7CreateRestApi.Models.OutputModel.BidListOutputModel">
+            <summary>
+            BidList POCO Class for output model.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.BidListRepository.Create(Dot.Net.WebApi.Domain.BidList)">
+            <summary>BidList create.</summary>  
+            <param name="bidList">BidList DTO object.</param>
+            <return></return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.BidListRepository.Delete(System.Int32)">
+            <summary>BidList delete.</summary>      
+            <return>Updated bidList.</return> 
+            <param name="id">Bid id to delete.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.BidListRepository.Get(System.Int32)">
+            <summary>BidList Get.</summary>      
+            <return></return> 
+            <param name="id">Bid id to get.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.BidListRepository.List">
+            <summary>BidList List.</summary>      
+            <return>List of BidList DTO objects.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.BidListRepository.Update(Dot.Net.WebApi.Domain.BidList)">
+            <summary>BidList Update.</summary>      
+            <return>Updated BidList.</return> 
+            <param name="bidList">BidList DTO object.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.CurvePointRepository.List">
+            <summary>CurvePoint Repository List method.</summary>      
+            <return>List of CurvePoint DTO objects.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.CurvePointRepository.Create(Dot.Net.WebApi.Domain.CurvePoint)">
+            <summary>CurvePoint Repository Create method.</summary>  
+            <param name="curvePoint">CurvePoint DTO object</param>
+            <return></return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.CurvePointRepository.Get(System.Int32)">
+            <summary>CurvePoint Repository Get method.</summary>      
+            <return></return> 
+            <param name="id">CurvePoint id to get.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.CurvePointRepository.Update(Dot.Net.WebApi.Domain.CurvePoint)">
+            <summary>CurvePoint Repository Update method.</summary>      
+            <return>Updated CurvePoint.</return> 
+            <param name="curvePoint">CurvePoint DTO object.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.CurvePointRepository.Delete(System.Int32)">
+            <summary>CurvePoint Repository delete method.</summary>      
+            <return>Updated CurvePoint.</return> 
+            <param name="id">CurvePoint id to delete.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.RatingRepository.Create(Dot.Net.WebApi.Domain.Rating)">
+            <summary>Rating Repository Create method.</summary>  
+            <param name="rating">Rating DTO object</param>
+            <return></return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.RatingRepository.Delete(System.Int32)">
+            <summary>Rating Repository delete method.</summary>      
+            <return>Updated Rating.</return> 
+            <param name="id">Rating id to delete.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.RatingRepository.Get(System.Int32)">
+            <summary>Rating Repository Get method.</summary>      
+            <return></return> 
+            <param name="id">Rating id to get.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.RatingRepository.List">
+            <summary>Rating Repository List method.</summary>      
+            <return>List of Rating DTO objects.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.RatingRepository.Update(Dot.Net.WebApi.Domain.Rating)">
+            <summary>Rating Repository Update method.</summary>      
+            <return>Updated Rating.</return> 
+            <param name="rating">Rating DTO object.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.RuleNameRepository.Create(Dot.Net.WebApi.Domain.RuleName)">
+            <summary>Rule Repository Create method.</summary>  
+            <param name="ruleName">Rule DTO object</param>
+            <return></return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.RuleNameRepository.Delete(System.Int32)">
+            <summary>Rule Repository delete method.</summary>      
+            <return>Updated Rule.</return> 
+            <param name="id">Rule id to delete.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.RuleNameRepository.Get(System.Int32)">
+            <summary>Rule Repository Get method.</summary>      
+            <return></return> 
+            <param name="id">Rule id to get.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.RuleNameRepository.List">
+            <summary>Rule Repository List method.</summary>      
+            <return>List of Rule DTO objects.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.RuleNameRepository.Update(Dot.Net.WebApi.Domain.RuleName)">
+            <summary>Rule Repository Update method.</summary>      
+            <return>Updated Rule.</return> 
+            <param name="ruleName">Rule DTO object.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.TradeRepository.Create(Dot.Net.WebApi.Domain.Trade)">
+            <summary>Trade Repository Create method.</summary>  
+            <param name="trade">Trade DTO object</param>
+            <return></return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.TradeRepository.Delete(System.Int32)">
+            <summary>Trade Repository delete method.</summary>      
+            <return>Updated Trade object.</return> 
+            <param name="id">Trade id to delete.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.TradeRepository.Get(System.Int32)">
+            <summary>Trade Repository Get method.</summary>      
+            <return>Updated Trade object.</return> 
+            <param name="id">Trade id to get.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.TradeRepository.List">
+            <summary>Trade Repository List method.</summary>      
+            <return>List of Trade DTO objects.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Repositories.TradeRepository.Update(Dot.Net.WebApi.Domain.Trade)">
+            <summary>Trade Repository Update method.</summary>      
+            <return>Updated DTO Trade object.</return> 
+            <param name="trade">Trade DTO object.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.BidListService.Create(P7CreateRestApi.Models.InputModels.BidListInputModel)">
+            <summary>BidList Service Create method. 
+            Call CRUD method in the BidList Repository with BidList POCO object to create. 
+            Store created record into DTO object and returns POCO output model object.</summary>  
+            <param name="bidList">BidList POCO input model object.</param>
+            <return>BidList POCO output model object.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.BidListService.Delete(System.Int32)">
+            <summary>BidList Service Delete method. 
+            Call CRUD method in the BidList Repository with BidList id tot delete. 
+            Store deleted record into DTO object and returns POCO object if found or null</summary>  
+            <param name="id">Id of the BidList record to delete.</param>
+            <return>BidList POCO object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.BidListService.Get(System.Int32)">
+            <summary>BidList Service Get method. 
+            Call Get method in the BidList Repository with BidList id to get. 
+            Store record into DTO object and returns POCO output model object if found or null. </summary>  
+            <param name="id">Id of the BidList record to get.</param>
+            <return>BidList POCO output model object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.BidListService.List">
+            <summary>BidList Service List method. 
+            Call List method in the BidList Repository. 
+            Get DTO objects list and returns POCO output model objects list.</summary>          
+            <return>BidList POCO output model object list.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.BidListService.Update(System.Int32,P7CreateRestApi.Models.InputModels.BidListInputModel)">
+            <summary>BidList Service Update method. 
+            Call CRUD method in the BidList Repository with BidList id to update 
+            and BidList POCO object to update. 
+            Store updated record into DTO object and returns POCO output model object if found or null.</summary>  
+            <param name="id">Id of the BidList record to get.</param>
+            <param name="inputModel">BidList POCO input model object.</param>
+            <return>BidList POCO output model object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.BidListService.ToOutputModel(Dot.Net.WebApi.Domain.BidList)">
+            <summary>BidList Service ToOutputModel method. 
+            Load Bidlist DTO object properties into POCO uutput model object.</summary>  
+            <param name="bidList">Bidlist DTO output model object.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.CurvePointService.List">
+            <summary>CurvePoint Service List method. 
+            Call List method in the CurvePoint Repository. 
+            Get DTO objects list and returns POCO output model objects list.</summary>          
+            <return>CurvePoint POCO output model object list.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.CurvePointService.Create(P7CreateRestApi.Models.InputModel.CurvePointInputModel)">
+            <summary>CurvePoint Service Create method. 
+            Call CRUD method in the CurvePoint Repository with CurvePoint POCO object to create. 
+            Store created record into DTO object and returns POCO output model object.</summary>  
+            <param name="inputModel">CurvePoint POCO input model object.</param>
+            <return>CurvePoint POCO output model object.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.CurvePointService.Get(System.Int32)">
+            <summary>CurvePoint Service Get method. 
+            Call Get method in the CurvePoint Repository with CurvePoint id to get. 
+            Store record into DTO object and returns POCO output model object if found or null. </summary>  
+            <param name="id">Id of the CurvePoint record to get.</param>
+            <return>CurvePoint POCO output model object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.CurvePointService.Update(System.Int32,P7CreateRestApi.Models.InputModel.CurvePointInputModel)">
+            <summary>CurvePoint Service Update method. 
+            Call CRUD method in the CurvePoint Repository with CurvePoint id to update 
+            and BidList POCO object to update. 
+            Store updated record into DTO object and returns POCO output model object if found or null.</summary>  
+            <param name="id">Id of the CurvePoint record to get.</param>
+            <param name="inputModel">CurvePoint POCO input model object.</param>
+            <return>CurvePoint POCO output model object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.CurvePointService.Delete(System.Int32)">
+            <summary>CurvePoint Service Delete method. 
+            Call CRUD method in the CurvePoint Repository with CurvePoint id tot delete. 
+            Store deleted record into DTO object and returns POCO object if found or null</summary>  
+            <param name="id">Id of the CurvePoint record to delete.</param>
+            <return>CurvePoint POCO object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.CurvePointService.ToOutputModel(Dot.Net.WebApi.Domain.CurvePoint)">
+            <summary>CurvePoint Service ToOutputModel method. 
+            Load CurvePoint DTO object properties into POCO uutput model object.</summary>  
+            <param name="curvePoint">CurvePoint DTO output model object.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.RatingService.Create(P7CreateRestApi.Models.InputModel.RatingInputModel)">
+            <summary>Rating Service Create method. 
+            Call CRUD method in the Rating Repository with Rating POCO object to create. 
+            Store created record into DTO object and returns POCO output model object.</summary>  
+            <param name="inputModel">Rating POCO input model object.</param>
+            <return>Rating POCO output model object.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.RatingService.Delete(System.Int32)">
+            <summary>Rating Service Delete method. 
+            Call CRUD method in the Rating Repository with Rating id tot delete. 
+            Store deleted record into DTO object and returns POCO object if found or null</summary>  
+            <param name="id">Id of the Rating record to delete.</param>
+            <return>Rating POCO object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.RatingService.Get(System.Int32)">
+            <summary>Rating Service Get method. 
+            Call Get method in the Rating Repository with Rating id to get. 
+            Store record into DTO object and returns POCO output model object if found or null. </summary>  
+            <param name="id">Id of the Rating record to get.</param>
+            <return>Rating POCO output model object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.RatingService.List">
+            <summary>Rating Service List method. 
+            Call List method in the Rating Repository. 
+            Get DTO objects list and returns POCO output model objects list.</summary>          
+            <return>Rating POCO output model object list.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.RatingService.Update(System.Int32,P7CreateRestApi.Models.InputModel.RatingInputModel)">
+            <summary>Rating Service Update method. 
+            Call CRUD method in the Rating Repository with Rating id to update 
+            and BidList POCO object to update. 
+            Store updated record into DTO object and returns POCO output model object if found or null.</summary>  
+            <param name="id">Id of the Rating record to get.</param>
+            <param name="inputModel">Rating POCO input model object.</param>
+            <return>Rating POCO output model object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.RatingService.ToOutputModel(Dot.Net.WebApi.Domain.Rating)">
+            <summary>Rating Service ToOutputModel method. 
+            Load Rating DTO object properties into POCO uutput model object.</summary>  
+            <param name="rating">Rating DTO output model object.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.RuleNameService.Create(P7CreateRestApi.Models.InputModel.RuleNameInputModel)">
+            <summary>Rule Service Create method. 
+            Call CRUD method in the Rule Repository with Rule POCO object to create. 
+            Store created record into DTO object and returns POCO output model object.</summary>  
+            <param name="inputModel">Rule POCO input model object.</param>
+            <return>Rule POCO output model object.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.RuleNameService.Delete(System.Int32)">
+            <summary>Rule Service Delete method. 
+            Call CRUD method in the Rule Repository with Rule id tot delete. 
+            Store deleted record into DTO object and returns POCO object if found or null</summary>  
+            <param name="id">Id of the Rule record to delete.</param>
+            <return>Rule POCO object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.RuleNameService.Get(System.Int32)">
+            <summary>Rule Service Get method. 
+            Call Get method in the Rule Repository with Rule id to get. 
+            Store record into DTO object and returns POCO output model object if found or null. </summary>  
+            <param name="id">Id of the Rule record to get.</param>
+            <return>Rule POCO output model object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.RuleNameService.List">
+            <summary>Rule Service List method. 
+            Call List method in the Rule Repository. 
+            Get DTO objects list and returns POCO output model objects list.</summary>          
+            <return>Rule POCO output model object list.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.RuleNameService.Update(System.Int32,P7CreateRestApi.Models.InputModel.RuleNameInputModel)">
+            <summary>Rule Service Update method. 
+            Call CRUD method in the Rule Repository with Rule id to update 
+            and BidList POCO object to update. 
+            Store updated record into DTO object and returns POCO output model object if found or null.</summary>  
+            <param name="id">Id of the Rule record to get.</param>
+            <param name="inputModel">Rule POCO input model object.</param>
+            <return>Rule POCO output model object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.RuleNameService.ToOutputModel(Dot.Net.WebApi.Domain.RuleName)">
+            <summary>Rule Service ToOutputModel method. 
+            Load Rule DTO object properties into POCO uutput model object.</summary>  
+            <param name="ruleName">Rule DTO output model object.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.TradeService.Create(P7CreateRestApi.Models.InputModel.TradeInputModel)">
+            <summary>Trade Service Create method. 
+            Call CRUD method in the Trade Repository with Trade POCO object to create. 
+            Store created record into DTO object and returns POCO output model object.</summary>  
+            <param name="inputModel">Trade POCO input model object.</param>
+            <return>Trade POCO output model object.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.TradeService.Delete(System.Int32)">
+            <summary>Trade Service Delete method. 
+            Call CRUD method in the Trade Repository with Trade id tot delete. 
+            Store deleted record into DTO object and returns POCO object if found or null</summary>  
+            <param name="id">Id of the Trade record to delete.</param>
+            <return>Trade POCO object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.TradeService.Get(System.Int32)">
+            <summary>Trade Service Get method. 
+            Call Get method in the Trade Repository with Trade id to get. 
+            Store record into DTO object and returns POCO output model object if found or null. </summary>  
+            <param name="id">Id of the Trade record to get.</param>
+            <return>Trade POCO output model object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.TradeService.List">
+            <summary>Trade Service List method. 
+            Call List method in the Trade Repository. 
+            Get DTO objects list and returns POCO output model objects list.</summary>          
+            <return>Trade POCO output model object list.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.TradeService.Update(System.Int32,P7CreateRestApi.Models.InputModel.TradeInputModel)">
+            <summary>Trade Service Update method. 
+            Call CRUD method in the Trade Repository with Trade id to update 
+            and BidList POCO object to update. 
+            Store updated record into DTO object and returns POCO output model object if found or null.</summary>  
+            <param name="id">Id of the Trade record to get.</param>
+            <param name="inputModel">Trade POCO input model object.</param>
+            <return>Trade POCO output model object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.TradeService.ToOutputModel(Dot.Net.WebApi.Domain.Trade)">
+            <summary>Trade Service ToOutputModel method. 
+            Load Trade DTO object properties into POCO uutput model object.</summary>  
+            <param name="rating">Trade DTO output model object.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.UserService.Create(P7CreateRestApi.Models.InputModel.UserInputModel)">
+            <summary>User Service Create method. Add user with password and role</summary>          
+            <param name="inputModel">POCO User inputModel class object.</param>
+            <return>POCO User OutputModel class object.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.UserService.Delete(System.Int32)">
+            <summary>User Service Delete method.</summary>          
+            <param name="id">Id of the user to delete.</param>
+            <return>POCO User OutputModel class object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.UserService.Get(System.Int32)">
+            <summary>User Service Get method.</summary>          
+            <param name="id">Id of the user to find.</param>
+            <return>POCO User OutputModel class object or null.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.UserService.List">
+            <summary>User Service List method.</summary>                  
+            <return>List of all Users (POCO OutputModel class objects).</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.UserService.Update(System.Int32,P7CreateRestApi.Models.InputModel.UserInputModel)">
+            <summary>User Service Update method. If user found, update user (name, fullname, role)</summary>                  
+            <param name="id">Id of the user to find.</param>
+            <param name="inputModel">POCO User Input Model class object.</param>
+            <return>POCO User Output Model class object.</return> 
+            <remarks></remarks>
+        </member>
+        <member name="M:P7CreateRestApi.Services.UserService.ToOutputModel(Dot.Net.WebApi.Domain.User)">
+            <summary>User Service ToOutputModel method. 
+            Set User OutputModel class object from DTO User class object properties.</summary>                  
+            <param name="user">DTO User class object.</param>        
+            <return>POCO User Output Model class object.</return> 
+            <remarks></remarks>
+        </member>
+    </members>
+</doc>

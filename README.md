@@ -28,13 +28,12 @@ S'assurer que le développement répond aux recommandations client. [Recommandat
 	```
 2. Modifier le fichier appsettings.json en remplaçant la valeur de Server par le nom du serveur sur lequel vous voulez créer votre base de donnée.
 	```
-		"ConnectionStrings": {
-	  "DefaultConnection": "Server=.;Database=P7_PostTrades_API_01;Trusted_Connection=True;MultipleActiveResultSets=true"
-	},
+	  "ConnectionStrings": {
+	  "DefaultConnection": "Server=.;Database=P7_PostTrades_API_01;Trusted_Connection=True;MultipleActiveResultSets=true"},
 	```
 3. Créer la base de données en ouvrant dans Visual Studio la Console du Gestionnaire de Package (Menu Affichage / Autres fenêtres).
 Taper la commande add-migration InitialCreate.
-Taper la commande update-databe.
+Taper la commande update-database.
 4. Lancer l'application en débuggage, elle doit s'ouvrir sur l'interface utilisateur Swagger.
 
 ## Utilisation
@@ -58,6 +57,5 @@ Si la connexion utilisateur (code réponse 200) est réussie, copier le token fo
 Pour autoriser votre accès aux routes protégées des méthodes de l'API, cliquez sur le bouton `Authorize` en haut à droite de l'interface utilisateur swagger et entrer le token précédé de la mention Bearer : `Bearer <votre-token>`.
 
 ## Contact
-[GitHub KingOfZeHill](https://github.com/Kingofzehill)
-Email KingOfZeHill : kingofzehill@gmail.com
+ KingOfZeHill : [GitHub](https://github.com/Kingofzehill) et email : kingofzehill@gmail.com
 
