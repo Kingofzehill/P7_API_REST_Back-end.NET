@@ -1,0 +1,46 @@
+2024-07-19 11:23:43.966 +02:00 [INF] admin user authentification.
+2024-07-19 11:24:26.765 +02:00 [INF] 'BidList' list request.
+2024-07-19 11:25:22.963 +02:00 [INF] Add 'BidList' item request.
+2024-07-19 11:25:34.237 +02:00 [INF] Get request of 'BidList' for id: 6.
+2024-07-19 11:26:21.736 +02:00 [INF] Update request of 'BidList' item for id: 6.
+2024-07-19 11:27:09.020 +02:00 [INF] Delete request of 'BidList' item for id: 6.
+2024-07-19 17:11:25.089 +02:00 [INF] admin user authentification.
+2024-07-19 17:12:10.267 +02:00 [INF] 'BidList' list request.
+2024-07-19 17:12:55.179 +02:00 [INF] 'CurvePoint' list request.
+2024-07-19 17:13:03.624 +02:00 [INF] 'Rating' list request.
+2024-07-19 17:13:18.563 +02:00 [INF] 'Rule' list request.
+2024-07-19 17:13:27.984 +02:00 [INF] 'Trade' list request.
+2024-07-19 17:13:37.210 +02:00 [INF] 'User' list request.
+2024-07-19 17:31:10.445 +02:00 [INF] admin user authentification.
+2024-07-19 17:31:49.634 +02:00 [INF] Add 'BidList' item request.
+2024-07-19 17:31:58.262 +02:00 [INF] Get request of 'BidList' for id: 7.
+2024-07-19 17:32:15.638 +02:00 [INF] Update request of 'BidList' item for id: 7.
+2024-07-19 17:32:57.188 +02:00 [INF] Delete request of 'BidList' item for id: 7.
+2024-07-19 18:48:59.597 +02:00 [INF] admin user authentification.
+2024-07-19 18:49:28.407 +02:00 [INF] Add 'CurvePoint' item request.
+2024-07-19 18:49:39.203 +02:00 [INF] Get request of 'CurvePoint' for id: 11.
+2024-07-19 18:50:54.933 +02:00 [INF] Update request of 'CurvePoint' item for id: 11.
+2024-07-19 18:51:10.432 +02:00 [INF] Delete request of 'CurvePoint' item for id: 11.
+2024-07-19 18:51:17.363 +02:00 [INF] 'Rating' list request.
+2024-07-19 18:51:32.471 +02:00 [INF] Add 'Rating' item request.
+2024-07-19 18:51:45.183 +02:00 [INF] Add 'Rating' item request.
+2024-07-19 18:51:50.755 +02:00 [INF] Add 'Rating' item request.
+2024-07-19 18:51:57.445 +02:00 [INF] Get request of 'Rating' for id: 4.
+2024-07-19 18:52:17.845 +02:00 [INF] Update request of 'Rating' item for id: 4.
+2024-07-19 18:52:27.123 +02:00 [INF] Delete request of 'Rating' item for id: 4.
+2024-07-19 18:52:33.106 +02:00 [INF] 'Rule' list request.
+2024-07-19 18:52:42.637 +02:00 [INF] Add 'Rule' item request.
+2024-07-19 18:52:52.140 +02:00 [INF] Get request of 'Rule' for id: 3.
+2024-07-19 18:53:06.466 +02:00 [INF] Update request of 'Rule' item for id: 3.
+2024-07-19 18:53:15.457 +02:00 [INF] Delete request of 'Rule' item for id: 3.
+2024-07-19 18:53:24.284 +02:00 [INF] 'Trade' list request.
+2024-07-19 18:53:36.452 +02:00 [INF] Add 'Trade' item request.
+2024-07-19 18:53:44.457 +02:00 [INF] Get request of 'Trade' for id: 7.
+2024-07-19 18:53:58.102 +02:00 [INF] Update request of 'Trade' item for id: 7.
+2024-07-19 18:54:10.172 +02:00 [INF] Delete request of 'Trade' item for id: 7.
+2024-07-19 18:54:19.321 +02:00 [INF] 'User' list request.
+2024-07-19 18:54:30.704 +02:00 [INF] Add 'User' item request.
+2024-07-19 18:54:49.597 +02:00 [INF] Get request of 'User' for id: 7.
+2024-07-19 18:55:03.772 +02:00 [INF] Update request of 'User' item for id: 7.
+2024-07-19 18:55:46.854 +02:00 [INF] Update request of 'User' item for id: 7.
+2024-07-19 18:55:59.829 +02:00 [INF] Delete request of 'User' item for id: 7.

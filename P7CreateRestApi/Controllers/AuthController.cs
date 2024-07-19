@@ -12,7 +12,7 @@ using System.Text;
 namespace Dot.Net.WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("Authentication")]
     public class AuthController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
@@ -22,11 +22,11 @@ namespace Dot.Net.WebApi.Controllers
             _userManager = userManager;
             _config = config;
         }
-        /// <summary>Allows user to authentificate. If user and password are ok, generates token.</summary> 
+        /// <summary>user login which generates a token if successfull.</summary> 
         /// <param name="inputModel">User input model object.</param>
         /// <returns>Generated token.</returns> 
         /// <remarks>Auth controller Login method. 
-        /// Route: /Auth/login.</remarks>
+        /// URI: /Auth/login.</remarks>
         /// <response code ="200">OK.</response>
         /// <response code ="400">BadRequest.</response>
         /// <response code ="401">Unauthorized.</response>

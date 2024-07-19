@@ -31,3 +31,19 @@
 2024-07-17 14:07:23.623 +02:00 [INF] Delete request of 'Trade' item for id: 5.
 2024-07-17 15:26:49.707 +02:00 [INF] admin user authentification.
 2024-07-17 15:27:09.277 +02:00 [INF] 'BidList' list request.
+2024-07-17 17:12:12.949 +02:00 [INF] admin user authentification.
+2024-07-17 17:14:11.791 +02:00 [INF] 'Trade' list request.
+2024-07-17 17:21:20.611 +02:00 [INF] Get request of 'Trade' for id: 1.
+2024-07-17 17:22:09.402 +02:00 [INF] Add 'Trade' item request.
+2024-07-17 17:22:29.356 +02:00 [INF] Get request of 'Trade' to update for id: 6.
+2024-07-17 17:22:47.343 +02:00 [INF] Update request of 'Trade' item for id: 6.
+2024-07-17 17:23:11.371 +02:00 [INF] Delete request of 'Trade' item for id: 6.
+2024-07-17 17:27:36.548 +02:00 [INF] 'User' list request.
+2024-07-17 17:30:14.770 +02:00 [INF] Add 'User' item request.
+2024-07-17 17:30:40.039 +02:00 [INF] smoureu user authentification.
+2024-07-17 17:30:40.100 +02:00 [WRN] Unauthorized (401) result for smoureu user authentification
+2024-07-17 17:31:56.932 +02:00 [INF] smoureu user authentification.
+2024-07-17 17:31:56.947 +02:00 [WRN] Unauthorized (401) result for smoureu user authentification
+2024-07-17 17:32:46.283 +02:00 [INF] smoureu user authentification.
+2024-07-17 17:34:01.416 +02:00 [INF] admin user authentification.
+2024-07-17 17:34:23.859 +02:00 [INF] 'User' list request.

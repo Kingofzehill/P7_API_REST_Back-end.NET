@@ -5,431 +5,359 @@
     </assembly>
     <members>
         <member name="M:Dot.Net.WebApi.Controllers.AuthController.Login(P7CreateRestApi.Models.InputModels.LoginInputModel)">
-            <summary>Allows user to authentificate. If user and password are ok, generates token.</summary> 
+            <summary>A user login which generates a token if successfull.</summary> 
             <param name="inputModel">User input model object.</param>
             <returns>Generated token.</returns> 
             <remarks>Auth controller Login method. 
-            Route: /Auth/login.</remarks>
+            URI: /Auth/login.</remarks>
             <response code ="200">OK.</response>
             <response code ="400">BadRequest.</response>
             <response code ="401">Unauthorized.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.BidListController.List">
-            <summary>List BidList items. </summary>  
+            <summary>Get a list of BidList items.</summary>  
             <returns>BidList list.</returns> 
             <remarks>[HttpGet] BidList controller List method.
             Authenticated and authorized User access only.
-            Route: /BidList/list.</remarks>
+            URI: /BidLists.</remarks>
             <response code ="200">OK.</response>    
             <response code ="401">Unauthorized.</response>   
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.BidListController.Get(System.Int32)">
-            <summary>Get BidList item for the Id in input.</summary>  
+            <summary>Get the BidList item of the Id in input.</summary>  
             <param name="id">BidList Id.</param>
             <returns>Selected BidList.</returns> 
             <remarks>[HttpGet] BidList controller Get method. 
             Authenticated and authorized User access only.
-            Route: /BidList/get/{id}.</remarks>
+            URI: /BidLists/{id}.</remarks>
             <response code ="200">OK.</response>  
             <response code ="401">Unauthorized.</response>   
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.BidListController.AddBidList(P7CreateRestApi.Models.InputModels.BidListInputModel)">
-            <summary>Add the Bidlist item in input. </summary>  
+            <summary>Post an add of the Bidlist item in input.</summary>  
             <param name="inputModel">BidList input model object.</param>
             <returns>BidList item created.</returns> 
             <remarks>[HttpPost] BidList controller AddBidList method.
             Authenticated and authorized User access only.
-            Route: /BidList/add.</remarks>
+            URI: /BidLists.</remarks>
             <response code ="200">OK.</response>    
             <response code ="401">Unauthorized.</response>   
             <response code ="500">Internal error (exception).</response>
         </member>
-        <member name="M:Dot.Net.WebApi.Controllers.BidListController.ShowUpdateForm(System.Int32)">
-            <summary>Get BidList item to update for the BidList Id in parameter.</summary>  
-            <param name="id">BidList Id to get.</param>
-            <returns>BidList item.</returns> 
-            <remarks>[HttpGet] BidList controller ShowUpdateForm method. 
-            Authenticated and authorized User access only.
-            Route: /BidList/update/{id}.</remarks>
-            <response code ="200">OK.</response>     
-            <response code ="401">Unauthorized.</response>   
-            <response code ="404">Not found.</response>
-            <response code ="500">Internal error (exception).</response>
-        </member>
         <member name="M:Dot.Net.WebApi.Controllers.BidListController.UpdateBid(System.Int32,P7CreateRestApi.Models.InputModels.BidListInputModel)">
-            <summary>Post update for the BidList Id and item in input.</summary>  
+            <summary>Post an BidList item update for the Id in input.</summary>  
             <param name="id">BidList Id.</param>
             <param name="inputModel">BidList input model object.</param>
             <returns>Updated BidList list.</returns> 
             <remarks>[HttpPost] BidList controller UpdateBid method.
             Authenticated and authorized User access only.
-            Route: /BidList/update/{id}.</remarks>
+            URI: /BidLists/{id}.</remarks>
             <response code ="200">OK.</response>     
             <response code ="401">Unauthorized.</response>   
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.BidListController.DeleteBid(System.Int32)">
-            <summary>Delete BidList item for the Id in parameters.</summary>  
+            <summary>A delete of the BidList item for the Id in input.</summary>  
             <param name="id">BidList Id.</param>
             <returns>Updated BidList list.</returns> 
             <remarks>[HttpDelete] BidList controller DeleteBid method.
             Authenticated and authorized User access only.
-            Route: /BidList/delete/{id}.</remarks>
+            URI: /BidLists/{id}.</remarks>
             <response code ="200">OK.</response>    
             <response code ="401">Unauthorized.</response>   
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.CurveController.List">
-            <summary>List CurvePoint items. </summary>  
+            <summary>Get a list of CurvePoint items. </summary>  
             <returns>CurvePoint list.</returns> 
             <remarks>[HttpGet] CurvePoint controller List method. 
             Authenticated and authorized User access only. 
-            Route: /Curve/list.</remarks>
+            URI: /Curve/list.</remarks>
             <response code ="200">OK.</response>       
             <response code ="401">Unauthorized.</response> 
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.CurveController.Get(System.Int32)">
-            <summary>Get CurvePoint item for the Id in input. </summary>     
+            <summary>Get the CurvePoint item of the Id in input.</summary>     
             <param name="id">CurvePoint Id.</param>
             <returns>Selected CurvePoint.</returns> 
             <remarks>[HttpGet] CurvePoint controller Get method. 
             Authenticated and authorized User access only. 
-            Route: /Curve/get/{id}.</remarks>
+            URI: /Curve/get/{id}.</remarks>
             <response code ="200">OK.</response>  
             <response code ="401">Unauthorized.</response>  
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.CurveController.AddCurvePoint(P7CreateRestApi.Models.InputModel.CurvePointInputModel)">
-            <summary>Add a CurvePoint item.</summary>
+            <summary>Post an add of the CurvePoint item in input.</summary>
             <param name="inputModel">CurvePoint input model object.</param>
             <returns>CurvePoint item created.</returns> 
             <remarks>[HttpPost] CurvePoint controller AddCurvePoint method. 
             Authenticated and authorized User access only. 
-            Route: /Curve/add.</remarks>
+            URI: /Curve/add.</remarks>
             <response code ="200">OK.</response>      
             <response code ="401">Unauthorized.</response>  
             <response code ="500">Internal error (exception).</response>
         </member>
-        <member name="M:Dot.Net.WebApi.Controllers.CurveController.ShowUpdateForm(System.Int32)">
-            <summary>Get CurvePoint item to update for the Id in input.</summary>   
-            <param name="id">CurvePoint Id to get.</param>
-            <returns>CurvePoint item..</returns> 
-            <remarks>[HttpGet] CurvePoint controller ShowUpdateForm method. 
-            Authenticated and authorized User access only. 
-            Route: /Curve/update/{id}.</remarks>
-            <response code ="200">OK.</response>    
-            <response code ="401">Unauthorized.</response>  
-            <response code ="404">Not found.</response>
-            <response code ="500">Internal error (exception).</response>
-        </member>
         <member name="M:Dot.Net.WebApi.Controllers.CurveController.UpdateCurvePoint(System.Int32,P7CreateRestApi.Models.InputModel.CurvePointInputModel)">
-            <summary>Post update for the CurvePoint Id and item in input.</summary>  
+            <summary>Post an CurvePoint item update for the Id in input.</summary>  
             <param name="id">CurvePoint Id.</param>
             <param name="inputModel">CurvePoint input model object.</param>
             <returns>Updated CurvePoint list.</returns> 
             <remarks>[HttpPost] CurvePoint controller UpdateCurvePoint method. 
             Authenticated and authorized User access only. 
-            Route: /Curve/update/{id}.</remarks>
+            URI: /Curve/update/{id}.</remarks>
             <response code ="200">OK.</response>   
             <response code ="401">Unauthorized.</response>  
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.CurveController.DeleteCurvePoint(System.Int32)">
-            <summary>Delete CurvePoint item for the Id in input.</summary>  
+            <summary>A delete of the CurvePoint item for the Id in input.</summary>  
             <param name="id">CurvePoint Id.</param>
             <returns>Updated CurvePoint list.</returns> 
             <remarks>[HttpDelete] CurvePoint controller DeleteCurvePoint method. 
             Authenticated and authorized User access only. 
-            Route: /Curve/delete/{id}.</remarks>
+            URI: /Curve/delete/{id}.</remarks>
             <response code ="200">OK.</response> 
             <response code ="401">Unauthorized.</response>  
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.RatingController.List">
-            <summary>List Rating items.</summary> 
+            <summary>Get a list of Rating items.</summary> 
             <returns>Rating list.</returns> 
             <remarks>[HttpGet] Rating controller List method. 
             Authenticated and authorized User access only. 
-            Route: /Rating/list.</remarks>
+            URI: /Rating/list.</remarks>
             <response code ="200">OK.</response>    
             <response code ="401">Unauthorized.</response> 
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.RatingController.Get(System.Int32)">
-            <summary>Get Rating item for the Id in input. </summary>  
+            <summary>Get the Rating item for the Id in input. </summary>  
             <param name="id">Rating Id.</param>
             <returns>Selected Rating.</returns>
             <remarks>[HttpGet] Rating controller Get method. 
             Authenticated and authorized User access only. 
-            Route: /Rating/get/{id}.</remarks>
+            URI: /Rating/get/{id}.</remarks>
             <response code ="200">OK.</response>  
             <response code ="401">Unauthorized.</response> 
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.RatingController.AddRating(P7CreateRestApi.Models.InputModel.RatingInputModel)">
-            <summary>Add the Rating item in input.</summary>  
+            <summary>Post an add of the Rating item in input.</summary>  
             <param name="inputModel">Rating input model object.</param>
             <returns>Rating item created.</returns> 
             <remarks>[HttpPost] Rating controller AddRating method. 
             Authenticated and authorized User access only. 
-            Route: /Rating/add.</remarks>
+            URI: /Rating/add.</remarks>
             <response code ="200">OK.</response>  
             <response code ="401">Unauthorized.</response> 
             <response code ="500">Internal error (exception).</response>
         </member>
-        <member name="M:Dot.Net.WebApi.Controllers.RatingController.ShowUpdateForm(System.Int32)">
-            <summary>Get Rating item to update for the Id in input.</summary>  
-            <param name="id">Rating Id.</param>
-            <returns>Rating item.</returns> 
-            <remarks>[HttpGet] Rating controller ShowUpdateForm method. 
-            Authenticated and authorized User access only. 
-            Route: /Rating/update/{id}.</remarks>
-            <response code ="200">OK.</response>     
-            <response code ="401">Unauthorized.</response> 
-            <response code ="404">Not found.</response>
-            <response code ="500">Internal error (exception).</response>
-        </member>
         <member name="M:Dot.Net.WebApi.Controllers.RatingController.UpdateRating(System.Int32,P7CreateRestApi.Models.InputModel.RatingInputModel)">
-            <summary>Post update for the Rating Id and item in input.</summary>  
+            <summary>Post an Rating item update for the Id in input.</summary>  
             <param name="id">Rating Id.</param>
             <param name="inputModel">Rating input model object.</param>
             <returns>Updated Rating list.</returns> 
             <remarks>[HttpPost] Rating controller UpdateRating method. 
             Authenticated and authorized User access only. 
-            Route: /Rating/update/{id}.</remarks>
+            URI: /Rating/update/{id}.</remarks>
             <response code ="200">OK.</response>     
             <response code ="401">Unauthorized.</response> 
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.RatingController.DeleteRating(System.Int32)">
-            <summary>Delete Rating item for the Id in parameters.</summary>  
+            <summary>A delete of the Rating item for the Id in parameters.</summary>  
             <param name="id">Rating Id.</param>
             <returns>Updated Rating list.</returns> 
             <remarks>[HttpDelete] Rating controller DeleteRating method. 
             Authenticated and authorized User access only. 
-            Route: /Rating/delete/{id}.</remarks>
+            URI: /Rating/delete/{id}.</remarks>
             <response code ="200">OK.</response>   
             <response code ="401">Unauthorized.</response> 
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.RuleNameController.List">
-            <summary>List Rule items.</summary>  
-            <returns>Rule list.</returns> 
-            <remarks>[HttpGet] Rule controller List method. 
+            <summary>Get a list of RuleName items.</summary>  
+            <returns>RuleName list.</returns> 
+            <remarks>[HttpGet] RuleName controller List method. 
             Authenticated and authorized User access only. 
-            Route: /Rule/list.</remarks>
+            URI: /RuleName/list.</remarks>
             <response code ="200">OK.</response>      
             <response code ="401">Unauthorized.</response>  
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.RuleNameController.Get(System.Int32)">
-            <summary>Get Rule item for the Id in input. </summary>  
-            <param name="id">Rule Id.</param>
-            <returns>Selected Rule.</returns> 
-            <remarks>[HttpGet] Rule controller Get method. 
+            <summary>Get the RuleName item for the Id in input. </summary>  
+            <param name="id">RuleName Id.</param>
+            <returns>Selected RuleName.</returns> 
+            <remarks>[HttpGet] RuleName controller Get method. 
             Authenticated and authorized User access only. 
-            Route: /Rule/get/{id}.</remarks>
+            URI: /RuleName/get/{id}.</remarks>
             <response code ="200">OK.</response>  
             <response code ="401">Unauthorized.</response>  
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.RuleNameController.AddRuleName(P7CreateRestApi.Models.InputModel.RuleNameInputModel)">
-            <summary>Add a Rule item.</summary>  
-            <param name="inputModel">Rule input model object.</param>
-            <returns>Rule item created.</returns> 
-            <remarks>[HttpPost] Rule controller AddRuleName method. 
+            <summary>Post an add of the RuleName item in input.</summary>  
+            <param name="inputModel">RuleName input model object.</param>
+            <returns>RuleName item created.</returns> 
+            <remarks>[HttpPost] RuleName controller AddRuleName method. 
             Authenticated and authorized User access only. 
-            Route: /Rule/add.</remarks>
+            URI: /RuleName/add.</remarks>
             <response code ="200">OK.</response>   
             <response code ="401">Unauthorized.</response>  
             <response code ="500">Internal error (exception).</response>
         </member>
-        <member name="M:Dot.Net.WebApi.Controllers.RuleNameController.ShowUpdateForm(System.Int32)">
-            <summary>Get Rule item to update for the Id in input.</summary>  
-            <param name="id">Rule Id.</param>
-            <returns>Rule item.</returns> 
-            <remarks>[HttpGet] Rule controller ShowUpdateForm method. 
-            Authenticated and authorized User access only. 
-            Route: /Rule/update/{id}.</remarks>
-            <response code ="200">OK.</response>    
-            <response code ="401">Unauthorized.</response>  
-            <response code ="404">Not found.</response>
-            <response code ="500">Internal error (exception).</response>
-        </member>
         <member name="M:Dot.Net.WebApi.Controllers.RuleNameController.UpdateRuleName(System.Int32,P7CreateRestApi.Models.InputModel.RuleNameInputModel)">
-            <summary>Post update for the Rule Id and item in input.</summary>  
-            <param name="id">Rule Id.</param>
-            <param name="inputModel">Rule input model object.</param>
-            <returns>Updated Rule list.</returns> 
-            <remarks>[HttpPost] Rule controller UpdateRuleName method. 
+            <summary>Post an RuleName item update for the Id in input.</summary>  
+            <param name="id">RuleName Id.</param>
+            <param name="inputModel">RuleName input model object.</param>
+            <returns>Updated RuleName list.</returns> 
+            <remarks>[HttpPost] RuleName controller UpdateRuleName method. 
             Authenticated and authorized User access only. 
-            Route: /Rule/update/{id}.</remarks>
+            URI: /RuleName/update/{id}.</remarks>
             <response code ="200">OK.</response>   
             <response code ="401">Unauthorized.</response>  
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.RuleNameController.DeleteRuleName(System.Int32)">
-            <summary>Delete Rule item for the Id in parameters.</summary>  
-            <param name="id">Rule Id.</param>
-            <returns>Updated Rule list.</returns> 
-            <remarks>[HttpDelete] Rule controller DeleteRuleName method. 
+            <summary>A delete of the RuleName item for the Id in input.</summary>  
+            <param name="id">RuleName Id.</param>
+            <returns>Updated RuleName list.</returns> 
+            <remarks>[HttpDelete] RuleName controller DeleteRuleName method. 
             Authenticated and authorized User access only. 
-            Route: /Rule/delete/{id}.</remarks>
+            URI: /RuleName/delete/{id}.</remarks>
             <response code ="200">OK.</response>   
             <response code ="401">Unauthorized.</response>  
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.TradeController.List">
-            <summary>List Trade items.</summary>  
+            <summary>Get a list of Trade items.</summary>  
             <returns>Trade list.</returns> 
             <remarks>[HttpGet] Trade controller List method. 
             Authenticated and authorized User access only. 
-            Route: /Trade/list.</remarks>
+            URI: /Trade/list.</remarks>
             <response code ="200">OK.</response>      
             <response code ="401">Unauthorized.</response>   
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.TradeController.Get(System.Int32)">
-            <summary>Get Trade item for the Id in input. </summary>  
+            <summary>Get the Trade item for the Id in input. </summary>  
             <param name="id">Trade Id.</param>
             <returns>Selected Trade.</returns> 
             <remarks>[HttpGet] Trade controller Get method. 
             Authenticated and authorized User access only. 
-            Route: /Trade/get/{id}.</remarks>
+            URI: /Trade/get/{id}.</remarks>
             <response code ="200">OK.</response>  
             <response code ="401">Unauthorized.</response>   
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.TradeController.AddTrade(P7CreateRestApi.Models.InputModel.TradeInputModel)">
-            <summary>Add a Trade item.</summary>  
+            <summary>Post an add of the Trade item in input.</summary>  
             <param name="inputModel">Trade input model object.</param>
             <returns>Trade item created.</returns> 
             <remarks>[HttpPost] Trade controller AddTrade method. 
             Authenticated and authorized User access only. 
-            Route: /Trade/add.</remarks>
+            URI: /Trade/add.</remarks>
             <response code ="200">OK.</response>  
             <response code ="401">Unauthorized.</response>   
             <response code ="500">Internal error (exception).</response>
         </member>
-        <member name="M:Dot.Net.WebApi.Controllers.TradeController.ShowUpdateForm(System.Int32)">
-            <summary>Get Trade item to update for the Id in input.</summary>  
-            <param name="id">Trade Id.</param>
-            <returns>Trade item.</returns> 
-            <remarks>[HttpGet] Trade controller ShowUpdateForm method. 
-            Authenticated and authorized User access only. 
-            Route: /Trade/update/{id}.</remarks>
-            <response code ="200">OK.</response>    
-            <response code ="401">Unauthorized.</response>   
-            <response code ="404">Not found.</response>
-            <response code ="500">Internal error (exception).</response>
-        </member>
         <member name="M:Dot.Net.WebApi.Controllers.TradeController.UpdateTrade(System.Int32,P7CreateRestApi.Models.InputModel.TradeInputModel)">
-            <summary>Post update for the Trade Id and item in input.</summary>  
+            <summary>Post an Trade item update for the Id in input.</summary>  
             <param name="id">Trade Id.</param>
             <param name="inputModel">Trade input model object.</param>
             <returns>Updated Trade list.</returns> 
             <remarks>[HttpPost] Trade controller UpdateTrade method. 
             Authenticated and authorized User access only. 
-            Route: /Trade/update/{id}.</remarks>
+            URI: /Trade/update/{id}.</remarks>
             <response code ="200">OK.</response>   
             <response code ="401">Unauthorized.</response>   
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.TradeController.DeleteTrade(System.Int32)">
-            <summary>Delete Trade item for the Id in input.</summary>  
+            <summary>A delete of the Trade item for the Id in input.</summary>  
             <param name="id">Trade Id.</param>
             <returns>Updated Trade list.</returns> 
             <remarks>[HttpDelete] Trade controller DeleteTrade method. 
             Authenticated and authorized User access only. 
-            Route: /Trade/delete/{id}.</remarks>
+            URI: /Trade/delete/{id}.</remarks>
             <response code ="200">OK.</response> 
             <response code ="401">Unauthorized.</response>   
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.UserController.List">
-            <summary>List User items. </summary>  
+            <summary>Get a list of User items. </summary>  
             <returns>User list.</returns> 
             <remarks>[HttpGet] User controller List method. 
             Authenticated and authorized Admin User access only. 
-            Route: /User/list.</remarks>
+            URI: /User/list.</remarks>
             <response code ="200">OK.</response>       
             <response code ="401">Unauthorized.</response>    
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.UserController.Get(System.Int32)">
-            <summary>Get User item for the Id in input. </summary>  
+            <summary>Get the User item for the Id in input. </summary>  
             <param name="id">User Id.</param>
             <returns>Selected User.</returns> 
             <remarks>[HttpGet] User controller Get method. 
             Authenticated and authorized Admin User access only. 
-            Route: /User/get/{id}.</remarks>
+            URI: /User/get/{id}.</remarks>
             <response code ="200">OK.</response>  
             <response code ="401">Unauthorized.</response>    
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.UserController.AddUser(P7CreateRestApi.Models.InputModel.UserInputModel)">
-            <summary>Add a User item.</summary>  
+            <summary>Post an add of the User item in input.</summary>  
             <param name="inputModel">User input model object.</param>
             <returns>User item created.</returns> 
             <remarks>[HttpPost] User controller AddUser method. 
             Authenticated and authorized Admin User access only. 
-            Route: /User/add.</remarks>
+            URI: /User/add.</remarks>
             <response code ="200">OK.</response>    
             <response code ="401">Unauthorized.</response>    
             <response code ="500">Internal error (exception).</response>
         </member>
-        <member name="M:Dot.Net.WebApi.Controllers.UserController.ShowUpdateForm(System.Int32)">
-            <summary>Get User item to update for the Id in input.</summary>  
-            <param name="id">User Id.</param>
-            <returns>User item.</returns> 
-            <remarks>[HttpGet] User controller ShowUpdateForm method. 
-            Authenticated and authorized Admin User access only. 
-            Route: /User/update/{id}.</remarks>
-            <response code ="200">OK.</response>     
-            <response code ="401">Unauthorized.</response>   
-            <response code ="404">Not found.</response>
-            <response code ="500">Internal error (exception).</response>
-        </member>
         <member name="M:Dot.Net.WebApi.Controllers.UserController.UpdateUser(System.Int32,P7CreateRestApi.Models.InputModel.UserInputModel)">
-            <summary>Post update for the User Id and item in input.</summary>  
+            <summary>Post an User item update for the Id in input.</summary>  
             <param name="id">User Id.</param>
             <param name="inputModel">User input model object.</param>
             <returns>Updated User list.</returns> 
             <remarks>[HttpPost] User controller UpdateUser method. 
             Authenticated and authorized Admin User access only. 
-            Route: /User/update/{id}.</remarks>
+            URI: /User/update/{id}.</remarks>
             <response code ="200">OK.</response>   
             <response code ="401">Unauthorized.</response>    
             <response code ="404">Not found.</response>
             <response code ="500">Internal error (exception).</response>
         </member>
         <member name="M:Dot.Net.WebApi.Controllers.UserController.DeleteUser(System.Int32)">
-            <summary>Delete User item for the Id in input.</summary>  
+            <summary>A delete of the User item for the Id in input.</summary>  
             <param name="id">User Id.</param>
             <returns>Updated User list.</returns> 
             <remarks>[HttpDelete] User controller DeleteUser method. 
             Authenticated and authorized Admin User access only. 
-            Route: /User/delete/{id}.</remarks>
+            URI: /User/delete/{id}.</remarks>
             <response code ="200">OK.</response>   
             <response code ="401">Unauthorized.</response>    
             <response code ="404">Not found.</response>

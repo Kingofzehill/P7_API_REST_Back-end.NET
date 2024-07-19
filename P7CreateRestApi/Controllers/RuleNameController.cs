@@ -9,7 +9,7 @@ using Serilog;
 namespace Dot.Net.WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("RuleNames")]
     public class RuleNameController : ControllerBase
     {
         private readonly IRuleNameService _ruleNameService;
@@ -17,16 +17,16 @@ namespace Dot.Net.WebApi.Controllers
         {
             _ruleNameService = ruleNameService;
         }
-        /// <summary>List Rule items.</summary>  
-        /// <returns>Rule list.</returns> 
-        /// <remarks>[HttpGet] Rule controller List method. 
+        /// <summary>Get a list of RuleName items.</summary>  
+        /// <returns>RuleName list.</returns> 
+        /// <remarks>[HttpGet] RuleName controller List method. 
         /// Authenticated and authorized User access only. 
-        /// Route: /Rule/list.</remarks>
+        /// URI: /RuleName/list.</remarks>
         /// <response code ="200">OK.</response>      
         /// <response code ="401">Unauthorized.</response>  
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
-        [Route("list")]
+        [Route("")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -44,18 +44,18 @@ namespace Dot.Net.WebApi.Controllers
                 return StatusCode(500, "Internal error occurs.");
             }
         }
-        /// <summary>Get Rule item for the Id in input. </summary>  
-        /// <param name="id">Rule Id.</param>
-        /// <returns>Selected Rule.</returns> 
-        /// <remarks>[HttpGet] Rule controller Get method. 
+        /// <summary>Get the RuleName item for the Id in input. </summary>  
+        /// <param name="id">RuleName Id.</param>
+        /// <returns>Selected RuleName.</returns> 
+        /// <remarks>[HttpGet] RuleName controller Get method. 
         /// Authenticated and authorized User access only. 
-        /// Route: /Rule/get/{id}.</remarks>
+        /// URI: /RuleName/get/{id}.</remarks>
         /// <response code ="200">OK.</response>  
         /// <response code ="401">Unauthorized.</response>  
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
-        [Route("get/{id}")]
+        [Route("{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -80,17 +80,17 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'Rule' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>Add a Rule item.</summary>  
-        /// <param name="inputModel">Rule input model object.</param>
-        /// <returns>Rule item created.</returns> 
-        /// <remarks>[HttpPost] Rule controller AddRuleName method. 
+        /// <summary>Add the RuleName item in input.</summary>  
+        /// <param name="inputModel">RuleName input model object.</param>
+        /// <returns>RuleName item created.</returns> 
+        /// <remarks>[HttpPost] RuleName controller AddRuleName method. 
         /// Authenticated and authorized User access only. 
-        /// Route: /Rule/add.</remarks>
+        /// URI: /RuleName/add.</remarks>
         /// <response code ="200">OK.</response>   
         /// <response code ="401">Unauthorized.</response>  
         /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
-        [Route("add")]
+        [Route("")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -108,12 +108,13 @@ namespace Dot.Net.WebApi.Controllers
                 return StatusCode(500, "Internal error occurs.");
             }
         }
-        /// <summary>Get Rule item to update for the Id in input.</summary>  
-        /// <param name="id">Rule Id.</param>
-        /// <returns>Rule item.</returns> 
-        /// <remarks>[HttpGet] Rule controller ShowUpdateForm method. 
+        /* Redundant method with Get method, so commented out.
+        /// <summary>Get the RuleName item of the Id in input for an update.</summary>  
+        /// <param name="id">RuleName Id.</param>
+        /// <returns>RuleName item.</returns> 
+        /// <remarks>[HttpGet] RuleName controller ShowUpdateForm method. 
         /// Authenticated and authorized User access only. 
-        /// Route: /Rule/update/{id}.</remarks>
+        /// URI: /RuleName/update/{id}.</remarks>
         /// <response code ="200">OK.</response>    
         /// <response code ="401">Unauthorized.</response>  
         /// <response code ="404">Not found.</response>
@@ -144,19 +145,20 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'Rule' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>Post update for the Rule Id and item in input.</summary>  
-        /// <param name="id">Rule Id.</param>
-        /// <param name="inputModel">Rule input model object.</param>
-        /// <returns>Updated Rule list.</returns> 
-        /// <remarks>[HttpPost] Rule controller UpdateRuleName method. 
+        */
+        /// <summary>RuleName item update for the Id in input.</summary>  
+        /// <param name="id">RuleName Id.</param>
+        /// <param name="inputModel">RuleName input model object.</param>
+        /// <returns>Updated RuleName list.</returns> 
+        /// <remarks>[HttpPost] RuleName controller UpdateRuleName method. 
         /// Authenticated and authorized User access only. 
-        /// Route: /Rule/update/{id}.</remarks>
+        /// URI: /RuleName/update/{id}.</remarks>
         /// <response code ="200">OK.</response>   
         /// <response code ="401">Unauthorized.</response>  
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
-        [HttpPost]
-        [Route("update/{id}")]
+        [HttpPut]
+        [Route("{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -181,18 +183,18 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'Rule' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>Delete Rule item for the Id in parameters.</summary>  
-        /// <param name="id">Rule Id.</param>
-        /// <returns>Updated Rule list.</returns> 
-        /// <remarks>[HttpDelete] Rule controller DeleteRuleName method. 
+        /// <summary>Delete the RuleName item for the Id in input.</summary>  
+        /// <param name="id">RuleName Id.</param>
+        /// <returns>Updated RuleName list.</returns> 
+        /// <remarks>[HttpDelete] RuleName controller DeleteRuleName method. 
         /// Authenticated and authorized User access only. 
-        /// Route: /Rule/delete/{id}.</remarks>
+        /// URI: /RuleName/delete/{id}.</remarks>
         /// <response code ="200">OK.</response>   
         /// <response code ="401">Unauthorized.</response>  
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpDelete]
-        [Route("delete/{id}")]
+        [Route("{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]

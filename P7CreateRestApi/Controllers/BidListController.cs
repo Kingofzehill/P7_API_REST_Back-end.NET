@@ -8,7 +8,7 @@ using Serilog;
 namespace Dot.Net.WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("BidLists")]
     public class BidListController : ControllerBase
     {
         private readonly IBidListService _bidListService;
@@ -17,16 +17,16 @@ namespace Dot.Net.WebApi.Controllers
             _bidListService = bidListService;
         }
 
-        /// <summary>List BidList items. </summary>  
+        /// <summary>Get a list of BidList items.</summary>  
         /// <returns>BidList list.</returns> 
         /// <remarks>[HttpGet] BidList controller List method.
         /// Authenticated and authorized User access only.
-        /// Route: /BidList/list.</remarks>
+        /// URI: /BidLists.</remarks>
         /// <response code ="200">OK.</response>    
         /// <response code ="401">Unauthorized.</response>   
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
-        [Route("list")]
+        [Route("")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -45,18 +45,18 @@ namespace Dot.Net.WebApi.Controllers
             }
         }
 
-        /// <summary>Get BidList item for the Id in input.</summary>  
+        /// <summary>Get the BidList item of the Id in input.</summary>  
         /// <param name="id">BidList Id.</param>
         /// <returns>Selected BidList.</returns> 
         /// <remarks>[HttpGet] BidList controller Get method. 
         /// Authenticated and authorized User access only.
-        /// Route: /BidList/get/{id}.</remarks>
+        /// URI: /BidLists/{id}.</remarks>
         /// <response code ="200">OK.</response>  
         /// <response code ="401">Unauthorized.</response>   
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
-        [Route("get/{id}")]
+        [Route("{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -82,17 +82,17 @@ namespace Dot.Net.WebApi.Controllers
             return NotFound();
         }
 
-        /// <summary>Add the Bidlist item in input. </summary>  
+        /// <summary>Add the Bidlist item in input.</summary>  
         /// <param name="inputModel">BidList input model object.</param>
         /// <returns>BidList item created.</returns> 
         /// <remarks>[HttpPost] BidList controller AddBidList method.
         /// Authenticated and authorized User access only.
-        /// Route: /BidList/add.</remarks>
+        /// URI: /BidLists.</remarks>
         /// <response code ="200">OK.</response>    
         /// <response code ="401">Unauthorized.</response>   
         /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
-        [Route("add")]
+        [Route("")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -111,12 +111,13 @@ namespace Dot.Net.WebApi.Controllers
             }
         }
 
-        /// <summary>Get BidList item to update for the BidList Id in parameter.</summary>  
-        /// <param name="id">BidList Id to get.</param>
+        /* Redundant method with Get method, so commented out.
+        /// <summary>Get the BidList item of the Id in input for an update.</summary>  
+        /// <param name="id">BidList Id.</param>
         /// <returns>BidList item.</returns> 
         /// <remarks>[HttpGet] BidList controller ShowUpdateForm method. 
         /// Authenticated and authorized User access only.
-        /// Route: /BidList/update/{id}.</remarks>
+        /// URI: /BidLists/{id}.</remarks>
         /// <response code ="200">OK.</response>     
         /// <response code ="401">Unauthorized.</response>   
         /// <response code ="404">Not found.</response>
@@ -147,20 +148,21 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'BidList' item not found for id: {id}.", id);
             return NotFound();
         }
+        */
 
-        /// <summary>Post update for the BidList Id and item in input.</summary>  
+        /// <summary>BidList item update for the Id in input.</summary>  
         /// <param name="id">BidList Id.</param>
         /// <param name="inputModel">BidList input model object.</param>
         /// <returns>Updated BidList list.</returns> 
         /// <remarks>[HttpPost] BidList controller UpdateBid method.
         /// Authenticated and authorized User access only.
-        /// Route: /BidList/update/{id}.</remarks>
+        /// URI: /BidLists/{id}.</remarks>
         /// <response code ="200">OK.</response>     
         /// <response code ="401">Unauthorized.</response>   
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
-        [HttpPost]
-        [Route("update/{id}")]
+        [HttpPut]
+        [Route("{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -186,18 +188,18 @@ namespace Dot.Net.WebApi.Controllers
             return NotFound();
         }
 
-        /// <summary>Delete BidList item for the Id in parameters.</summary>  
+        /// <summary>Delete the BidList item for the Id in input.</summary>  
         /// <param name="id">BidList Id.</param>
         /// <returns>Updated BidList list.</returns> 
         /// <remarks>[HttpDelete] BidList controller DeleteBid method.
         /// Authenticated and authorized User access only.
-        /// Route: /BidList/delete/{id}.</remarks>
+        /// URI: /BidLists/{id}.</remarks>
         /// <response code ="200">OK.</response>    
         /// <response code ="401">Unauthorized.</response>   
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpDelete]
-        [Route("delete/{id}")]
+        [Route("{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]

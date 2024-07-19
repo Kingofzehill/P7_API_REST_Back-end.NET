@@ -10,7 +10,7 @@ using Serilog;
 namespace Dot.Net.WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("Ratings")]
     public class RatingController : ControllerBase
     {
         private readonly IRatingService _ratingService;
@@ -18,16 +18,16 @@ namespace Dot.Net.WebApi.Controllers
         {
             _ratingService = ratingService;
         }
-        /// <summary>List Rating items.</summary> 
+        /// <summary>Get a list of Rating items.</summary> 
         /// <returns>Rating list.</returns> 
         /// <remarks>[HttpGet] Rating controller List method. 
         /// Authenticated and authorized User access only. 
-        /// Route: /Rating/list.</remarks>
+        /// URI: /Rating/list.</remarks>
         /// <response code ="200">OK.</response>    
         /// <response code ="401">Unauthorized.</response> 
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
-        [Route("list")]
+        [Route("")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -45,18 +45,18 @@ namespace Dot.Net.WebApi.Controllers
                 return StatusCode(500, "Internal error occurs.");
             }
         }
-        /// <summary>Get Rating item for the Id in input. </summary>  
+        /// <summary>Get the Rating item for the Id in input. </summary>  
         /// <param name="id">Rating Id.</param>
         /// <returns>Selected Rating.</returns>
         /// <remarks>[HttpGet] Rating controller Get method. 
         /// Authenticated and authorized User access only. 
-        /// Route: /Rating/get/{id}.</remarks>
+        /// URI: /Rating/get/{id}.</remarks>
         /// <response code ="200">OK.</response>  
         /// <response code ="401">Unauthorized.</response> 
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpGet]
-        [Route("get/{id}")]
+        [Route("{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -86,12 +86,12 @@ namespace Dot.Net.WebApi.Controllers
         /// <returns>Rating item created.</returns> 
         /// <remarks>[HttpPost] Rating controller AddRating method. 
         /// Authenticated and authorized User access only. 
-        /// Route: /Rating/add.</remarks>
+        /// URI: /Rating/add.</remarks>
         /// <response code ="200">OK.</response>  
         /// <response code ="401">Unauthorized.</response> 
         /// <response code ="500">Internal error (exception).</response>
         [HttpPost]
-        [Route("add")]
+        [Route("")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -109,12 +109,13 @@ namespace Dot.Net.WebApi.Controllers
                 return StatusCode(500, "Internal error occurs.");
             }
         }
-        /// <summary>Get Rating item to update for the Id in input.</summary>  
+        /* Redundant method with Get method, so commented out.
+        /// <summary>Get the Rating item of the Id in input for an update.</summary>  
         /// <param name="id">Rating Id.</param>
         /// <returns>Rating item.</returns> 
         /// <remarks>[HttpGet] Rating controller ShowUpdateForm method. 
         /// Authenticated and authorized User access only. 
-        /// Route: /Rating/update/{id}.</remarks>
+        /// URI: /Rating/update/{id}.</remarks>
         /// <response code ="200">OK.</response>     
         /// <response code ="401">Unauthorized.</response> 
         /// <response code ="404">Not found.</response>
@@ -145,19 +146,20 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'Rating' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>Post update for the Rating Id and item in input.</summary>  
+        */
+        /// <summary>Rating item update for the Id in input.</summary>  
         /// <param name="id">Rating Id.</param>
         /// <param name="inputModel">Rating input model object.</param>
         /// <returns>Updated Rating list.</returns> 
         /// <remarks>[HttpPost] Rating controller UpdateRating method. 
         /// Authenticated and authorized User access only. 
-        /// Route: /Rating/update/{id}.</remarks>
+        /// URI: /Rating/update/{id}.</remarks>
         /// <response code ="200">OK.</response>     
         /// <response code ="401">Unauthorized.</response> 
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
-        [HttpPost]
-        [Route("update/{id}")]
+        [HttpPut]
+        [Route("{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -182,18 +184,18 @@ namespace Dot.Net.WebApi.Controllers
             Log.Warning("'Rating' item not found for id: {id}.", id);
             return NotFound();
         }
-        /// <summary>Delete Rating item for the Id in parameters.</summary>  
+        /// <summary>Delete the Rating item for the Id in input.</summary>  
         /// <param name="id">Rating Id.</param>
         /// <returns>Updated Rating list.</returns> 
         /// <remarks>[HttpDelete] Rating controller DeleteRating method. 
         /// Authenticated and authorized User access only. 
-        /// Route: /Rating/delete/{id}.</remarks>
+        /// URI: /Rating/delete/{id}.</remarks>
         /// <response code ="200">OK.</response>   
         /// <response code ="401">Unauthorized.</response> 
         /// <response code ="404">Not found.</response>
         /// <response code ="500">Internal error (exception).</response>
         [HttpDelete]
-        [Route("delete/{id}")]
+        [Route("{id}")]
         [Authorize(policy: "User")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
