@@ -112,7 +112,9 @@ namespace P7CreateRestApi.Services
                 Id = curvePoint.Id,
                 CurveId = curvePoint.CurveId,
                 AsOfDate = curvePoint.AsOfDate,
-                CurvePointValue = curvePoint.CurvePointValue
+                CurvePointValue = curvePoint.CurvePointValue,
+                Term = curvePoint.Term,
+                CreationDate = curvePoint.CreationDate
             };
     }
 }
